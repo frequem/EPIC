@@ -5,17 +5,16 @@
  */
 package com.frequem.epic.menu.style;
 
-import com.frequem.epic.JMenuItem;
+import com.frequem.epic.JColorPicker;
 import com.frequem.epic.JSpritePanel;
-import com.frequem.epic.action.ColorChangeAction;
-import java.awt.Color;
-import java.awt.event.MouseEvent;
+import com.frequem.epic.JWindowMenuItem;
+import java.awt.Container;
 
 /**
  *
  * @author user
  */
-public class JStyleColorMenuItem extends JMenuItem{
+public class JStyleColorMenuItem extends JWindowMenuItem{
     
     public JStyleColorMenuItem(JSpritePanel spritePanel) {
         super(spritePanel);
@@ -25,10 +24,10 @@ public class JStyleColorMenuItem extends JMenuItem{
     protected String getLabelText(){
         return "Set Color";
     }
-    
+
     @Override
-    public void mouseClicked(MouseEvent me) {
-        getSpritePanel().doAction(new ColorChangeAction(getSpritePanel(), Color.GREEN));
+    protected Container getContentPane() {
+        return new JColorPicker();
     }
     
     

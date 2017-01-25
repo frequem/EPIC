@@ -9,6 +9,8 @@ import com.frequem.epic.iface.Menuable;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +26,8 @@ public abstract class JBarMenu extends JSpritePanelComponent implements Menuable
     private final JMenu expandMenu;
     private final JPanel itemPanel;
     private final JButton btnExpand;
+    
+    private boolean expMenuOpened = false;
     
     public JBarMenu(JSpritePanel spritePanel) {
         super(spritePanel);
@@ -46,10 +50,19 @@ public abstract class JBarMenu extends JSpritePanelComponent implements Menuable
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        JFrame f = new JFrame();
-        f.setContentPane(this.expandMenu);
-        f.pack();
-        f.setVisible(true);
+        if(!expMenuOpened){
+            this.expMenuOpened = true;
+            JFrame f = new JFrame();
+            f.setContentPane(this.expandMenu);
+            f.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosing(WindowEvent we) {
+                    JBarMenu.this.expMenuOpened = false;
+                }
+            });
+            f.pack();
+            f.setVisible(true); 
+        }
     }
     
     @Override
