@@ -13,7 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 
 /**
@@ -52,16 +52,18 @@ public abstract class JBarMenu extends JSpritePanelComponent implements Menuable
     public void actionPerformed(ActionEvent ae) {
         if(!expMenuOpened){
             this.expMenuOpened = true;
-            JFrame f = new JFrame();
-            f.setContentPane(this.expandMenu);
-            f.addWindowListener(new WindowAdapter(){
+            JDialog d = new JDialog();
+            d.setAlwaysOnTop(true);
+            d.setResizable(false);
+            d.setContentPane(this.expandMenu);
+            d.addWindowListener(new WindowAdapter(){
                 @Override
                 public void windowClosing(WindowEvent we) {
                     JBarMenu.this.expMenuOpened = false;
                 }
             });
-            f.pack();
-            f.setVisible(true); 
+            d.pack();
+            d.setVisible(true); 
         }
     }
     

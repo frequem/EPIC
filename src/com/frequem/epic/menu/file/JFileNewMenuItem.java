@@ -22,7 +22,7 @@ public class JFileNewMenuItem extends JMenuItem{
     
     @Override
     protected String getLabelText(){
-        return "New File";
+        return "Create new File";
     }
     
     @Override

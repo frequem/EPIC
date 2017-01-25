@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
@@ -27,19 +28,20 @@ public abstract class JWindowMenuItem extends JMenuItem{
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        System.out.println(frameOpened);
         if(!frameOpened){
             this.frameOpened = true;
-            JFrame f = new JFrame();
-            f.addWindowListener(new WindowAdapter(){
+            JDialog d = new JDialog();
+            d.setAlwaysOnTop(true);
+            d.setResizable(false);
+            d.addWindowListener(new WindowAdapter(){
                 @Override
                 public void windowClosing(WindowEvent we) {
                     frameOpened = false;
                 }
             });
-            f.setContentPane(this.getContentPane());
-            f.pack();
-            f.setVisible(true);
+            d.setContentPane(this.getContentPane());
+            d.pack();
+            d.setVisible(true);
         }
     }
     
