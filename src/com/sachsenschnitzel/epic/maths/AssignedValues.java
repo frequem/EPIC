@@ -1,6 +1,7 @@
 package com.sachsenschnitzel.epic.maths;
 
 public class AssignedValues{
+	
 	private AssignedValue[] avs;
 	
 	public AssignedValues(AssignedValue... assValues){
