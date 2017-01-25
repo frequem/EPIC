@@ -10,6 +10,8 @@ public class Start {
         Container c = f.getContentPane();
         JCalculator calc = new JCalculator();
         c.add(calc);
+        f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        f.setUndecorated(true);
         f.setVisible(true);
     }
 }
