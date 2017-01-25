@@ -31,11 +31,27 @@
 			</manifest>
 		</jar>
 	</target>
-  
+        
 	<target name="run" depends="release">
 		<java jar="${release}/${ant.project.name}.jar" fork="true"/>
 	</target>
+        
+        <target name="release-maths" depends="compile" description="generate jar file">
+		<mkdir dir="${release}"/>
+		<jar destfile="${release}/${ant.project.name}-maths.jar" filesetmanifest="mergewithoutmain">
+			<fileset dir="${bin}"/>
+			<zipgroupfileset dir="${lib}" includes="*.jar" excludes="META-INF/*"/>
+			<manifest>
+				<attribute name="Main-Class" value="com.sachsenschnitzel.epic.maths.Test"/>
+				<attribute name="Class-Path" value="."/>
+			</manifest>
+		</jar>
+	</target>
   
+        <target name="run-maths" depends="release-maths">
+		<java jar="${release}/${ant.project.name}-maths.jar" fork="true"/>
+	</target>
+        
 	<target name="clean" description="clean up">
 		<delete dir="${bin}"/>
 		<delete dir="${release}"/>
