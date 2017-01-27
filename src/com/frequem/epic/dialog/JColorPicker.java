@@ -3,7 +3,6 @@ package com.frequem.epic.dialog;
 import com.frequem.epic.JSpritePanel;
 import com.frequem.epic.JSpritePanelComponent;
 import com.frequem.epic.action.ColorChangeAction;
-import com.frequem.epic.iface.Action;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,6 +17,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -104,14 +104,20 @@ public class JColorPicker extends JSpritePanelComponent implements MouseListener
         
         private int xPicker, yPicker;
         
+        private BufferedImage buffer;
+        private boolean needsRedraw;
+        
         public JPicker(){
             this.setPreferredSize(new Dimension(PICKERSIZE, PICKERSIZE));
             this.saturation = 1f;
+            buffer = new BufferedImage(PICKERSIZE, PICKERSIZE, BufferedImage.TYPE_INT_ARGB);
+            needsRedraw = true;
             this.addMouseListener(JColorPicker.this);
             this.addMouseMotionListener(JColorPicker.this);
         }
         
         public void setSaturation(float s){
+            this.needsRedraw = true;
             this.saturation = s;
         }
         
@@ -131,30 +137,32 @@ public class JColorPicker extends JSpritePanelComponent implements MouseListener
         @Override
         protected void paintComponent(Graphics g){
            super.paintComponent(g);
-           Graphics2D g2d = (Graphics2D) g;
+           
+           if(needsRedraw){
+               needsRedraw = false;
+               Graphics2D g2dbuf = this.buffer.createGraphics();
+               final Color[] colors = new Color[2];
+               GradientPaint gp;
+               Shape rect;
+               
+               for(int i=0; i<360;i++){
+                   colors[0] = Color.getHSBColor((float)i/360, this.saturation, 1f);
+                   colors[1] = Color.getHSBColor((float)i/360, this.saturation, 0f);
+                   
+                   gp = new GradientPaint(0, 0, colors[0], 0, PICKERSIZE, colors[1]);
+                   g2dbuf.setPaint(gp);
+                   
+                   rect = new Rectangle2D.Float(i*(float)PICKERSIZE/360, 0f, (float)PICKERSIZE/360, (float)PICKERSIZE);
+                   g2dbuf.draw(rect);
+               }
+           }
+            
            
            Color c = g.getColor();
-           Paint p = g2d.getPaint();
            
-           final Color[] colors = new Color[2];
-           GradientPaint gp;
-           Shape rect;
-            
-           for(int i=0; i<360;i++){
-               colors[0] = Color.getHSBColor((float)i/360, this.saturation, 1f);
-               colors[1] = Color.getHSBColor((float)i/360, this.saturation, 0f);
-               
-               gp = new GradientPaint(0, 0, colors[0], 0, PICKERSIZE, colors[1]);
-               g2d.setPaint(gp);
-               
-               rect = new Rectangle2D.Float(i*(float)PICKERSIZE/360, 0f, (float)PICKERSIZE/360, (float)PICKERSIZE);
-               g2d.draw(rect);
-           }
-           
-           g2d.setPaint(p);
-           
-           g2d.setColor(getContrastColor(getHSBColor().getColor()));
-           g2d.drawOval(-PICKERRINGSIZE/2+xPicker, -PICKERRINGSIZE/2+yPicker, PICKERRINGSIZE, PICKERRINGSIZE);
+           g.drawImage(buffer, 0, 0, null);
+           g.setColor(getContrastColor(getHSBColor().getColor()));
+           g.drawOval(-PICKERRINGSIZE/2+xPicker, -PICKERRINGSIZE/2+yPicker, PICKERRINGSIZE, PICKERRINGSIZE);
            
            g.setColor(c);
             
