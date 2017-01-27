@@ -6,6 +6,7 @@ import com.frequem.epic.iface.Modeable;
 import com.frequem.epic.iface.Sprite;
 import com.frequem.epic.iface.Actionable;
 import com.frequem.epic.iface.Colorable;
+import com.frequem.epic.iface.Strokeable;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,11 +16,12 @@ import java.awt.Stroke;
 import java.util.ArrayList;
 import javax.swing.*;
 
-public class JSpritePanel extends JPanel implements Colorable, SpriteContainable, Modeable, Actionable{
+public class JSpritePanel extends JPanel implements Colorable, Strokeable, SpriteContainable, Modeable, Actionable{
     
     private Mode mode;
     private ArrayList<Sprite> sprites;
     private Color color;
+    private Stroke stroke;
     
     private ArrayList<Action> actions;
     private int actionIndex = 0;
@@ -29,6 +31,7 @@ public class JSpritePanel extends JPanel implements Colorable, SpriteContainable
         this.sprites = new ArrayList<>();
         this.actions = new ArrayList<>();
         color = Color.BLACK;
+        stroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
     }
     
     @Override
@@ -39,6 +42,8 @@ public class JSpritePanel extends JPanel implements Colorable, SpriteContainable
         Stroke str = g2.getStroke();
         
         g2.setColor(this.getColor());
+        g2.setStroke(this.getStroke());
+        
         sprites.forEach((s)->s.paint(g2));
         
         if(this.mode != null)
@@ -72,7 +77,20 @@ public class JSpritePanel extends JPanel implements Colorable, SpriteContainable
     
     @Override
     public void setColor(Color c){
+        this.firePropertyChange("color", this.color, c);
         this.color = c;
+    }
+    
+    
+    @Override
+    public void setStroke(Stroke s) {
+        this.firePropertyChange("stroke", this.stroke, s);
+        this.stroke = s;
+    }
+
+    @Override
+    public Stroke getStroke() {
+        return this.stroke;
     }
     
     @Override

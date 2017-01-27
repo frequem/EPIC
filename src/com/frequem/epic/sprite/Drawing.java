@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Point2D;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -55,6 +57,7 @@ public class Drawing extends BasicSprite{
                 xMax = Math.max(xMax, getX() + getWidth());
                 yMax = Math.max(yMax, getY() + getHeight());
             }
+            
             return new Rectangle(xMin, yMin, xMax - xMin, yMax - yMin);
         }
         return new Rectangle(getX(), getY(), getWidth(), getHeight());
@@ -66,7 +69,15 @@ public class Drawing extends BasicSprite{
     
     @Override
     public void paint(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        
+        final Rectangle re = g2d.getStroke().createStrokedShape(new RoundRectangle2D.Float()).getBounds();
+        final int s = Math.max(re.width, re.height);
+        
         Rectangle r = getBounds();
+        r.setSize(r.width + s, r.height + s);
+        r.setLocation(r.x - s/2, r.y - s/2);
+        
         if(buffer){
             int xImg = getX() - r.x;
             int yImg = getY() - r.y ;
@@ -77,17 +88,18 @@ public class Drawing extends BasicSprite{
             setHeight(r.height);
             
             BufferedImage buf = new BufferedImage(getWidth() + 1, getHeight() + 1, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2d = buf.createGraphics();
-            g2d.setColor(g.getColor());
-            g2d.drawImage(this.image, xImg, yImg, null);
-            lines.forEach((li)->li.paintOffset(g2d, getX(), getY()));
+            Graphics2D g2dbuf = buf.createGraphics();
+            g2dbuf.setColor(g2d.getColor());
+            g2dbuf.setStroke(g2d.getStroke());
+            g2dbuf.drawImage(this.image, xImg, yImg, null);
+            lines.forEach((li)->li.paintOffset(g2dbuf, getX(), getY()));
             
             this.image = buf;
             lines.clear();
             buffer = false;
         }
         
-        g.drawImage(image, getX(), getY(), null);
+        g2d.drawImage(image, getX(), getY(), null);
         lines.forEach((l)->l.paint(g));
     }
 

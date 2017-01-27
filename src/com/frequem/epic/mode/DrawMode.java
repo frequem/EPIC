@@ -26,14 +26,6 @@ public class DrawMode extends Mode{
         super(spritePanel);
         d = new Drawing();
     }
-    
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        curX = me.getX();
-        curY = me.getY();
-        oldX = curX;
-        oldY = curY;
-    }
 
     @Override
     public void mousePressed(MouseEvent me) {
@@ -41,6 +33,8 @@ public class DrawMode extends Mode{
         curY = me.getY();
         oldX = curX;
         oldY = curY;
+        d.addLine(new Line(oldX, oldY, curX, curY));
+        this.getSpritePanel().repaint();
     }
 
     @Override
@@ -54,14 +48,6 @@ public class DrawMode extends Mode{
     }
 
     @Override
-    public void mouseEntered(MouseEvent me) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-    }
-
-    @Override
     public void mouseDragged(MouseEvent me) {
         oldX = curX;
         oldY = curY;
@@ -71,10 +57,6 @@ public class DrawMode extends Mode{
         this.getSpritePanel().repaint();
     }
 
-    @Override
-    public void mouseMoved(MouseEvent me) {
-    }
-    
     @Override
     public void paint(Graphics g){
         d.paint(g);

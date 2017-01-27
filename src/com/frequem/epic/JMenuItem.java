@@ -12,17 +12,17 @@ import javax.swing.*;
 public class JMenuItem extends JSpritePanelComponent implements MouseListener{
     private final static int ICONSIZE = 24;
     
+    private JLabel label;
+    
     public JMenuItem(JSpritePanel spritePanel){
         super(spritePanel);
         
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         
-        JLabel label = new JLabel(this.getLabelText());
+        label = new JLabel(this.getLabelText());
         
         ImageIcon icon = this.getIcon();
-        if(icon != null){
-            label.setIcon(new ImageIcon(getScaledImage(icon.getImage(), ICONSIZE, ICONSIZE)));
-        }
+        this.setIcon(icon);
         this.add(label);
         this.addMouseListener(this);
     }
@@ -33,6 +33,13 @@ public class JMenuItem extends JSpritePanelComponent implements MouseListener{
     
     protected ImageIcon getIcon(){
         return null;
+    }
+    
+    protected void setIcon(ImageIcon icon){
+        if(icon != null){
+            this.label.setIcon(new ImageIcon(getScaledImage(icon.getImage(), ICONSIZE, ICONSIZE)));
+            this.repaint();
+        }
     }
     
     private static Image getScaledImage(Image srcImg, int w, int h){

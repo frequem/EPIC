@@ -13,5 +13,6 @@ public class Start {
         f.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         f.setUndecorated(true);
         f.setVisible(true);
+        
     }
 }

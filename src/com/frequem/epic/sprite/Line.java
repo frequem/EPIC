@@ -7,7 +7,9 @@ package com.frequem.epic.sprite;
 
 import com.frequem.epic.iface.Sprite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.geom.Line2D;
 
 /**
  *
@@ -24,7 +26,10 @@ public class Line{
     }
     
     public static void paint(Graphics g, int xStart, int yStart, int xEnd, int yEnd) {
-        g.drawLine(xStart, yStart, xEnd, yEnd);
+        Graphics2D g2d = (Graphics2D) g;
+        final Line2D l = new Line2D.Float(xStart, yStart, xEnd, yEnd);
+        g2d.draw(l);
+        //g.drawLine(xStart, yStart, xEnd, yEnd);
     }
     
     public void paint(Graphics g) {
