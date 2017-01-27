@@ -66,6 +66,7 @@ public class JColorPicker extends JSpritePanelComponent implements MouseListener
 
     @Override
     public void mouseReleased(MouseEvent me) {
+        this.repaint();
     }
 
     @Override
@@ -80,11 +81,12 @@ public class JColorPicker extends JSpritePanelComponent implements MouseListener
     public void mouseDragged(MouseEvent me) {
         if(me.getSource().equals(picker)){
             picker.setPickerLocation(me.getX(), me.getY());
+            this.repaint();
         } else if(me.getSource().equals(slider)){
             slider.setYSlider(me.getY());
             picker.setSaturation(1-(float)slider.getYSlider()/PICKERSIZE);
+            ((JPanel)me.getSource()).repaint();
         }
-        this.repaint();
         this.btnOk.setEnabled(true);
     }
 
