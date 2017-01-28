@@ -1,6 +1,7 @@
 package com.frequem.epic;
 
 import com.frequem.epic.iface.Menuable;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.*;
 

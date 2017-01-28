@@ -5,7 +5,7 @@
  */
 package com.frequem.epic.menu.style;
 
-import com.frequem.epic.dialog.JColorPicker;
+import com.frequem.epic.item.JColorPicker;
 import com.frequem.epic.JSpritePanel;
 import com.frequem.epic.JDialogMenuItem;
 import java.awt.Color;
@@ -39,7 +39,7 @@ public class JStyleColorMenuItem extends JDialogMenuItem implements PropertyChan
     }
     
     @Override
-    protected Container getContentPane() {
+    protected Container getContainer() {
         return new JColorPicker(getSpritePanel());
     }
 

@@ -1,4 +1,4 @@
-package com.frequem.epic.dialog;
+package com.frequem.epic.item;
 
 import com.frequem.epic.JSpritePanel;
 import com.frequem.epic.JSpritePanelComponent;

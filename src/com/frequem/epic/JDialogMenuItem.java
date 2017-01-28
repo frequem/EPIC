@@ -39,12 +39,12 @@ public abstract class JDialogMenuItem extends JMenuItem{
                     dialogOpened = false;
                 }
             });
-            d.setContentPane(this.getContentPane());
+            d.setContentPane(this.getContainer());
             d.pack();
             d.setVisible(true);
         }
     }
     
-    protected abstract Container getContentPane();
+    protected abstract Container getContainer();
     
 }

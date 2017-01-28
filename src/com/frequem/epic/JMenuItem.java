@@ -1,5 +1,6 @@
 package com.frequem.epic;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -19,16 +20,20 @@ public class JMenuItem extends JSpritePanelComponent implements MouseListener{
         
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         
-        label = new JLabel(this.getLabelText());
-        
-        ImageIcon icon = this.getIcon();
-        this.setIcon(icon);
-        this.add(label);
+        String s = this.getLabelText();
+        if(s!=null){
+            label = new JLabel(this.getLabelText());
+
+            ImageIcon icon = this.getIcon();
+            this.setIcon(icon);
+            
+            this.add(label);
+        }
         this.addMouseListener(this);
     }
     
     protected String getLabelText(){
-        return "";
+        return null;
     }
     
     protected ImageIcon getIcon(){
