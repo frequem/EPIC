@@ -1,6 +1,7 @@
 package com.frequem.epic.menu.mode;
 
 import com.frequem.epic.JSpritePanel;
+import com.frequem.epic.Mode;
 import com.frequem.epic.mode.SelectMode;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -22,8 +23,8 @@ public class JModeSelectMenuItem extends JModeMenuItem{
     }
 
     @Override
-    protected Class getModeClass() {
-        return SelectMode.class;
+    protected Mode getMode() {
+        return new SelectMode(this.getSpritePanel());
     }
 
 }

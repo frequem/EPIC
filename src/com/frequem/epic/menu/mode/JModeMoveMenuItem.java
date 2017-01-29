@@ -6,6 +6,7 @@
 package com.frequem.epic.menu.mode;
 
 import com.frequem.epic.JSpritePanel;
+import com.frequem.epic.Mode;
 import com.frequem.epic.mode.MoveMode;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -31,8 +32,8 @@ public class JModeMoveMenuItem extends JModeMenuItem{
     }
 
     @Override
-    protected Class getModeClass() {
-        return MoveMode.class;
+    protected Mode getMode() {
+        return new MoveMode(this.getSpritePanel());
     }
     
 }

@@ -24,14 +24,11 @@ public abstract class JModeMenuItem extends JMenuItem implements PropertyChangeL
         this.getSpritePanel().addPropertyChangeListener(this);
     }
 
-    protected abstract Class getModeClass();    
+    protected abstract Mode getMode();    
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        try {
-            Mode m = (Mode)getModeClass().getDeclaredConstructor(JSpritePanel.class).newInstance(getSpritePanel());
-            getSpritePanel().setMode(m);
-        } catch (Exception e){}
+        getSpritePanel().setMode(this.getMode());
     }
     
     @Override
@@ -43,7 +40,7 @@ public abstract class JModeMenuItem extends JMenuItem implements PropertyChangeL
     @Override
     public void propertyChange(PropertyChangeEvent pce) {
         if(pce.getPropertyName().equals("mode")){
-            if(this.getModeClass().isInstance(pce.getNewValue())){
+            if(this.getMode().getClass().isInstance(pce.getNewValue())){
                 this.setBackground(UIManager.getColor("Panel.background").darker());
             }else{
                 this.setBackground(UIManager.getColor("Panel.background"));
