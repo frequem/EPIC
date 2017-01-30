@@ -103,6 +103,7 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Sprit
         this.sprites.remove(s);
     }
     
+    @Override
     public ArrayList<Sprite> getSprites(){
         return this.sprites;
     }
