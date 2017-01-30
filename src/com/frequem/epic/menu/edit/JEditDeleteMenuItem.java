@@ -38,7 +38,7 @@ public class JEditDeleteMenuItem extends JMenuItem{
     
     @Override
     public void mouseClicked(MouseEvent me) {
-        Sprite[] sa = this.getSpritePanel().getSprites().stream().peek(s->s.isSelected()).toArray(Sprite[]::new);
+        Sprite[] sa = this.getSpritePanel().getSprites().stream().filter(s->s.isSelected()).toArray(Sprite[]::new);
         this.getSpritePanel().doAction(new SpriteDeleteAction(this.getSpritePanel(), sa));
         this.getSpritePanel().repaint();
     }
