@@ -24,7 +24,7 @@ public class Test{
 		
 		double[][] equns = {{23, 18, 99},
 							{6272, 78, 88}};
-		System.out.println(Arrays.toString(Algebra.solveEquSys(equns)));
+		System.out.println(Arrays.toString(MathsMethods.solveEquSys(equns)));
 		
 		/*Term t = new Sum(
 				new Product(

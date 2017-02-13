@@ -1,5 +1,10 @@
 package com.sachsenschnitzel.epic.maths;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+
 public class Constant extends Term{
 	private double val;
 	
@@ -21,7 +26,28 @@ public class Constant extends Term{
 	public void simplify(){}
 
 	@Override
-	public String toString(){
+        public String toString(){
 		return String.valueOf(val);
 	}
+        
+        @Override
+        protected void optSize(Graphics g){
+            FontMetrics fm = g.getFontMetrics();
+            w = fm.stringWidth(String.valueOf(val));
+            h = fm.getHeight();
+        }
+        
+        @Override
+        protected void optSubPos(Graphics g){}
+        
+        @Override
+        public void paint(Graphics g){
+            /*Color c = g.getColor();
+
+            g.setColor(Color.BLUE);
+            g.fillRect(x, y, w, h);
+
+            g.setColor(c);*/
+            g.drawString(String.valueOf(val), x, y+h);
+        }
 }
