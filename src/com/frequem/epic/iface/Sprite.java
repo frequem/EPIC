@@ -3,7 +3,7 @@ package com.frequem.epic.iface;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public interface Sprite {
+public interface Sprite{
     public void paint(Graphics g);
     public Rectangle getBounds();
     public void setSelected(boolean s);
