@@ -13,6 +13,7 @@ public class JModeMenu extends JBarMenu{
     @Override
     public void fillMenu(Menuable menu) {
         menu.addMenuItem(new JModeDrawMenuItem(getSpritePanel()));
+        menu.addMenuItem(new JModeTextMenuItem(getSpritePanel()));
         menu.addMenuItem(new JModeSelectMenuItem(getSpritePanel()));
         menu.addMenuItem(new JModeMoveMenuItem(getSpritePanel()));
     }

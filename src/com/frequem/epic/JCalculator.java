@@ -15,9 +15,6 @@ public class JCalculator extends JPanel{
     private JSpritePanel panel;
     private JMenuBar bar;
     
-    //ss:
-    //private Term functionTerm;
-    
     public JCalculator(){
        this.setLayout(new BorderLayout());
         
@@ -35,24 +32,17 @@ public class JCalculator extends JPanel{
        this.add(scroll, BorderLayout.NORTH);
        
        this.panel.setMode(new DrawMode(this.panel));
+       //test
+       Term functionTerm = new Sum(
+               new Product(
+                       new Fraction(
+                               new Product(
+                                       new Constant(-2),
+                                       new Constant(2)
+                               ),new Constant(2)),new Variable("x")),new Constant(3));
        
-       /*//sachsenschnitzel:
-       functionTerm = new Sum(
-				new Product(
-						new Fraction(
-                                                        new Constant(-5),
-                                                        new Constant(2)),
-						new Variable("x")),
-				new Constant(3));
-       panel.addSprite(functionTerm);
-       this.repaint();*/
-    }
-    
-    //sachsenschnitzel:
-    @Override
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        /*g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-        functionTerm.optStructure(g);*/
+       this.panel.addSprite(functionTerm);
+       
+       this.repaint();
     }
 }

@@ -6,22 +6,28 @@ import com.frequem.epic.iface.Modeable;
 import com.frequem.epic.iface.Sprite;
 import com.frequem.epic.iface.Actionable;
 import com.frequem.epic.iface.Colorable;
+import com.frequem.epic.iface.Fontable;
 import com.frequem.epic.iface.Strokeable;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Stroke;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JPanel;
 
-public class JSpritePanel extends JPanel implements Colorable, Strokeable, SpriteContainable, Modeable, Actionable{
+public class JSpritePanel extends JPanel implements Colorable, Strokeable, Fontable, SpriteContainable, Modeable, Actionable{
     
     private Mode mode;
     private ArrayList<Sprite> sprites;
     private Color color;
     private Stroke stroke;
+    private Font font;
     
     private ArrayList<Action> actions;
     private int actionIndex = 0;
@@ -30,8 +36,18 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Sprit
         this.setBackground(Color.WHITE);
         this.sprites = new ArrayList<>();
         this.actions = new ArrayList<>();
-        color = Color.BLACK;
-        stroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
+        this.color = Color.BLACK;
+        this.stroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
+        this.font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
+        
+        this.addFocusListener(new FocusAdapter(){
+
+            @Override
+            public void focusLost(FocusEvent fe) {
+                JSpritePanel.this.requestFocusInWindow();
+            }
+        });
+        
     }
     
     @Override
@@ -44,10 +60,11 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Sprit
         g2.setColor(this.getColor());
         g2.setStroke(this.getStroke());
         
-        sprites.forEach((s)->s.paint(g2));
-        
         if(this.mode != null)
             this.mode.paint(g);
+        
+        sprites.forEach((s)->s.paint(g2));
+        
         
         g2.setColor(this.getSelectionColor());
         g2.setStroke(this.getSelectionStroke());
@@ -94,6 +111,17 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Sprit
     }
     
     @Override
+    public void setFont(Font f){
+        this.firePropertyChange("font", this.font, f);
+        this.font = f;
+    }
+    
+    @Override
+    public Font getFont(){
+        return this.font;
+    }
+    
+    @Override
     public void addSprite(Sprite s){
         this.sprites.add(s);
     }
@@ -119,11 +147,14 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Sprit
         
         this.removeMouseListener(this.mode);
         this.removeMouseMotionListener(this.mode);
+        this.removeKeyListener(this.mode);
         
         this.mode = mode;
         
         this.addMouseListener(this.mode);
         this.addMouseMotionListener(this.mode);
+        this.addKeyListener(this.mode);
+        this.requestFocusInWindow();
         this.repaint();
     }
     

@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  * @author user
  */
 public abstract class JBarMenu extends JSpritePanelComponent implements Menuable, ActionListener{
-    private final static int MAX_ITEMS = 3;
+    private final static int MAX_ITEMS = 5;
     
     private final JMenu expandMenu;
     private final JPanel itemPanel;

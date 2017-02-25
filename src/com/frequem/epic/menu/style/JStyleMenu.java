@@ -12,6 +12,7 @@ public class JStyleMenu extends JBarMenu{
     @Override
     public void fillMenu(Menuable menu) {
         menu.addMenuItem(new JStyleColorMenuItem(getSpritePanel()));
+        //menu.addMenuItem(new JStyleFontMenuItem(getSpritePanel()));
         menu.addMenuItem(new JStyleStrokeMenuItem(getSpritePanel()));
     }
 }

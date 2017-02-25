@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.frequem.epic.iface.Sprite;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -19,16 +20,13 @@ public abstract class Term implements Sprite{
     
     protected abstract void optSize(Graphics g);
     protected abstract void optSubPos(Graphics g);
-    /**
-     * optimizes size and positions of all possible subterms
-     * @param g 
-     */
-    public void optStructure(Graphics g){
-        optSize(g);
-        optSubPos(g);
+    
+    public void paint(Graphics g){
+        g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+        this.optSize(g);
+        this.optSubPos(g);
     }
-
-    public abstract void paint(Graphics g);
+    
     public Rectangle getBounds(){ return new Rectangle(x, y, w, h); }
     public void setSelected(boolean s){ selected = s; }
     public boolean isSelected(){ return selected; }

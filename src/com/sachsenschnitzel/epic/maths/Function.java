@@ -106,6 +106,5 @@ public class Function implements Sprite{
     }
     
     public void paint(Graphics g){
-        
     }
 }

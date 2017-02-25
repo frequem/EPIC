@@ -42,6 +42,7 @@ public class Constant extends Term{
         
         @Override
         public void paint(Graphics g){
+            super.paint(g);
             /*Color c = g.getColor();
 
             g.setColor(Color.BLUE);
