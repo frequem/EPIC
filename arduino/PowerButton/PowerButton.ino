@@ -30,10 +30,10 @@ void setup() {
   pinMode(NPN_SHUTDOWN_OUT, OUTPUT);
   
   pinMode(BUTTON_POWER, INPUT);
-  pinMode(NPN_RPI_POWER_IN, INPUT_PULLUP);
+  pinMode(NPN_RPI_POWER_IN, INPUT);
   
   attachInterrupt(digitalPinToInterrupt(BUTTON_POWER), button_pressed, RISING);
-  attachInterrupt(digitalPinToInterrupt(NPN_RPI_POWER_IN), rpi_down, RISING);
+  attachInterrupt(digitalPinToInterrupt(NPN_RPI_POWER_IN), rpi_down, FALLING);
 
   digitalWrite(NFET_DISPLAY, state_display);
   digitalWrite(NFET_RASPBERRY, state_pi);
