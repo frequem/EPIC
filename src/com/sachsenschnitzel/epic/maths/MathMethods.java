@@ -1,9 +1,12 @@
 package com.sachsenschnitzel.epic.maths;
 
+import com.sachsenschnitzel.epic.maths.term.Constant;
+import com.sachsenschnitzel.epic.maths.term.Term;
+import com.sachsenschnitzel.epic.maths.term.Sum;
 import com.sachsenschnitzel.epic.maths.AssignedValues.AssignedValue;
 import java.util.ArrayList;
 
-public class MathsMethods{
+public class MathMethods{
     public static int factorial(int n){
         int r = 1;
         for(int i = 2; i <= n; i++)
@@ -22,7 +25,7 @@ public class MathsMethods{
      * @param approx the grade of approximation = the number of polynomial terms
      * @return 
      */
-    public static Term polynomify(Term original, int approx){
+    /*public static Term polynomify(Term original, int approx){
         AssignedValues avs = new AssignedValues(new AssignedValue("x", 0));
         
         ArrayList<Term> taylor = new ArrayList<Term>();
@@ -34,7 +37,7 @@ public class MathsMethods{
         }
         
         return new Sum((Term[])taylor.toArray());
-    }
+    }*/
     
     /**
      * This method solves any linear equation system with the given coefficients

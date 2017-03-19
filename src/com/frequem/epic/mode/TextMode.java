@@ -27,25 +27,27 @@ public class TextMode extends Mode{
     }
     
     @Override
-    public void mouseClicked(MouseEvent me) {
-        if(recent == null){
-            recent = new Text();
-            recent.setX(me.getX());
-            recent.setY(me.getY());
-            this.getSpritePanel().doAction(new SpriteAddAction(getSpritePanel(), recent));
-            recent.setSelected(true);
-        }
-        this.getSpritePanel().repaint();
-    }
-    
-    @Override
     public void mousePressed(MouseEvent me) {
+        //find and set MathsObject(Wrapper) every time LMB is down...
         try{
             recent = (Text)this.getSpritePanel().getSprites().stream().peek(s->s.setSelected(false)).filter(s->s.getBounds().contains(me.getPoint())).filter(s -> s instanceof Text).findFirst().get();
             recent.setCursor(me.getX(), me.getY());
             recent.setSelected(true);
         }catch(NoSuchElementException e){
             recent = null;
+        }
+        this.getSpritePanel().repaint();
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent me) {
+        //...if there was nothing there, create a new one
+        if(recent == null){
+            recent = new Text();
+            recent.setX(me.getX());
+            recent.setY(me.getY());
+            this.getSpritePanel().doAction(new SpriteAddAction(getSpritePanel(), recent));
+            recent.setSelected(true);
         }
         this.getSpritePanel().repaint();
     }
