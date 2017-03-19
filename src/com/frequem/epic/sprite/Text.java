@@ -175,8 +175,13 @@ public class Text extends BasicSprite implements Textable, Cursorable, Fontable,
     public void paintCursor(Graphics g) {
         Color c = g.getColor();
         
+        if(font == null)
+            font = g.getFont();
+        else
+            g.setFont(font);
+        
         g.setColor(Color.BLUE);
-        FontMetrics fm = g.getFontMetrics();
+        FontMetrics fm = g.getFontMetrics(font);
         int cursorX = fm.stringWidth(text.substring(0, cursorIndex));
         int selX = fm.stringWidth(text.substring(0, cursorIndex + selectionLength));
         g.fillRect(getX() + Math.min(cursorX, selX), getY(), Math.max(cursorX - selX, selX - cursorX) + 1, getHeight());

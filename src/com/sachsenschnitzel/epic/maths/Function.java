@@ -1,5 +1,6 @@
 package com.sachsenschnitzel.epic.maths;
 
+import com.sachsenschnitzel.epic.maths.term.Term;
 import com.frequem.epic.iface.Sprite;
 import com.sachsenschnitzel.epic.maths.AssignedValues.AssignedValue;
 import java.awt.Graphics;
@@ -99,7 +100,7 @@ public class Function implements Sprite{
     }
     
     public void optStructure(Graphics g){
-        funcTerm.optSize(g);
+        funcTerm.optStructure(g);
         w = g.getFontMetrics().stringWidth(depVar + "(" + indVars[0] + ")")
                 + funcTerm.getWidth();
         
