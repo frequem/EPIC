@@ -1,5 +1,6 @@
-package com.sachsenschnitzel.epic.maths;
+package com.sachsenschnitzel.epic.maths.term;
 
+import com.sachsenschnitzel.epic.maths.AssignedValues;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -13,6 +14,18 @@ public class Fraction extends Term{
     public Fraction(Term numerator, Term denominator){
         this.numerator = numerator;
         denom = denominator;
+    }
+    
+    @Override
+    public void print(){
+        numerator.print();
+        System.out.print("/");
+        denom.print();
+    }
+
+    @Override
+    public void changeSubterm(Term o, Term n) {
+        System.out.println("Not supported yet.");
     }
 
     @Override
@@ -56,27 +69,6 @@ public class Fraction extends Term{
     public String toString(){
         return "(" + numerator + "/" + denom + ")";
     }
-
-    /*@Override
-    public void optSize(Graphics g){
-        //set num position
-        numerator.setX(x);
-        numerator.setY(y);
-        numerator.optSize(g);
-        
-        //set den position
-        denom.setX(x);
-        denom.setY(y + numerator.getHeight() + 2*FRACTION_SPRITE_MARGIN_TOP_BOTTOM);
-        denom.optSize(g);
-        
-        //set own dimensions
-        if(numerator.getWidth() > denom.getWidth())
-            w = numerator.getWidth();
-        else
-            w = denom.getWidth();
-        
-        h = numerator.getHeight() + denom.getHeight() + 2*FRACTION_SPRITE_MARGIN_TOP_BOTTOM;
-    }*/
     
     @Override
     protected void optSize(Graphics g){
@@ -101,18 +93,48 @@ public class Fraction extends Term{
     @Override
     public void paint(Graphics g){
         super.paint(g);
-        /*Color c = g.getColor();
-
-        g.setColor(Color.GREEN);
-        g.drawRect(x, y, w, h);
-
-        g.setColor(c);
-        */
         numerator.paint(g);
         g.fillRect(x,
                 denom.getY()-(int)(FRACTION_SPRITE_MARGIN_TOP_BOTTOM*1.5),
                 w,
                 FRACTION_SPRITE_MARGIN_TOP_BOTTOM);
         denom.paint(g);
+    }
+
+    @Override
+    public void parseContent(int offset) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public String toInputForm() {
+        System.out.println("Not supported yet.");
+        return null;
+    }
+
+    @Override
+    public int getCursorSide() {
+        System.out.println("Not supported yet.");
+        return 0;
+    }
+
+    @Override
+    public void setCursor(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void cursorDragged(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void moveCursor(int direction) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void paintCursor(Graphics g) {
+        System.out.println("Not supported yet.");
     }
 }

@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.frequem.epic.menu.mode;
+package com.sachsenschnitzel.epic.menu.mode;
 
+import com.frequem.epic.menu.mode.*;
 import com.frequem.epic.JSpritePanel;
 import com.frequem.epic.Mode;
 import com.frequem.epic.mode.SelectMode;
 import com.frequem.epic.mode.TextMode;
+import com.sachsenschnitzel.epic.mode.MathMode;
 import java.io.File;
 import javax.swing.ImageIcon;
 
@@ -16,15 +18,15 @@ import javax.swing.ImageIcon;
  *
  * @author user
  */
-public class JModeTextMenuItem extends JModeMenuItem{
+public class JModeMathMenuItem extends JModeMenuItem{
 
-    public JModeTextMenuItem(JSpritePanel spritePanel) {
+    public JModeMathMenuItem(JSpritePanel spritePanel) {
         super(spritePanel);
     }
     
     @Override
     protected String getLabelText(){
-        return "Text Mode";
+        return "Math Mode";
     }
     
     @Override
@@ -34,6 +36,6 @@ public class JModeTextMenuItem extends JModeMenuItem{
 
     @Override
     protected Mode getMode() {
-        return new TextMode(this.getSpritePanel());
+        return new MathMode(this.getSpritePanel());
     }
 }

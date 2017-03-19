@@ -1,12 +1,12 @@
 package com.frequem.epic;
 
 import com.frequem.epic.mode.DrawMode;
-import com.sachsenschnitzel.epic.maths.Constant;
-import com.sachsenschnitzel.epic.maths.Fraction;
-import com.sachsenschnitzel.epic.maths.Product;
-import com.sachsenschnitzel.epic.maths.Sum;
-import com.sachsenschnitzel.epic.maths.Term;
-import com.sachsenschnitzel.epic.maths.Variable;
+import com.sachsenschnitzel.epic.maths.term.Constant;
+import com.sachsenschnitzel.epic.maths.term.Fraction;
+import com.sachsenschnitzel.epic.maths.term.Product;
+import com.sachsenschnitzel.epic.maths.term.Sum;
+import com.sachsenschnitzel.epic.maths.term.Term;
+import com.sachsenschnitzel.epic.maths.term.Variable;
 import java.awt.*;
 import javax.swing.*;
 
@@ -32,16 +32,6 @@ public class JCalculator extends JPanel{
        this.add(scroll, BorderLayout.NORTH);
        
        this.panel.setMode(new DrawMode(this.panel));
-       //test
-       Term functionTerm = new Sum(
-               new Product(
-                       new Fraction(
-                               new Product(
-                                       new Constant(-2),
-                                       new Constant(2)
-                               ),new Constant(2)),new Variable("x")),new Constant(3));
-       
-       this.panel.addSprite(functionTerm);
        
        this.repaint();
     }

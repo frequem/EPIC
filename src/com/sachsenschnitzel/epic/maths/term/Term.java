@@ -1,23 +1,41 @@
-package com.sachsenschnitzel.epic.maths;
+package com.sachsenschnitzel.epic.maths.term;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.frequem.epic.iface.Sprite;
+import com.sachsenschnitzel.epic.maths.AssignedValues;
+import com.sachsenschnitzel.epic.maths.MathObject;
+import com.sachsenschnitzel.epic.maths.MathObjectWrapper;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public abstract class Term implements Sprite{
+public abstract class Term extends MathObject{
+    public Term(MathObject parent){
+        super(parent);
+    }
+    
+    public Term(){
+        super();
+    }
+    
+    public abstract void print();
+    
+    //mathematical stuff...
     public abstract double calc(AssignedValues avs);
     public abstract Term derive(String var);
-    public abstract void simplify();
+    //public abstract void simplify();
     public double calc(){ return calc(null); }
 
     //spritey stuff...
     protected int x, y, w, h;
     protected boolean selected;
     
+    public void optStructure(Graphics g){
+        optSize(g);
+        optSubPos(g);
+    }
     protected abstract void optSize(Graphics g);
     protected abstract void optSubPos(Graphics g);
     
@@ -42,5 +60,22 @@ public abstract class Term implements Sprite{
     public void moveBy(int x, int y){
         this.x -= x;
         this.y -= y;
+    }
+    
+    /**
+     * 
+     * @param o
+     * @param from (inclusive)
+     * @param to (exclusive)
+     * @return 
+     */
+    public static Term[] removeElements(Term[] o, int from, int to){
+        Term[] n = new Term[o.length-(to-from)];
+        for(int i = 0, j = 0; i < o.length; i++, j++){
+            if(i == from)
+                i = to;
+            n[j] = o[i];
+        }
+        return n;
     }
 }

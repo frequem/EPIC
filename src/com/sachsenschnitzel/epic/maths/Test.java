@@ -1,10 +1,15 @@
 package com.sachsenschnitzel.epic.maths;
 
+import com.sachsenschnitzel.epic.maths.term.Constant;
+import com.sachsenschnitzel.epic.maths.term.Variable;
+import com.sachsenschnitzel.epic.maths.term.Term;
+import com.sachsenschnitzel.epic.maths.term.Product;
+import com.sachsenschnitzel.epic.maths.term.Sum;
 import java.util.Arrays;
 
 public class Test{
 	public static void main(String args[]){
-		Term functionTerm = new Sum(
+		/*Term functionTerm = new Sum(
 				new Product(
 						new Constant(5),
 						new Variable("x")),
@@ -19,12 +24,12 @@ public class Test{
 		System.out.println(functionTerm);
 		System.out.println(deriv);
 		System.out.println(Arrays.toString(ps));
-		System.out.println(root);
+		System.out.println(root);*/
 		
 		
 		double[][] equns = {{23, 18, 99},
 							{6272, 78, 88}};
-		System.out.println(Arrays.toString(MathsMethods.solveEquSys(equns)));
+		System.out.println(Arrays.toString(MathMethods.solveEquSys(equns)));
 		
 		/*Term t = new Sum(
 				new Product(

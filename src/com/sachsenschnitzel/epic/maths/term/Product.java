@@ -1,5 +1,6 @@
-package com.sachsenschnitzel.epic.maths;
+package com.sachsenschnitzel.epic.maths.term;
 
+import com.sachsenschnitzel.epic.maths.AssignedValues;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -12,6 +13,20 @@ public class Product extends Term{
 
     public Product(Term... factors){
         this.factors = factors;
+    }
+    
+    @Override
+    public void print(){
+        factors[0].print();
+        for(int i = 1; i < factors.length; i++){
+            System.out.print(" • ");
+            factors[i].print();
+        }
+    }
+    
+    @Override
+    public void changeSubterm(Term o, Term n){
+        
     }
 
     @Override
@@ -71,26 +86,6 @@ public class Product extends Term{
             s += factors[i] + " * ";
         return "(" + s + factors[factors.length-1] + ")";
     }
-
-    /*@Override
-    public void optSize(Graphics g){
-        int iterX = x;
-        int biggestHeight = 0;
-        int dotWidth = g.getFontMetrics().stringWidth("•");
-        
-        for(Term factor : factors){
-            factor.setX(iterX);
-            factor.setY(y);
-            factor.optSize(g);
-            iterX += factor.getWidth() + 2*PRODUCT_SPRITE_MARGIN_SIDE + dotWidth;
-            if (factor.getHeight() > biggestHeight) {
-                biggestHeight = factor.getHeight();
-            }
-        }
-        
-        w = iterX-x - 2*PRODUCT_SPRITE_MARGIN_SIDE - dotWidth; //reverse the last addition...
-        h = biggestHeight;
-    }*/
     
     @Override
     protected void optSize(Graphics g){
@@ -122,12 +117,6 @@ public class Product extends Term{
     @Override
     public void paint(Graphics g){
         super.paint(g);
-        /*Color c = g.getColor();
-
-        g.setColor(Color.MAGENTA);
-        g.drawRect(x, y, w, h);
-
-        g.setColor(c);*/
         
         int dotWidth = g.getFontMetrics().stringWidth("•");
         int dotHeight = g.getFontMetrics().getHeight();
@@ -137,5 +126,42 @@ public class Product extends Term{
             g.drawString("•", posX, y + (h+dotHeight)/2);
             factors[i].paint(g);
         }
+    }
+
+    @Override
+    public void parseContent(int offset) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public String toInputForm() {
+        System.out.println("Not supported yet.");
+        return null;
+    }
+
+    @Override
+    public int getCursorSide() {
+        System.out.println("Not supported yet.");
+        return 0;
+    }
+
+    @Override
+    public void setCursor(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void cursorDragged(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void moveCursor(int direction) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void paintCursor(Graphics g) {
+        System.out.println("Not supported yet.");
     }
 }

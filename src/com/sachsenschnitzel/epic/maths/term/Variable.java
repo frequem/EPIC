@@ -1,61 +1,103 @@
-package com.sachsenschnitzel.epic.maths;
+package com.sachsenschnitzel.epic.maths.term;
 
+import com.sachsenschnitzel.epic.maths.AssignedValues;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 public class Variable extends Term{
-	private String name;
-	
-	public Variable(String name){
-		this.name = name;
-	}
+    private String name;
 
-	@Override
-	public double calc(AssignedValues avs){
-		Double assignedVal = avs.getValue(name);
-		if(assignedVal != null)
-			return assignedVal;
-		
-		//throw exception
-		return 0;
-	}
-	
-	@Override
-	public Term derive(String var){
-		if(name.equals(var))
-			return new Constant(1);
-		else
-			return new Constant(0);
-	}
+    public Variable(String name){
+        this.name = name;
+    }
 
-	@Override
-	public void simplify(){}
-	
-	@Override
-	public String toString(){
-		return name;
-	}
-        
-        @Override
-        protected void optSize(Graphics g){
-            FontMetrics fm = g.getFontMetrics();
-            w = fm.stringWidth(name);
-            h = fm.getHeight();
-        }
-        
-        @Override
-        protected void optSubPos(Graphics g){}
-        
-        @Override
-        public void paint(Graphics g){
-            super.paint(g);
-            /*Color c = g.getColor();
+    @Override
+    public void print(){
+        System.out.print(name);
+    }
 
-            g.setColor(Color.RED);
-            g.fillRect(x, y, w, h);
+    @Override
+    public void changeSubterm(Term o, Term n){
 
-            g.setColor(c);*/
-            g.drawString(name, x, y+h);
-        }
+    }
+
+    @Override
+    public double calc(AssignedValues avs){
+        Double assignedVal = avs.getValue(name);
+        if(assignedVal != null)
+                return assignedVal;
+
+        //throw exception
+        return 0;
+    }
+
+    @Override
+    public Term derive(String var){
+        if(name.equals(var))
+            return new Constant(1);
+        else
+            return new Constant(0);
+    }
+
+    @Override
+    public void simplify(){}
+
+    @Override
+    public String toString(){
+        return name;
+    }
+
+    @Override
+    protected void optSize(Graphics g){
+        FontMetrics fm = g.getFontMetrics();
+        w = fm.stringWidth(name);
+        h = fm.getHeight();
+    }
+
+    @Override
+    protected void optSubPos(Graphics g){}
+
+    @Override
+    public void paint(Graphics g){
+        super.paint(g);
+        g.drawString(name, x, y+h);
+    }
+
+    @Override
+    public void parseContent(int offset) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public String toInputForm() {
+        System.out.println("Not supported yet.");
+        return null;
+    }
+
+    @Override
+    public int getCursorSide() {
+        System.out.println("Not supported yet.");
+        return 0;
+    }
+
+    @Override
+    public void setCursor(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void cursorDragged(int x, int y) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void moveCursor(int direction) {
+        System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void paintCursor(Graphics g) {
+        System.out.println("Not supported yet.");
+    }
 }
