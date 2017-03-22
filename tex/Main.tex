@@ -1,0 +1,42 @@
+\documentclass[a4paper, 12pt]{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, total={7in, 10in}]{geometry}
+%\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage[normalem]{ulem}
+\usepackage{fancyhdr}
+\usepackage[ngerman]{babel}
+\usepackage{datetime}
+
+\newdateformat{myformat}{\THEDAY{ten }\monthname[\THEMONTH], \THEYEAR}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Michael Friesenhengst, Florian Weinzerl}
+\lhead{2b done}%\leftmark}
+\cfoot{\thepage}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\onehalfspacing
+
+\title{{\huge EPIC}\\\Large Electronic Programmable Intelligent Calculator}
+\author{Michael Friesenhengst, Florian Weinzerl}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+
+\include{Chapter_Intro}
+\include{Chapter_Hard}
+\include{Chapter_Soft}
+\include{Chapter_Marketing}
+
+\end{document}
