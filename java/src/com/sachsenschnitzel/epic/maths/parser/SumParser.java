@@ -6,7 +6,6 @@
 package com.sachsenschnitzel.epic.maths.parser;
 
 import com.frequem.epic.mathematics.parser.Parser;
-import com.sachsenschnitzel.epic.maths.MathObject;
 import com.sachsenschnitzel.epic.maths.term.Sum;
 import com.sachsenschnitzel.epic.maths.term.Term;
 import com.sachsenschnitzel.epic.maths.term.UnfinishedTerm;
@@ -17,27 +16,14 @@ import java.util.ArrayList;
  * @author user
  */
 public class SumParser extends Parser{
-    /*public SumParser(){
-        op = "+";
-    }*/
     
     @Override
     public Sum tryParse(String data){
-        /*int offsetDone = offset, end; //keeps track of what to leave untouched
-        
-        for(end = data.length()-1; end >= 0; end--){ //cut off offset
-            if(data.charAt(end) == '+')
-                offsetDone--;
-            if(offsetDone == 0)
-                break;
-        }*/
-        
-        ArrayList<UnfinishedTerm> auft = new ArrayList<UnfinishedTerm>();
+        /*ArrayList<UnfinishedTerm> auft = new ArrayList<UnfinishedTerm>();
         int i, last;
         for(i = 0, last = 0; i < data.length(); i++) //collect ufts
             if(data.charAt(i) == '+' && i-last > 0){
                 auft.add(new UnfinishedTerm(data.substring(last, i)));
-                //System.out.println("found smth: " + data.substring(last, i));
                 last = ++i;
             }
         
@@ -48,8 +34,17 @@ public class SumParser extends Parser{
         
         Sum s = null;
         if(auft.size() > 1){
-            s = new Sum(auft.toArray(new Term[0]));
+            Term[] t = auft.toArray(new Term[0]);
+            s = new Sum(t);
             s.setCursor(auft.size()-1);
+        }
+        return s;*/
+        Term[] elements = Parser.separateToUnfinishedBy(data, '+');
+        
+        Sum s = null;
+        if(elements.length > 1){
+            s = new Sum(elements);
+            s.setCursor(elements.length-1);
         }
         return s;
     }

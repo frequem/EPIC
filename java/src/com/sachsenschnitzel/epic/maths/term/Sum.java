@@ -53,6 +53,15 @@ public class Sum extends Term implements Textable{
         return s;
     }
     
+    private String toInputForm(int from, int to){
+        if(to-from > summands.length || to > summands.length-1 || from < 0)
+            return "";
+        String s = summands[from].toInputForm();
+        for(int i = from+1; i <= to; i++)
+            s += "+" + summands[i].toInputForm();
+        return s;
+    }
+    
     @Override
     public void changeSubterm(Term o, Term n){
         for(int i = 0; i < summands.length; i++)
@@ -128,7 +137,7 @@ public class Sum extends Term implements Textable{
     }
 
     @Override
-    protected void optSize(Graphics g){
+    public void optSize(Graphics g){
         w = (summands.length-1)*
                 (2*SUM_SPRITE_MARGIN_SIDE + g.getFontMetrics().stringWidth("+"));
         h = 0;
@@ -142,7 +151,7 @@ public class Sum extends Term implements Textable{
     }
     
     @Override
-    protected void optSubPos(Graphics g){
+    public void optSubPos(Graphics g){
         int plusWidth = g.getFontMetrics().stringWidth("+");
         
         int xCounter = x;
@@ -164,8 +173,8 @@ public class Sum extends Term implements Textable{
         if(font == null)
             font = g.getFont();
         
-        int plusWidth = g.getFontMetrics().stringWidth("+");
-        int plusHeight = g.getFontMetrics().getHeight();
+        int plusWidth = g.getFontMetrics(font).stringWidth("+");
+        int plusHeight = g.getFontMetrics(font).getHeight();
         
         summands[0].paint(g);
         for(int i = 1; i < summands.length; i++){
@@ -197,6 +206,27 @@ public class Sum extends Term implements Textable{
         summands[cursorStart].setCursor(x, y);
         //System.out.println("set cursor to " + cursorStart);
     }
+    
+    /**
+     * Without this functionality, Encapsulators wouldn't work.
+     * They have to be in one String. This method ensures
+     * that all Unfinished[ sub]Terms are connected.
+     * @param index starting point for concatenation
+     */
+    /*private void concatSubterms(int index){
+        int i1, i2;
+        for(i1 = index; i1 >= 0; i1--)
+            if(!(summands[i1] instanceof UnfinishedTerm))
+                break;
+        for(i2 = index; i2 < summands.length; i2++)
+            if(!(summands[i2] instanceof UnfinishedTerm))
+                break;
+        if(i2-i1 > 0){
+            i1++;i2--;
+            summands[i1] = new UnfinishedTerm
+            removeElements(summands, i1, i2);
+        }
+    }*/
     
     private int findCursorSnapPos(int x, int y){
         //check every interspace
@@ -303,9 +333,7 @@ public class Sum extends Term implements Textable{
      */
     private UnfinishedTerm genUnfinished(String text){
         UnfinishedTerm uft = new UnfinishedTerm(text);
-        uft.setFont(font);
-        uft.setColor(color);
-        uft.setParent(this.parent);
+        MathObject.transferProps(this, uft);
         return uft;
     }
     
@@ -325,7 +353,6 @@ public class Sum extends Term implements Textable{
      * @param direction -1=left, 1=right
      */
     private void deleteAtCursor(int direction){
-        //System.out.println("whoop");
         int posp = cursorStart + (direction-1)/2; //primary pos
         int posh = cursorStart + (direction+1)/2; //helper pos
         

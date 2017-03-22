@@ -71,7 +71,7 @@ public class Fraction extends Term{
     }
     
     @Override
-    protected void optSize(Graphics g){
+    public void optSize(Graphics g){
         numerator.optSize(g);
         denom.optSize(g);
         
@@ -83,7 +83,7 @@ public class Fraction extends Term{
     }
     
     @Override
-    protected void optSubPos(Graphics g){
+    public void optSubPos(Graphics g){
         numerator.setX(x + (w-numerator.getWidth())/2);
         numerator.setY(y);
         denom.setX(x + (w-denom.getWidth())/2);

@@ -26,10 +26,6 @@ import java.awt.Graphics;
  * @author frequem
  */
 public class UnfinishedTerm extends Term implements Cursorable, Textable{
-    //op-array: in order of calculating priorities
-    private static final Parser[] OP_PARSERS = { new SumParser()/*, new FractionParser()*/ };
-    private static final Parser[] DT_PARSERS = { new ConstantParser() };
-    
     private String data;
     
     private int cursorIndex, selectionLength;
@@ -51,10 +47,10 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
     @Override
     public void parseContent(int offset){
         Term t = null;
-        for(Parser po : OP_PARSERS){
+        for(Parser po : Parser.OP_PARSERS){
             t = po.tryParse(data);
             if(t != null){
-                System.out.println("I found an op!");
+                //System.out.println("I found an op!");
                 if(this.parent != null){
                     MathObject.transferProps(this, t);
                     this.parent.changeSubterm(this, t);
@@ -63,14 +59,25 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
                 return;
             }
         }
-        if(offset == 0)
-            for(Parser pd : DT_PARSERS){
+        if(offset == 0){
+            for(Parser pe : Parser.EC_PARSERS){
+                t = pe.tryParse(data);
+                if(t != null){
+                    MathObject.transferProps(this, t);
+                    this.parent.changeSubterm(this, t);
+                    t.parseContent(0);
+                    return;
+                }
+            }
+            for(Parser pd : Parser.DT_PARSERS){
                 t = pd.tryParse(data);
                 if(t != null){
                     MathObject.transferProps(this, t);
                     this.parent.changeSubterm(this, t);
+                    return;
                 }
             }
+        }
     }
     
     @Override
@@ -97,14 +104,14 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
     public void simplify() {}
 
     @Override
-    protected void optSize(Graphics g) {
+    public void optSize(Graphics g) {
         FontMetrics fm = g.getFontMetrics();
         w = fm.stringWidth(data);
         h = fm.getHeight();
     }
 
     @Override
-    protected void optSubPos(Graphics g) {}
+    public void optSubPos(Graphics g) {}
     
     @Override
     public void paint(Graphics g){
@@ -123,7 +130,7 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
             color = c;
         else
             g.setColor(color);
-        g.drawString(data, x, y+h);
+        g.drawString(data, x, y+h/*-g.getFontMetrics(font).getDescent()*/);
         
         g.setFont(f);
         g.setColor(c);

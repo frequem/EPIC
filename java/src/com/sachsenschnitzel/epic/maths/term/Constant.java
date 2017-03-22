@@ -61,14 +61,14 @@ public class Constant extends Term{
     }
 
     @Override
-    protected void optSize(Graphics g){
+    public void optSize(Graphics g){
         FontMetrics fm = g.getFontMetrics();
         w = fm.stringWidth(String.valueOf(val));
         h = fm.getHeight();
     }
 
     @Override
-    protected void optSubPos(Graphics g){}
+    public void optSubPos(Graphics g){}
 
     @Override
     public void paint(Graphics g){
@@ -87,7 +87,7 @@ public class Constant extends Term{
             color = c;
         else
             g.setColor(color);
-        g.drawString(String.valueOf(val), x, y+h);
+        g.drawString(String.valueOf(val), x, y+h/*-g.getFontMetrics(font).getDescent()*/);
         
         g.setFont(f);
         g.setColor(c);

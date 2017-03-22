@@ -13,6 +13,7 @@ import com.sachsenschnitzel.epic.maths.MathObjectWrapper;
 import com.sachsenschnitzel.epic.maths.term.Constant;
 import com.sachsenschnitzel.epic.maths.term.Sum;
 import com.sachsenschnitzel.epic.maths.term.UnfinishedTerm;
+import com.sachsenschnitzel.epic.maths.term.encap.Parenthesis;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -42,6 +43,7 @@ public class MathMode extends Mode{
             Sum s = new Sum(c1, c2, c3);
             recent = new MathObjectWrapper(s);*/
             recent = new MathObjectWrapper(new UnfinishedTerm(""));
+                    //new Parenthesis(new Constant(3)));
             recent.setX(me.getX());
             recent.setY(me.getY());
             this.getSpritePanel().doAction(new SpriteAddAction(getSpritePanel(), recent));

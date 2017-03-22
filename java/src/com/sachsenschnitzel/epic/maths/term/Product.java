@@ -88,7 +88,7 @@ public class Product extends Term{
     }
     
     @Override
-    protected void optSize(Graphics g){
+    public void optSize(Graphics g){
         w = (factors.length-1)*
                 (2*PRODUCT_SPRITE_MARGIN_SIDE + g.getFontMetrics().stringWidth("•"));
         h = 0;
@@ -102,7 +102,7 @@ public class Product extends Term{
     }
     
     @Override
-    protected void optSubPos(Graphics g){
+    public void optSubPos(Graphics g){
         int dotWidth = g.getFontMetrics().stringWidth("•");
         
         int xCounter = x;
