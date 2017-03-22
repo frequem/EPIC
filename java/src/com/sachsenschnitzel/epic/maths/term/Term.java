@@ -36,8 +36,8 @@ public abstract class Term extends MathObject{
         optSize(g);
         optSubPos(g);
     }
-    protected abstract void optSize(Graphics g);
-    protected abstract void optSubPos(Graphics g);
+    public abstract void optSize(Graphics g);
+    public abstract void optSubPos(Graphics g);
     
     public void paint(Graphics g){
         g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));

@@ -49,18 +49,24 @@ public class Variable extends Term{
     }
 
     @Override
-    protected void optSize(Graphics g){
+    public void optSize(Graphics g){
         FontMetrics fm = g.getFontMetrics();
         w = fm.stringWidth(name);
         h = fm.getHeight();
     }
 
     @Override
-    protected void optSubPos(Graphics g){}
+    public void optSubPos(Graphics g){}
 
     @Override
     public void paint(Graphics g){
         super.paint(g);
+        
+        if(font == null)
+            font = g.getFont();
+        if(color == null)
+            color = g.getColor();
+        
         g.drawString(name, x, y+h);
     }
 
