@@ -21,7 +21,7 @@ public class ParenthesisParser extends EncapsulatorParser{
     
     @Override
     public Parenthesis tryParse(String data){
-        if(data.length() > 0 && data.charAt(0) == opL && data.charAt(data.length()-1) == opR)
+        if(data.length() > 0 && data.charAt(0) == opL&& data.charAt(data.length()-1) == opR)
             return new Parenthesis(new UnfinishedTerm(data.substring(1, data.length()-1)));
         System.out.println("");
         return null;
