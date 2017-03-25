@@ -1,2 +1,42 @@
 \subsection{Das Mathematik-Paket}
-\textit{Mathematik-Paket} ist der interne Name für diejenige Software Komponente, die alles in Bezug auf mathematische Vorgänge verarbeitet. Aus dem Versuch, diese Komponente in Programmcode zu fassen, erlangte ich eine wesentliche Erkenntnis. In der Mathematik sieht man Konstrukte als abstrakt, soweit sollte die mathematische Sicht der Dinge ja bekannt sein. Durch Definitionen schafft sich ein Mathematiker Freiraum, wodurch auch der Level der Abstraktion steigt. Zum Beispiel ist uns möglicherweise gar nicht mehr bewusst, dass wir beim 'mit $x$ multiplizieren', tatsächlich $x$ Mal zusammenzählen. Beim 'hoch $x$ rechnen' wird eigentlich $x$ Mal multipliziert, also wie oft addiert? Natürlich stellen die Grundrechenarten programmtechnisch kein Problem dar, jedoch ist bereits diese einfache Frage ohne mehr Information nicht zu beantworten, was zeigen soll, wie tief wir schon drin stecken, ohne jemals angefangen zu haben.\\\\
+\textit{Mathematik-Paket} ist der interne Name für diejenige Software Komponente, die alles in Bezug auf mathematische Vorgänge verarbeitet. Aus dem Versuch, diese Komponente in Programmcode zu fassen, erlangte ich eine wesentliche Erkenntnis: Theoretische Mathematik und Informatik sind viel weiter voneinander entfernt, als man glauben mag.\\\\
+In der Mathematik sieht man Konstrukte als abstrakt, soweit sollte die mathematische Sicht der Dinge ja bekannt sein. Durch Definitionen schafft sich ein Mathematiker Freiraum, wodurch auch der Level der Abstraktion steigt. Zum Beispiel ist uns möglicherweise nicht sofort bewusst, dass wir beim 'mit $x$ multiplizieren' tatsächlich $x$-Mal zusammenzählen. Beim 'hoch $x$ rechnen' wird eigentlich $x$-Mal multipliziert, also wie oft addiert? Natürlich stellen die Grundrechenarten programmtechnisch kein Problem dar, jedoch ist bereits diese einfache Frage ohne mehr Information nicht zu beantworten, was zeigen soll, wie tief wir bereits drin stecken, ohne jemals angefangen zu haben.\\\\
+In diesem Teil der Programmierung geht es also darum, die abstrakten mathematischen Beschreibungen der Dinge in konkretisierte, ausführbare, Programmstücke zu fassen. Zuerst haben wir uns ein Grundkonzept überlegt, das folgenden Anforderungen entsprechen sollte:
+\begin{itemize}
+	\item Alle Mathematischen Vorgänge sollen abbildbar sein
+	\begin{itemize}
+		\item Rechnungen
+		\item Gleichungen
+		\item Funktionen/Variablendefinitionen
+		\item Gleichungssysteme
+	\end{itemize}
+	\item geringer \textit{RAM}-Aufwand (Arbeitsspeicher)
+	\item durch geringen Aufwand änderbar
+	\item durch geringen Aufwand durchsuchbar
+\end{itemize}
+Der Grund für die notwendige Änderungsfähigkeit ist ganz einfach, dass der Benutzer zu jedem Zeitpunkt in der Lage sein soll, die Eingabe zu bearbeiten. Die Suchfunktion ist erklärbar, wenn man einen Schritt weiter denkt: mathematische Funktionen sowie andere Vorgänge müssen unvermeidlich die zu ersetzenden Variablen ausfindig machen und stattdessen Zahlen einfügen. Ich spreche hier "andere Vorgänge" an, da beispielsweise Gleichungssysteme oder das einfache Einsetzen von Variablen diese Funktionalität ebenfalls gebrauchen könnten, das hängt jedoch von der Implementierung ab.\\
+Schlussendlich fanden wir zwei Lösungen, die für die engere Auswahl in Frage kamen:\\
+\\
+Lösung 1: Gesamte Information in einen \textit{String}  verpacken, etwa so, dass $2 \cdot x+3 $ als \textbf{" \textbackslash Sum( \textbackslash Product( \#2, \_x ), \#3)"} gespeichert wird. Ein \textit{String} unterscheidet sich im Wesentlichen nicht von einem Text im Programmier-Jargon (der Ausdruck stammt von "Zeichenkette" ab).\\
+\\
+Lösung 2: Struktur wird per \textit{Objekt(e)} gespeichert. Jedes Objekt sollte für eine Operation oder etwas Vergleichbares stehen. Hier wäre unser Term $2 \cdot x+3 $, wenn so dargestellt, dass die Eigenschaften eines Objektes darunter aufgelistet sind, Folgendes:\\
+\textbf{
+\begin{itemize}
+	\item[$-$] Sum
+	\begin{itemize}
+		\item[$-$] Product
+		\begin{itemize}
+			\item[$-$] Constant: $2.0$
+			\item[$-$] Variable: $x$
+		\end{itemize}
+		\item[$-$] Constant: $3.0$
+	\end{itemize}
+\end{itemize}
+}
+\ \\
+Variante 1 hatte den wesentlichen Vorteil, dass suchen und ersetzen äußerst einfach gewesen wären, da Java für Strings schon standardmäßig Funktionen hierfür anbietet. Wie man sehen kann, ist die erste Version auch kompakter, dafür kann sie mit Struktur nicht punkten: Wo ein bestimmtes Element beginnt und endet ist nirgends hinterlegt, dies dürfte also bei jedem Durchgang aufs Neue ermittelt werden. Das entscheidende Argument für die Objekt-Struktur war letztendlich, dass die Modularität viel präziser ablaufen könnte. Das kann man sich so vorstellen, dass, um Strings zu verarbeiten sinnvollerweise eine zentrale Stelle (gemeint: \textit{Methode}) für die Interpretation verantwortlich ist. Das bedeutet, dass sich sämtliche Erweiterungen an die Regeln dieser Stelle halten müssten. Bei Variante 2 hingegen wären sämtliche Funktionen ausgelagert, sprich: jedes Objekt arbeitet nach Belangen, solange globale Anforderungen erfüllt werden. Mit "Anforderungen" ist hier einfach gemeint, dass es berechenbar ist, in der Lage ist, Variablen zu ersetzen usw.\\
+\subsubsection{Term-Struktur}
+Die Wahl fällt also eindeutig auf die oben angeführte Lösung Nr. 2, sie ist flexibler, strukturierter und modularer als ihre Alternative. In der Code-Implementierung bietet es sich an, sich die \textit{Vererbung} zu Nutze zu machen. Das bedeutet in Java, dass eine \textit{Mutterklasse} (auch: \textit{Überklasse}) existiert, die so etwas wie ein Gerüst vorgibt. Ich verwende hier bewusst nicht den Ausdruck "Grundgerüst", da auch Mutterklassen weitere Mutterklassen haben können, wobei jede Ebene zum letzten Objekt der Kette beiträgt. Solch eine Überklasse muss einfach mit dem Schlüsselwort \displaycode{abstract} gekennzeichnet werden und darf praktisch die Umrisse für alle Methoden enthalten, obwohl sie keine einzige genau beschreiben muss. Das hat den Sinn, dass Objekte klassifiziert werden können und trotzdem ihre Funktionalität eigenständig verwalten dürfen.\\
+\\
+Im konkreten Fall bedeutet dies nun, dass wir eine abstrakte Mutterklasse \displaycode{Term} geschrieben haben, die - sehr unspektakulär - mathematische Terme (Ausdrücke) darstellen soll. Ein Term ist alles von Summe über Bruch, Logarithmus bis zur einfachen Konstante. Hinter der Konstante (\displaycode{Constant}) verbirgt sich nichts anderes als eine Zahl, wir dachten jedoch, der Name würde besser im Kontrast zur Variable (\displaycode{Variable}) stehen.
+%blabla term, blabla geerbte funktionen, klammern? nicht-wirklich-terme?
