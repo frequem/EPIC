@@ -15,6 +15,11 @@
 \usepackage{fancyhdr}
 \usepackage{datetime}
 
+%user defined commands
+\newcommand{\displaycode}[1] {
+	{\fontfamily{qcr}\selectfont #1}
+}
+
 \newdateformat{myformat}{\THEDAY{ten }\monthname[\THEMONTH], \THEYEAR}
 \pagestyle{fancy}
 \fancyhf{}
