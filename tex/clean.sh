@@ -4,3 +4,7 @@ rm *.pdf
 rm *.out
 rm *.gz
 rm *.toc
+rm *.bbl
+rm *.bcf
+rm *.blg
+rm *.run.xml
