@@ -14,17 +14,40 @@
 \usepackage[normalem]{ulem}
 \usepackage{fancyhdr}
 \usepackage{datetime}
+\usepackage[style=verbose]{biblatex}
+\usepackage{systeme} %for math sys o. equ.
+
+%systeme config
+\sysdelim..
+\syslineskipcoeff{1.2}\setlength{\tabskip}{3pt}
 
 %user defined commands
 \newcommand{\displaycode}[1] {
+	% fallst mal versuchst, code mit syntax-highlighting darzustellen:
+	% geht anscheinend nicht in makros, da diese code-interpreter
+	% angeblich über sich gegenseitig drüberstolpern, habs weder mit
+	% 'listings' noch mit 'minted' zum laufen kriegt...
+	% is a ziemlicher müll, mach lieber screenshots und füg die ein
 	{\fontfamily{qcr}\selectfont #1}
 }
+
+\newcommand{\citebrackets}[1]{
+	% wennst iwas zitierst bitte die funktion verwenden. wieder ausm
+	% gleichen grund: zentralisieren, wenn iwas net passt, hier ändern
+	<<#1>>
+}
+
+%add refs
+\addbibresource{ref/sachsenschnitzel_references.bib}
+\addbibresource{ref/frequem_references.bib}
+
+%\addcontentsline{toc}{section}{Literatur} wemma die Literatur im toc haben wollen, müsst aber noch getweak't werden
 
 \newdateformat{myformat}{\THEDAY{ten }\monthname[\THEMONTH], \THEYEAR}
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Michael Friesenhengst, Florian Weinzerl}
-\lhead{2b done}%\leftmark}
+\rhead{Florian Weinzerl, Michael Friesenhengst}
+\lhead{\leftmark}
 \cfoot{\thepage}
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
@@ -44,5 +67,7 @@
 \include{Chapter_Hard}
 \include{Chapter_Soft}
 \include{Chapter_Marketing}
+
+\printbibliography
 
 \end{document}
