@@ -8,3 +8,4 @@ rm *.bbl
 rm *.bcf
 rm *.blg
 rm *.run.xml
+rm *.lof
