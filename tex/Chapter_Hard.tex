@@ -1,6 +1,48 @@
 \section{Hardware}
-Von Anfang an war klar, dass die Hauptrecheneinheit unseres Prototypen fähig sein musste, den Rechenaufwand unserer Software problemlos zu bewältigen. Ein weiteres wichtiges Kriterium war, einen kleinen Formfarktor einhalten zu können, um zu garantieren, dass unsere Einheit in einem handlichen Gehäuße Platz findet. Beiden Punkten zugleich wird lediglich ein \textit{single-board-computer} gerecht, er vereint hohe Rechenleistung mit minimalem Platzaufkommen.\\
-\\
-Das \textit{Display} ist dafür konzipiert dem Benutzer ... Mittels dem \textit{resistiven Touchscreen} ist es möglich, Berechnungen einzugeben sowie Mitschriften zu tätigen. Er wird mithilfe eines \textit{Stylus} bedient.\\
-\\
-Da der single-board-computer und Display einen relativ hohen Energiebedarf aufweisen, musste eine Hardware-Komponente her, welche beide je nach Bedarf aus-und-einschalten kann. Bei dieser Komponente war darauf zu achten, dass diese dem Gerät so wenig Energie wie möglich entzieht um eine lange \textit{Standby-Zeit} zu garantieren. Die Komponente kann auf Knopfdruck Display und Recheneinheit getrennt von einander stromlos machen.
+Um eine volle Alternative zu jeglichen Taschenrechnern bieten zu können, musste eine entsprechende Hardware entwickelt werden, auf der man problemlos unsere Software bedienen kann. Dazu brauchten wir eine Recheneinheit, einen Display, eine für den Benutzer einfach zu bedienende Eingabemöglichkeit und ein passendes Gehäuse.\\
+
+Von Anfang an war klar, dass die Hauptrecheneinheit unseres Prototypen fähig sein musste, den Rechenaufwand unserer Software problemlos zu bewältigen. Ein weiteres wichtiges Kriterium war, einen kleinen Formfarktor einhalten zu können, um zu garantieren, dass unsere Einheit in einem handlichen Gehäuse Platz findet. Beiden Punkten zugleich wird lediglich ein \textit{single-board-computer} gerecht, er vereint hohe Rechenleistung mit minimalem Platzaufkommen.\\
+
+Das Display musste groß genug sein, um dem Benutzer genug Platz zu bieten, seine Berechnungen und Notizen durchzuführen. Allerdings war auch wichtig darauf zu achten, dass es nicht zu groß war um nicht die Portabilität unseres Gerätes einzuschränken.\\
+
+Mittels dem \textit{Touchscreen} ist es möglich, Berechnungen einzugeben sowie Mitschriften zu tätigen. Er wird mithilfe eines Stiftes bedient.\\
+
+Da der single-board-computer und Display einen relativ hohen Energiebedarf aufweisen, musste eine Hardware-Komponente her, welche beide je nach Bedarf aus-und-einschalten kann. Bei dieser Komponente war darauf zu achten, dass diese dem Gerät so wenig Energie wie möglich entzieht um eine lange \textit{Standby-Zeit} zu garantieren. Die Komponente kann auf Knopfdruck Display und Recheneinheit getrennt von einander stromlos machen.\\
+
+\subsection{Recheneinheit}
+Bei der großen Auswahl an single-board-computern entschieden wir und für den \textit{Raspberry Pi 3}, da dieser neben hervorragendem Treibersupport, den wir für unseren Touchscreen benötigen würden, durch eine für den Formfaktor sehr hohe Leistung überzeugt. Weiters ist bereits eine \textit{Wireless-LAN} Schnittstelle verbaut, welche bei der Software-Installation sehr behilflich ist.\\
+
+
+
+\subsection{Display}
+
+
+
+\subsection{Touchscreen}
+
+Da es bei Touchscreens viele verschiedene Technologien gibt, welche heutzutage eingesetzt werden, war es nicht einfach einen passenden für unser Display-Modell zu finden.\\
+
+Unbedingt notwendig war, dass es sich um einen \textit{resistiven} Touchscreen handelt welcher mittels Druck funktioniert. Dadurch ist es möglich den Touchscreen mit einem Stift zu bedienen. Dies ist bei einem heutzutage üblichen \textit{kapazitiven} Touchscreen nicht möglich, da dieser nicht auf Druck sondern auf die Änderung der Kapazität reagiert.\\
+
+Wir entschieden uns für einen Touchscreen der Marke \textit{EETI}, der mittels USB an den Raspberry Pi angeschlossen werden kann, da für diesen offizieller Treibersupport zur Verfügung steht.\\
+
+\subsection{Power-Button}
+
+Es war uns sehr wichtig, den Display und den Raspberry Pi durch einfaches Klicken eines Knopfes vom Strom trennen zu können, dies schränkt nicht nur den Stromverbrauch des Gerätes drastisch ein, es macht es auch möglich, den Display und Touchscreen unabhängig vom Raspberry Pi abzuschalten.\\
+
+Wir setzten uns folgende Anforderungen für unseren Knopf:\\
+\textit{Durch einfaches, kurzes Klicken auf den Knopf wird der Display ein- bzw. ausgeschaltet.
+Durch längeres, dreisekündiges Halten des Knopfes und anschließendes Loslassen, wird die Recheneinheit ein- bzw. ausgeschaltet.}
+
+Um diese Anforderungen umzusetzen nahmen wir einen \textit{Mikrocontroller} zur Hilfe. Wir entschieden uns für einen \textit{Arduino Pro Mini}, da dieser einen minimalen Energieverbrauch hat und leicht mit der Programmiersprache \textit{C} programmierbar ist.\\
+
+Da es nicht möglich ist, sehr große Ströme mit dem Arduino allein zu schalten, verbauten wir für Display und Recheneinheit jeweils einen \textit{Leistungs-NFET}, der einen Strom von bis zu 3 Ampere schalten kann, ausreichend für unsere Zwecke also.\\
+
+Weiters musste es möglich sein, dem Raspberry Pi ein Ausschaltsignal zu senden, welches ihn dazu bringt, sich selbst herunterzufahren um Korruption des Raspbian-Systems auf der Recheneinheit zu verhindern. Auch in die andere Richtung musste eine Signalleitung gelegt werden, die dem Mikrokontroller anzeigt, wenn der Raspberry Pi vollständig heruntergefahren ist, um ihn anschließend stromlos zu machen. Dazu wurde in jede Richtung jeweils ein \textit{NPN-Transistor} verbaut, um eine Brücke zwischen den 5 Volt des Arduino und den 3,3 Volt des Raspberry Pi herzustellen.\\
+
+Um einen minimalen Leistungsaufwand des Mikrocontrollers zu garantieren wurde die LowPower-sssLibrary verwendet und mit Interrupts programmiert.
+
+\subsection{Akku}
+
+\subsection{Gehäuse}
+
