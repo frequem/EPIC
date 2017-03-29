@@ -1,9 +1,34 @@
 \subsection{GUI - Das Graphical User Interface}
 
-Das GUI ist der Teil unserer Software welcher dem Benutzer eine Oberfläche bietet, auf der er alle seine Berechnungen, Notizen, etc. durchführen kann. Wir überlegten uns, dass dem Benutzer etwas zur Verfügung stehen sollte, auf dem er alles tun kann was die Software bietet. Wir wollten dafür ein zentrales Fenster, da dadurch die Bedienung wesentlich erleichtert wird und auch verschiedene Dinge wie Berechnungen oder Notizen nebeneinander, in einer dem Benutzer überlassenen Anordnung, angezeigt werden kann. Dieses Zentrale Fenster bezeichneten wir als das \textit{Spritepanel}.\\
+Das GUI ist der Teil unserer Software welcher dem Benutzer eine Oberfläche bietet, auf der er alle seine Berechnungen, Notizen, etc. durchführen kann. Wir überlegten uns, dass dem Benutzer etwas zur Verfügung stehen sollte, auf dem er alles tun kann was die Software bietet. Wir wollten dafür ein zentrales Fenster, da dadurch die Bedienung wesentlich erleichtert wird und auch verschiedene Dinge wie Berechnungen oder Notizen nebeneinander, in einer dem Benutzer überlassenen Anordnung, angezeigt werden kann. Dieses zentrale Fenster bezeichneten wir als das \textit{Spritepanel}.\\
 \\
 Alle Objekte, die auf dem Spritepanel angezeigt werden können, werden in unserer Struktur als \textit{Sprites} bezeichnet. Dies ist auch in der Objektstruktur das gemeinsame Glied, auf dem alle zeichenbaren Objekte, wie \textit{Terms} oder \textit{Drawings} aufsetzen. Im Programmcode wurde das Sprite als Interface ausgeführt.\\
 \\
 Um auf dem Spritepanel verschiedene Dinge, wie zeichnen, schreiben, ... durchführen zu können muss es eine Möglichkeit geben, zwischen diesen Modi schnell und effizient hin- und herzuschalten, auch um andere Operationen wie das Wechseln der Schriftfarbe oder der Strichstärke durchführen zu können musste es eine einfache Lösung geben. Wir entschieden uns dafür, auf dem oberen Rand des Bildschirmes eine Menüleiste zu erstellen, auf der es dem Benutzer möglich ist alle das Spritepanel betreffenden Optionen zu tätigen.\\
 \\
-Alle Optionen, welche sinntechnisch zusammen gehören wurden auch zusammen in Untermenüs gegliedert. Jedes dieser Untermenüs hat dann zu jeder Optionen jeweils ein Item, mit dem diese Option steuerbar ist. Diese Items können nach einem Touch auf den Touchscreen verschiedene Reaktionen aufweisen. So ist es möglich dass ein Item nach einem Touch ein neues Fenster spawnt, auf dem der Benutzer seine Einstellungen treffen kann, auf einem anderem Item wiederum kann man seine Einstellung direkt treffen.
+Alle Optionen, welche sinntechnisch zusammen gehören wurden auch zusammen in Untermenüs gegliedert. Jedes dieser Untermenüs hat dann zu jeder Optionen jeweils ein Item, mit dem diese Option steuerbar ist. Diese Items können nach einem Touch auf den Touchscreen verschiedene Reaktionen aufweisen. So ist es möglich dass ein Item nach einem Touch ein neues Fenster spawnt, auf dem der Benutzer seine Einstellungen treffen kann, auf einem anderem Item wiederum kann man seine Einstellung direkt treffen.\\
+
+\subsubsection{Spritepanel und Sprites}
+
+Das Spritepanel ist der zentrale Bestandteil unserer Software, auf ihm werden alle Sprites dargestellt und auf ihm bauen alle weiteren Bestandteile der Software auf. Alle Menüs, Menüitems, etc. haben eine Referenz auf dieses Spritepanel um auf ihm Veränderungen durchführen zu können.\\
+\\
+Diese zentrale Denkweise bietet zahlreiche Vorteile: Alle Sprites, sei es Text, Term, ... werden gleich behandelt, d.h. haben eine gewisse Grundfunktionalität ohne, dass diese jedes Mal neu implementiert werden muss. Dinge wie das Verschieben oder Markieren von Sprites werden daher mit jedem Sprite möglich sein, auch wenn neue Funktionen hinzugefügt werden.
+
+\subsubsection{Modes}
+
+Ein Mode ist ein Modus in dem sich das Spritepanel zu einem gewissen Zeitpunkt befindet. Wir unternahmen diese Einteilung um es möglich zu machen, alle Sprites zentral auf einer Oberfläche verarbeiten zu können. Ohne Modes wäre es nicht möglich gewesen verschiedene Operationen mit der selben Geste (durch Klicken des Touchscreens) durchzuführen.\\
+Wir haben folgende Unterteilung getroffen:
+
+\setcounter{secnumdepth}{4}
+\paragraph{Draw Mode}\ \\
+In diesem Modus kann mithilfe des Touchscreen gezeichnet oder handschriftlich geschrieben werden. Es wird die aktuelle Color und Stroke (Strichbreite) des Spritepanels verwendet.
+\paragraph{Text Mode}\ \\
+Dieser Modus ist dafür da, um mit dem On-Screen-Keyboard Texte zu verfassen. Die aktuelle Color des Spritepanels wird verwendet. 
+\paragraph{Math Mode}\ \\
+In diesem Modus können Berechnungen durchgeführt werden, die Eingabe erfolgt über das On-Screen-Keyboard. 
+\paragraph{Selection Mode}\ \\
+Dieser Modus dient zur Auswahl von mehreren Sprites, es kann mithilfe des Touchscreen ein Rechteck um die auszuwählenden Sprites gezogen werden. Markierte Sprites werden mit einer blau-strichlierten Umrandung dargestellt.
+\paragraph{Move Mode}\ \\
+In diesem Modus können Markierte Sprites über das Spritepanel bewegt werden. Es ist weiterhin möglich durch einmaliges Klicken auf ein Sprite, dieses zu markieren und anschließend zu bewegen.
+
+\subsubsection{Actions}
