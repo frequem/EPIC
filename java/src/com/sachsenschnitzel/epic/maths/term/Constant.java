@@ -13,7 +13,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 
 /**
- *
+ *  This should represent a simple number.
+ * 
  * @author schnitzel
  */
 public class Constant extends Term{
@@ -45,6 +46,11 @@ public class Constant extends Term{
     @Override
     public double calc(AssignedValues avs){
         return val;
+    }
+    
+    @Override
+    public int countEncaps(){
+        return 0;
     }
 
     @Override

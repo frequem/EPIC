@@ -31,6 +31,11 @@ public class Variable extends Term{
         //throw exception
         return 0;
     }
+    
+    @Override
+    public int countEncaps(){
+        return 0;
+    }
 
     @Override
     public Term derive(String var){

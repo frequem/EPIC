@@ -93,6 +93,11 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
         //don't know what to do yet... possibly parse, but that wouldn't work well with the cursor.
         return 0;
     }
+    
+    @Override
+    public int countEncaps(){
+        return 0;
+    }
 
     @Override
     public Term derive(String var) {

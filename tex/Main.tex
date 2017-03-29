@@ -31,6 +31,23 @@
 	{\fontfamily{qcr}\selectfont #1}
 }
 
+\newcommand{\displayimageg}[2]{
+	% oida in latex kamma 'commands' mit untersch. parameteranzahl
+	% nicht gleich nennen... ich nenn das jetzt _g für gschissen
+	% 0.9 is halt meine standardeinstellung, schaut nicht so deppat
+	% aus wie 1, aber ma sieht noch was
+	\displayimage{#1}{#2}{0.9}
+}
+
+\newcommand{\displayimage}[3]{
+	\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=#3\textwidth]{#1}
+		\caption[Da kamma verschiedene Sachen reinschreiben]{#2} % könnt nützlich werden für das was der schaupp gsagt hat
+	\end{center}
+	\end{figure}
+}
+
 \newcommand{\citebrackets}[1]{
 	% wennst iwas zitierst bitte die funktion verwenden. wieder ausm
 	% gleichen grund: zentralisieren, wenn iwas net passt, hier ändern
@@ -68,6 +85,7 @@
 \include{Chapter_Soft}
 \include{Chapter_Marketing}
 
+\listoffigures
 \printbibliography
 
 \end{document}

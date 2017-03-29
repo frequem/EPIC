@@ -78,6 +78,15 @@ public class Sum extends Term implements Textable{
             sm += summand.calc(avs);
         return sm;
     }
+    
+    @Override
+    public int countEncaps(){
+        int sum = 0; // ;P
+        for(Term summand : summands){
+            sum += summand.countEncaps();
+        }//TODO...
+        return sum;
+    }
 
     @Override
     public Term derive(String var){

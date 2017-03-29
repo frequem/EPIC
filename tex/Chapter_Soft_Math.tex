@@ -14,10 +14,10 @@ In diesem Teil der Programmierung geht es also darum, die abstrakten mathematisc
 	\item durch geringen Aufwand änderbar
 	\item durch geringen Aufwand durchsuchbar
 \end{itemize}
-Der Grund für die notwendige Änderungsfähigkeit ist ganz einfach, dass der Benutzer zu jedem Zeitpunkt in der Lage sein soll, die Eingabe zu bearbeiten. Die Suchfunktion ist erklärbar, wenn man einen Schritt weiter denkt: mathematische Funktionen sowie andere Vorgänge müssen unvermeidlich die zu ersetzenden Variablen ausfindig machen und stattdessen Zahlen einfügen. Ich spreche hier "andere Vorgänge" an, da beispielsweise Gleichungssysteme oder das einfache Einsetzen von Variablen diese Funktionalität ebenfalls gebrauchen könnten, das hängt jedoch von der Implementierung ab.\\
+Der Grund für die notwendige Änderungsfähigkeit ist ganz einfach, dass der Benutzer zu jedem Zeitpunkt in der Lage sein soll, die Eingabe zu bearbeiten. Die Suchfunktion ist erklärbar, wenn man einen Schritt weiter denkt: mathematische Funktionen sowie andere Vorgänge müssen unvermeidlich die zu ersetzenden Variablen ausfindig machen und stattdessen Zahlen einfügen. Ich spreche hier ''andere Vorgänge'' an, da beispielsweise Gleichungssysteme oder das einfache Einsetzen von Variablen diese Funktionalität ebenfalls gebrauchen könnten, das hängt jedoch von der Implementierung ab.\\
 Schlussendlich fanden wir zwei Lösungen, die für die engere Auswahl in Frage kamen:\\
 \\
-Lösung 1: Gesamte Information in einen \textit{String}  verpacken, etwa so, dass $2 \cdot x+3 $ als \textbf{" \textbackslash Sum( \textbackslash Product( \#2, \_x ), \#3)"} gespeichert wird. Ein \textit{String} unterscheidet sich im Wesentlichen nicht von einem Text im Programmier-Jargon (der Ausdruck stammt von "Zeichenkette" ab).\\
+Lösung 1: Gesamte Information in einen \textit{String}  verpacken, etwa so, dass $2 \cdot x+3 $ als \textbf{" \textbackslash Sum( \textbackslash Product( \#2, \_x ), \#3)"} gespeichert wird. Ein \textit{String} unterscheidet sich im Wesentlichen nicht von einem Text im Programmier-Jargon (der Ausdruck stammt von ''Zeichenkette'' ab).\\
 \\
 Lösung 2: Struktur wird per \textit{Objekt(e)} gespeichert. Jedes Objekt sollte für eine Operation oder etwas Vergleichbares stehen. Hier wäre unser Term $2 \cdot x+3 $, wenn so dargestellt, dass die Eigenschaften eines Objektes darunter aufgelistet sind, Folgendes:\\
 \textbf{
@@ -34,9 +34,9 @@ Lösung 2: Struktur wird per \textit{Objekt(e)} gespeichert. Jedes Objekt sollte
 \end{itemize}
 }
 \ \\
-Variante 1 hatte den wesentlichen Vorteil, dass suchen und ersetzen äußerst einfach gewesen wären, da Java für Strings schon standardmäßig Funktionen hierfür anbietet. Wie man sehen kann, ist die erste Version auch kompakter, dafür kann sie mit Struktur nicht punkten: Wo ein bestimmtes Element beginnt und endet ist nirgends hinterlegt, dies dürfte also bei jedem Durchgang aufs Neue ermittelt werden. Das entscheidende Argument für die Objekt-Struktur war letztendlich, dass die Modularität viel präziser ablaufen könnte. Das kann man sich so vorstellen, dass, um Strings zu verarbeiten sinnvollerweise eine zentrale Stelle (gemeint: \textit{Methode}) für die Interpretation verantwortlich ist. Das bedeutet, dass sich sämtliche Erweiterungen an die Regeln dieser Stelle halten müssten. Bei Variante 2 hingegen wären sämtliche Funktionen ausgelagert, sprich: jedes Objekt arbeitet nach Belangen, solange globale Anforderungen erfüllt werden. Mit "Anforderungen" ist hier einfach gemeint, dass es berechenbar ist, in der Lage ist, Variablen zu ersetzen usw.\\
+Variante 1 hatte den wesentlichen Vorteil, dass suchen und ersetzen äußerst einfach gewesen wären, da Java für Strings schon standardmäßig Funktionen hierfür anbietet. Wie man sehen kann, ist die erste Version auch kompakter, dafür kann sie mit Struktur nicht punkten: Wo ein bestimmtes Element beginnt und endet ist nirgends hinterlegt, dies dürfte also bei jedem Durchgang aufs Neue ermittelt werden. Das entscheidende Argument für die Objekt-Struktur war letztendlich, dass die Modularität viel präziser ablaufen könnte. Das kann man sich so vorstellen, dass, um Strings zu verarbeiten sinnvollerweise eine zentrale Stelle (gemeint: \textit{Methode}) für die Interpretation verantwortlich ist. Das bedeutet, dass sich sämtliche Erweiterungen an die Regeln dieser Stelle halten müssten. Bei Variante 2 hingegen wären sämtliche Funktionen ausgelagert, sprich: jedes Objekt arbeitet nach Belangen, solange globale Anforderungen erfüllt werden. Mit ''Anforderungen'' ist hier einfach gemeint, dass es berechenbar ist, in der Lage ist, Variablen zu ersetzen usw.\\
 \subsubsection{Term-Struktur}
-Die Wahl fällt also eindeutig auf die oben angeführte Lösung Nr. 2, sie ist flexibler, strukturierter und modularer als ihre Alternative. In der Code-Implementierung bietet es sich an, sich die \textit{Vererbung} zu Nutze zu machen. Das bedeutet in Java, dass eine \textit{Mutterklasse} (auch: \textit{Überklasse}) existiert, die so etwas wie ein Gerüst vorgibt. Ich verwende hier bewusst nicht den Ausdruck "Grundgerüst", da auch Mutterklassen weitere Mutterklassen haben können, wobei jede Ebene zum letzten Objekt der Kette beiträgt. Solch eine Überklasse muss einfach mit dem Schlüsselwort \displaycode{abstract} gekennzeichnet werden und darf praktisch die Umrisse für alle Methoden enthalten, obwohl sie keine einzige genau beschreiben muss. Das hat den Sinn, dass Objekte klassifiziert werden können und trotzdem ihre Funktionalität eigenständig verwalten dürfen.\\
+Die Wahl fällt also eindeutig auf die oben angeführte Lösung Nr. 2, sie ist flexibler, strukturierter und modularer als ihre Alternative. In der Code-Implementierung bietet es sich an, sich die \textit{Vererbung} zu Nutze zu machen. Das bedeutet in Java, dass eine \textit{Mutterklasse} (auch: \textit{Überklasse}) existiert, die so etwas wie ein Gerüst vorgibt. Ich verwende hier bewusst nicht den Ausdruck ''Grundgerüst'', da auch Mutterklassen weitere Mutterklassen haben können, wobei jede Ebene zum letzten Objekt der Kette beiträgt. Solch eine Überklasse muss einfach mit dem Schlüsselwort \displaycode{abstract} gekennzeichnet werden und darf praktisch die Umrisse für alle Methoden enthalten, obwohl sie keine einzige genau beschreiben muss. Das hat den Sinn, dass Objekte klassifiziert werden können und trotzdem ihre Funktionalität eigenständig verwalten dürfen.\\
 \\
 Im konkreten Fall bedeutet dies nun, dass wir eine abstrakte Mutterklasse \displaycode{Term} geschrieben haben, die - sehr unspektakulär - mathematische Terme (Ausdrücke) darstellen soll. Ein Term ist alles von Summe über Bruch, Logarithmus bis zur einfachen Konstante. Hinter der \displaycode{Constant} ($\rightarrow$ Konstante) verbirgt sich nichts anderes als eine Zahl, wir dachten jedoch, der Name würde besser im Kontrast zur \displaycode{Variable} ($\rightarrow$ Variable) stehen. Diese Klasse legt nun einige abstrakte Methoden fest, wie zum Beispiel \displaycode{public Term calc()}, in der das jeweilige Unterobjekt seinen Inhalt berechnen und zurückgeben soll. Die gleiche Methode gibt es auch mit Parameter, nämlich einem Objekt, das alle aktuellen Variablenwerte hält, was eben für Funktionen wichtig wäre. Als kurze Veranschaulichung würde diese Methode zum Beispiel bei der \displaycode{Sum} ($\rightarrow$ Summe) ganz einfach so aussehen, dass sie alle ihre Summanden auffordert, deren Inhalt zu berechnen und diese im Anschluss addiert.\\
 \\
@@ -46,9 +46,11 @@ Die nächste Anforderung war, dass sie neben einigen Methoden, die ich bis jetzt
 \end{gather*}
 Der Java-Code liest sich folgendermaßen:\\
 
-\begin{center}
-\includegraphics[width=0.9\textwidth]{img/sachsenschnitzel/code_Sum_derive_cropped}
-\end{center}
+%\begin{center}
+%\includegraphics[width=0.9\textwidth]{img/sachsenschnitzel/code_Sum_derive_cropped}
+%\end{center}
+\displayimageg{img/sachsenschnitzel/code_Sum_derive_cropped}
+				{Summe ableiten in Java}
 \noindent
 Ich denke an diesem Beispiel kann man äußerst klar erkennen, dass die Wahl unserer derzeitigen Struktur zu einigen guten Ergebnissen geführt hat. Der Programmcode ist gekapselt, modular und einfach lesbar.
 %klammern? nicht-wirklich-terme?
@@ -63,8 +65,8 @@ Da Gleichungen ja bereits behandelt wurden, ist es ziemlich offensichtlich, dass
 \\
 Unserer Meinung nach ist es sinnvoll, auch für diese mathematischen Objekte einen gemeinsamen Nenner zu finden. Warum wir so entschieden haben, wird sich in weiteren Kapiteln noch zeigen. Also haben wir kurzerhand die Klasse \displaycode{MathObject} ins Leben gerufen. Sie soll, wie der Name bereits verrät, als Über-Objekt für alle mathematischen Konstrukte wirken, sodass \displaycode{Term}, \displaycode{Function}, \displaycode{Equation} und \displaycode{SystemOfEquations} \textit{Child-Objekt} davon sind.
 
-\section{Lösung linearer Gleichungssysteme in Java}
-Da nun Objektstruktur und Vererbung geklärt sind, besteht der nächste Schritt darin, Berechnungen durchzuführen. Als Einstieg in das Thema möchte ich mit Gleichungssystemen beginnen. \textit{Lineare Gleichungssysteme} zu lösen haben die meisten sicher in der Schule gelernt. Das sind zur Erinnerung jene, bei denen lediglich konstante Koeffizienten vor den Variablen stehen, womit Ausdrücke wie $ln(x)$ oder $x^2$ ausgeschlossen sind. Damit das hier ein wenig anschaulicher wird, werde ich für das gesamte Kapitel folgendes Beispiel-Gleichungssystem verwenden:\\
+\subsubsection{Lösung linearer Gleichungssysteme in Java}
+Da nun Objektstruktur und Vererbung geklärt sind, besteht der nächste Schritt darin, Berechnungen durchzuführen. Als Einstieg in das Thema möchte ich mit Gleichungssystemen beginnen. \textit{Lineare Gleichungssysteme} zu lösen haben die meisten sicher in der Schule gelernt. Das sind zur Erinnerung jene, bei denen lediglich konstante Koeffizienten vor den Variablen stehen, womit Ausdrücke wie $ln(x)$ oder $x^2$ ausgeschlossen sind. Damit das hier ein wenig anschaulicher wird, werde ich für das gesamte Kapitel folgendes Beispiel-Gleichungssystem verwenden:
 \begin{gather*}
 2x + 4y - z = 17\\
 x + 3y + 2z = 18\\
@@ -80,6 +82,8 @@ Deutlich aufgelistet sieht unser Gleichungssystem folgendermaßen aus:
 	 x  +  3y  +  2z  =  18,
 	-7x +  5y  +   z  = -29}
 \]
+\ \\
+Um für uns für den nächsten Schritt vorzubereiten, multiplizieren wir jede Gleichung mit einem Faktor, so, dass die Koeffizienten auf der ganz linken Seite gleich sind. Die Faktoren sind hier im konkreten Fall $2$ bzw. $-\frac{2}{7}$
 
 \[ %auf gleich multiplizieren #1
 \systeme{
@@ -87,6 +91,8 @@ Deutlich aufgelistet sieht unser Gleichungssystem folgendermaßen aus:
 	2x  +  6y  +  4z  =  36,
 	2x - \frac{10}{7}y - \frac{2}{7}z = \frac{58}{7}}
 \]
+\ \\
+Anschließend subtrahieren wir die Gleichungen voneinander. In welche Richtung das passiert ist am Ende egal, beides wäre richtig (z.B.: Glg. I$-$II oder II $-$ I). Wichtig ist in jedem Fall, dass die linken Koeffizienten gleich sind. Was das bewirkt wird sofort sichtbar.
 
 \[ %subtraktion #1
 \systeme{
@@ -94,6 +100,8 @@ Deutlich aufgelistet sieht unser Gleichungssystem folgendermaßen aus:
 	       2y  +  5z  =  19,
 		   \frac{38}{7}y  -  \frac{5}{7}z  = \frac{61}{7}}
 \]
+\ \\
+Möglicherweise kann man auch schon erkennen, worauf der Gauß-Algorithmus hinaus will: Mithilfe jeder einzelnen Gleichung kann eine Variable ausgelöscht, \textit{eliminiert} werden. Als nächstes müssen also die letzten beiden Gleichungen mit den gleichen Koeffizienten beginnen. (Faktor: $\frac{7}{19}$)
 
 \[ %auf gleich multiplizieren #2
 \systeme{
@@ -101,6 +109,8 @@ Deutlich aufgelistet sieht unser Gleichungssystem folgendermaßen aus:
 		   2y  +  5z  =  19,
 		   2y  -  \frac{5}{19}z  = \frac{61}{19}}
 \]
+\ \\
+Glücklicherweise endet die Rechnung bevor die Brüche zu groß werden, jetzt ist nur noch eine Subtraktion ausständig:
 
 \[ %subtraktion #2
 \systeme{
@@ -108,7 +118,47 @@ Deutlich aufgelistet sieht unser Gleichungssystem folgendermaßen aus:
 		2y  +  5z  =  19,
 			\frac{100}{19}z  = \frac{300}{19}}
 \]
+\ \\
+An diesem Punkt ist die Lösung auch schon nicht mehr weit. Ich denke es ist ersichtlich, dass von unten nach oben eine Variable nach der anderen durch das jeweilige Einsetzen der restlichen errechnet werden kann. Dadurch, dass der Wert von $z=3$ nun bekannt ist, kann zuerst $y$ ausgerechnet werden.
 
-%TODO: von unten nach oben auflösen
+\[ %auflösen #1
+\systeme*{
+	2x  +  4y  -   3  =  17,
+		2y  +  15  =  19}
+\]
+\ \\
+... durch Umformen ergibt: $y=2$, durch weiteres Umformen: $x=6$. So sind alle drei Variablen und damit die Lösung des Gleichungssystems bekannt. Das Verfahren findet man zudem äußerst gut dokumentiert auf der Webseite von Dieter Heidorn\footcite{math_gauss_verfahren}.\\ %Webseite drin lassen???
+\\
+In Java ausprogrammiert - im Grunde einfach die Schritte abarbeiten $\rightarrow$ siehe Programmkommentare - sieht das Verfahren folgendermaßen aus:
 
-Das Verfahren findet man zudem äußerst gut dokumentiert auf der Webseite von Dieter Heidorn\footcite{math_gauss_verfahren}. %Webseite drin lassen???
+\displayimageg{img/sachsenschnitzel/code_MathMethods_solveEquSys_cropped}
+			{Gauß-Algorithmus in Java}
+
+
+\subsubsection{Funktionen}
+Bei Funktionen gibt es einige verschiedene Dinge, die interessant sind. Das wären zum Beispiel eine Plot-Funktion, Nullstellen finden und logischerweise das einfache Einsetzen von Werten. Letzteres ist durch unsere Term-Struktur außerordentlich einfach zu erreichen und da das \textit{Plotten}, also das grafisch Darstellen der Funktion im Grunde gleich funktioniert, bis auf dass ausreichend viele Werte eingesetzt werden müssen, überspringe ich diese beiden Themen wegen Trivialität.\\
+\\
+Was uns also zum Analysieren bleibt ist das Nullstellenproblem, was ein altes Problem der Mathematik zu sein scheint. Naja, streng genommen reden wir von einem Problem \underline{in} der Informatik, \underline{aus} der Mathematik. Warum es so ein Problem darstellt will ich gleich noch klären, aber zuerst stellt sich die Frage: Warum die ganze Aufregung mit den Nullstellen, wenn es doch auch nur ein Unterthema der Funktionen ist? Die Antwort liegt darin, dass sich hinter Nullstellen viel mehr verbirgt, als man anfangs glauben könnte.\\
+\\
+Als Auffrischung: \textit{Nullstellen} sind jene Werte $x_{N}$ in $f(x)$, für die gilt: $f(x_{N})=0$. Wenn ich Nullstellen berechne, so werden genau diese Werte meine Ergebnisse sein, was sicher den meisten bekannt ist für beispielsweise quadratische Funktionen, wo dann etwa die ''große Lösungsformel'' zum Einsatz kommt. Aber das eigentliche Ausmaß dieser Berechnungen wird einem erst bewusst, wenn man einige Gedanken darin investiert. Jede Gleichung (abhängig von nicht mehr als einer Variable, hier $x$) kann auf die Form $f(x)=0$ gebracht werden. $f(x)$ steht hier nur dafür, dass irgendeine, auch mehrere, uns unbekannte, Operation(en) auf $x$ angewandt werden. Und das gilt für \textbf{jede Gleichung}, da bei jeder Gleichung mit zwei Seiten durch die Subtraktion einer Seite $0$ auf dieser erscheint. Gelingt es mir also, dieses Problem zu lösen, so können wir unseren Kunden etwas anbieten, was man nicht in jedem Taschenrechner findet.\\
+\\
+Bei genauem Aufpassen könnte aufgefallen sein, dass ich eine mögliche Lösung bereits genannt habe, die ''große Lösungsformel''. Leider kann ich die große Lösungsformel nur auf quadratische Gleichungen anwenden. Eine weitere Lösungsform dürfte zudem noch bekannt sein: lineare Gleichungen durch einfaches Isolieren der Variable auflösen. Für einige weitere Funktionen wie $ln(x)$ oder $tan(x)$ sind noch Umkehrfunktionen vorhanden, aber die sind auch nicht immer anwendbar bzw. sind möglicherweise periodisch oder haben womöglich gar keine Lösung.\\
+\\
+Um dieses Thema in den Griff zu bekommen, haben wir entschieden, zuerst nur \textit{Polynomfunktionen} zu behandeln, bevor wir uns allem Anderen widmen. Einfach ausgedrückt versteht man darunter Funktionen, die auf nichts anderem als natürlichen Potenzen basieren. ''Natürlich'' ist hier ein wichtiger Begriff und meint, Potenzen von $0$ aufwärts sind zulässig dafür. Der Vorteil an Polynomfunktionen ist, dass man sie auch als Produkt von \textit{Linearfaktoren} anschreiben kann. So könnte man beispielsweise $x^2-x-2$ auch als $(x-2) \cdot (x+1)$ schreiben. Warum das nun schon wieder wichtig ist? Bei letzterer Schreibweise sind die Nullstellen ohne Rechnen ablesbar. Wenn für $x=2$ eingesetzt wird, ergibt sich für die linke Klammer $0$ und $0 \cdot (...)=0$. Wenn man für $x=-1$ einsetzt wird man aus gleichem Grund selbiges Ergebnis erhalten.\\
+\\
+Also gut, wie kommen wir nun auf dieses Produkt der Linearfaktoren? Salopp gesagt: ''Gar nicht, sonst wär's ja einfach.'' Was wir allerdings mit der Information anfangen können ist Folgendes: Wenn es gelingt, bei einer Polynomfunktion $n$-ten Grades, also eine Funktion der Form $f(x)=a_n \cdot x^n + a_{n-1} \cdot x^{n-1} + ... + a_1 \cdot x + a_0$ eine einzige Nullstelle herauszufinden, kann durch den korrespondierenden Linearfaktor dividiert werden und der Grad der Polynomfunktion wäre damit um $1$ gesunken. Da das beliebig oft wiederholt werden kann, braucht es nun nur noch eine Möglichkeit, eine einzelne Nullstelle herauszufinden.
+
+\setcounter{secnumdepth}{4}
+\paragraph{Das Newton-Verfahren}\ \\
+Zum Finden einer einzelnen Nullstelle eignet sich das Newton-Verfahren. Es besteht darin, eine Iterationsanweisung beliebig oft durchzuführen, beginnend mit einem Startwert. Je öfter sie durchgeführt wird, desto besser ist logischerweise die Annäherung.\\
+\[ x_{n+1}=x_{n}-{\frac {f(x_{n})}{f'(x_{n})}}\]
+\noindent
+Erkennbar ist, dass der Korrekturfaktor in dieser Anweisung sowohl vom aktuellen Funktionswert als auch von der Steigung an der entsprechenden Stelle abhängt, was das Newton-Verfahren besonders effizient macht. Durch Ausprogrammieren hiervon und der sogenannten \textit{Polynomdivision}, jener Operation, die einen Linearfaktor heraus dividieren und damit den Grad der Funktion senken kann, ist es nun möglich, Nullstellen jeder beliebigen Polynomfunktion anzunähern.
+
+\paragraph{Die Taylorentwicklung}\ \\
+Wie bereits festgestellt, existieren jedoch neben Polynomfunktionen auch  Exponential- Winkel- oder Logarithmusfunktionen und unzählige mehr. Nach langem Suchen fanden wir allerdings auch für diese Fälle eine Lösung, die Taylor-Reihe oder \textit{Taylorentwicklung}\footcite{math_taylor_entwicklung}. Mithilfe dieser kann jede Funktion näherungsweise als Polynomfunktion abgebildet werden. Wie der Name bereits verrät, handelt es sich hier um eine Reihe und sie sieht folgendermaßen aus:
+\[f(x)=\sum _{n=0}^{\infty }{\frac {f^{(n)}(a)}{n!}}(x-a)^{n}=f(a)+f'(a)(x-a)+{\frac {f''(a)}{2}}(x-a)^{2}+{\frac {f'''(a)}{6}}(x-a)^{3}+\ldots\]
+\noindent
+Die Variable $a$ steht dabei für das Entwicklungszentrum, das ist jener Punkt, wo die Annäherung ansetzt, wir verwenden dafür $0$. Streng genommen sprechen wir im Fall $a=0$ von einer Maclaurin-Reihe. Programmiertechnisch ist es bei der Taylorentwicklung ähnlich wie beim Newton-Verfahren: Die Anweisung muss ganz einfach ausgeführt werden. Den Algorithmus für die Faktorielle-Operation haben wir 'nicht rekursiv' gewählt, damit nicht zu viel Arbeitsspeicher aufgebracht wird. Die Ableitungs-Funktion wurde bereits früher im Kapitel gezeigt. Und klarerweise gilt: Je mehr Rechendurchläufe, desto genauer wird die Berechnung.\\
+\\
+Nicht-Polynomfunktionen müssen also immer durch die Taylorentwicklung näherungsweise ersetzt werden, bis schlussendlich in jedem Fall der Newton-Algorithmus seine Arbeit verrichten kann, und damit können wir, beliebig genau, obwohl eigentlich 'beliebig ungenau', jede gegebene Gleichung mit einer Unbekannten lösen.

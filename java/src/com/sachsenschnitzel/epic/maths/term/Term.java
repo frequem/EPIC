@@ -27,6 +27,11 @@ public abstract class Term extends MathObject{
     public abstract Term derive(String var);
     //public abstract void simplify();
     public double calc(){ return calc(null); }
+    /**
+     * 
+     * @return +1 for open encaps, -1 for close
+     */
+    public abstract int countEncaps();
 
     //spritey stuff...
     protected int x, y, w, h;
