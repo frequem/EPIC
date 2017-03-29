@@ -15,5 +15,10 @@ import com.sachsenschnitzel.epic.maths.term.Term;
  * @author schnitzel
  */
 public abstract class Encapsulator extends Term{
+    //should be 1 for "(c", 0 for "(c)", -1 for "c)"
+    protected int completion;
     
+    public int countEncaps(){
+        return completion;
+    }
 }

@@ -59,13 +59,13 @@ public class Function implements Sprite{
      * @param accuracy deviation from actual 0 as y-value
      * @return
      */
-    public double getRoot(double initVal, double accuracy){
+    public double findRoot(double initVal, double accuracy){
         Term derivative = funcTerm.derive(indVars[0]);
         AssignedValues avs = new AssignedValues(new AssignedValue(indVars[0], initVal));
 
         double result;
         while((result = Math.abs(funcTerm.calc(avs))) > accuracy){
-            /* Newton
+            /* Newton:
              * x_(n+1) = x_n - f(x_n)/f'(x_n)
              */
             avs.assignNewValue(

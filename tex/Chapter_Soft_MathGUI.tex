@@ -1,0 +1,7 @@
+\subsection{Implementation des Mathematik-Pakets in die GUI}
+Als sowohl die GUI als auch das Mathematik-Paket fertiggestellt waren, war per Benutzereingabe immer noch keine Rechnung durchführbar. Was zu diesem Zeitpunkt noch fehlte, war eine passende Implementation, die sicher stellte, dass all unsere festgelegten Strukturen in der Software auch aus Benutzereingaben übersetzt werden konnten. Da dieses Thema letzten Endes sehr viel Aufwand in Anspruch nahm, wollten wir ihm ein eigenes Kapitel widmen.\\
+\\
+Die zwei wichtigsten Aufgaben beim Kommunizieren zwischen Mathematik-Paket und GUI sind einerseits das Darstellen von \displaycode{MathObject}s und andererseits das Übersetzen in \displaycode{MathObject}s, das wir, wie es in der Informatik üblich sein zu scheint, \textit{parsen} (aus dem Englischen: ''to parse'') nennen.
+
+\subsubsection{Darstellen mathematische Strukturen}
+Bezüglich der Darstellung waren an diesem Fall schon Vorgaben aus der GUI hinsichtlich des \displaycode{Sprite}-Interfaces. Jedes \displaycode{MathObject} musste von nun an, da zum anzeigen ja eine Implementierung des Interfaces nötig war, sämtliche Methoden zur Darstellung beinhalten, wie zum Beispiel \displaycode{void paint(Graphics g)} eine war.
