@@ -19,10 +19,8 @@ Da das Betriebssystem der Recheneinheit auf einer SD-Karte installiert ist, und 
 Für den Raspberry Pi wurde ein Python-Skript entwickelt welches auf ein Signal des \textit{Power-Button} auf GPIO Pin 23 wartet. Sobald ein Signal empfangen wird, fährt die Recheneinheit herunter und sendet nach dem Shutdown ein Signal auf GPIO Pin 24, welches dem Mikrocontroller der Power-Button Einheit mitteilt, dass die Recheneinheit erfolgreich heruntergefahren worden ist. Der Mikrocontroller macht darauf hin Display und Recheneinheit stromlos.\\
 \\
 Die GPIO-Pins des Raspberry Pi sind folgendermaßen aufgebaut:\\
-\begin{center}
-\includegraphics[width=0.8\textwidth]{img/frequem/rpi_gpio.png}\\
-Raspberry Pi GPIO Layout \footcite{rpi_gpio}.
-\end{center}
+
+\displayimageg{img/frequem/rpi_gpio}{Raspberry Pi GPIO Layout \footcite{rpi_gpio}}
 
 \subsection{Display}
 
@@ -31,10 +29,7 @@ Beim Display handelt es sich um ein 7 Zoll Exemplar von Waveshare, welches mitte
 Das HDMI Kabel musste modifiziert werden, um das ein- und ausschalten des Displays unabhängig von der Recheneinheit durchführen zu können. Es wurden jeweils die Litzen von Pin 12 und 18 entfernt, um die beiden Geräte elektrisch voneinander zu trennen. So kann mithilfe von Liestungs-NFETs bei jedem Gerät jeweils auf GROUND durchgeschalten werden um es mit Strom zu versorgen.\\
 
 Ein HDMI-Kabel ist folgendermaßen aufgebaut (Pin 12 und 18 sind zu entfernen): 
-\begin{center}
-\includegraphics[width=0.7\textwidth]{img/frequem/hdmi_pins.png}\\
-HDMI Male Typ A Pin Layout \footcite{hdmi_pinout}.
-\end{center}
+\displayimageg{img/frequem/hdmi_pins}{HDMI Male Typ A Pin Layout \footcite{hdmi_pinout}}
 
 \subsection{Touchscreen}
 
@@ -78,16 +73,10 @@ Beim Bau des Gehäuse gab es nicht viele Optionen, etwas zu verwenden, was berei
 \subsubsection{Modellierung}
 Das modellieren der Ober und Unterteile wurde mithilfe der Free-Software FreeCAD durchgeführt. Da sich das Programm zur Zeit der Entwicklung noch in einem frühen Anfangsstadium befand, hatte ich mit einigen Abstürzen zu kämpfen. Nichts desto trotz gelang es mir Ober- und Unterseite des Gehäuses zu modellieren.\\
 Folgende Modelle wurden erstellt:
-\begin{center}
-	\includegraphics[width=0.7\textwidth]{img/frequem/model_bottom.png}\\
-	Unterseite des Gehäuses\\
-	
-	\includegraphics[width=0.7\textwidth]{img/frequem/model_top.png}\\
-	Oberseite des Gehäuses\\
-	
-	\includegraphics[width=0.7\textwidth]{img/frequem/model_button.png}\\
-	Ein- und Ausschaltknopf\\
-\end{center}
+
+\displayimageg{img/frequem/model_bottom}{Unterseite des Gehäuses}
+\displayimageg{img/frequem/model_top}{Oberseite des Gehäuses}
+\displayimageg{img/frequem/model_button}{Ein- und Ausschaltknopf}
 
 \subsubsection{3D-Druck}
 
