@@ -32,3 +32,11 @@ Dieser Modus dient zur Auswahl von mehreren Sprites, es kann mithilfe des Touchs
 In diesem Modus können Markierte Sprites über das Spritepanel bewegt werden. Es ist weiterhin möglich durch einmaliges Klicken auf ein Sprite, dieses zu markieren und anschließend zu bewegen.
 
 \subsubsection{Actions}
+
+Actions sind all jene Operationen, welche reversibel d.h. wieder rückgängig machbar sind. Durch diese Programmiertechnik war es möglich eine Historie in das Programm einzufügen um etwaige Fehleingaben rückgängig zu machen. Es wurden dazu zu jeder Operation, die wir als Action einführen wollten jeweils eine Action-Klasse und ein Interface, welches das Subjekt der Action (z.B. Color) beschreibt, erstellt.
+
+\subsubsection{Cursor}
+
+Der Cursor ist jener Programmteil, welcher dafür verantwortlich ist, einen Cursor (grafisch ein Strich) an eine gewisse Stelle innerhalb eines Textes zu setzen. Ein großes Problem, welches ich lösen mussten war es den Cursor so zu implementieren, dass er zwischen verschiedenen Characters fixiert ist. Um möglichst effizient und mit wenig Rechenaufwand den nähesten fixen Punkt einer gegebenen Koordinate zu finden wandte ich eine binäre Suche an. Es wird anfangs die x-Koordinate des Punktes berechnet, welcher sich in der Mitte des Strings befindet. Anschließend wird je nach Position der gesuchte Koordinate entweder die linke oder die rechte Hälfte des String überprüft. Dieser Vorgang wird so lange wiederholt, bis die näheste Einrast-Position gefunden wurde.\\
+Programmtechnisch wurde dies so realisiert:
+\displayimage{img/frequem/cursor_find_snap}{Realisierung der binären Suche der Cursor-Position}{0.8}

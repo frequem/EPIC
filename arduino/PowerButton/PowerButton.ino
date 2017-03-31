@@ -51,7 +51,6 @@ void loop() {
       state = STATE_ASLEEP;
       return;
     }
-    
     if(timer < TIME_TURNOFF && digitalRead(BUTTON_POWER) == LOW){ //button was released in time, toggle display if pi is on
       if(state_pi == HIGH){
         state_display = state_display ^ 1;
@@ -72,7 +71,6 @@ void loop() {
     }
     delay(TIMER_STEP);
     timer+=TIMER_STEP;
-
   }else{
     LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF); 
   }  
