@@ -17,9 +17,7 @@ import com.sachsenschnitzel.epic.maths.term.Term;
 public class ConstantParser extends Parser{
     @Override
     public Constant tryParse(String data){
-        //System.out.println("constantinopolis");
         try{
-            System.out.println("UnfinishedT -> Constant: " + data);
             return new Constant(Double.parseDouble(data));
         }catch(NumberFormatException nfe){
             return null;

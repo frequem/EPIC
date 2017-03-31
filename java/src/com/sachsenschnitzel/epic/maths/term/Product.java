@@ -36,6 +36,15 @@ public class Product extends Term{
             prod *= factors[i].calc(avs);
         return prod;
     }
+    
+    @Override
+    public int countEncaps(){
+        int sum = 0;
+        for(Term factor : factors){
+            sum += factor.countEncaps();
+        }//TODO...
+        return sum;
+    }
 
     @Override
     public Term derive(String var){

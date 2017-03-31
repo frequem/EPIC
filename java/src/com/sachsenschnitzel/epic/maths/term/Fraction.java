@@ -36,6 +36,11 @@ public class Fraction extends Term{
         else
             return 0; //should be null in final version...
     }
+    
+    @Override
+    public int countEncaps(){
+        return numerator.countEncaps() + denom.countEncaps();
+    }
 
     @Override
     public Term derive(String var){
