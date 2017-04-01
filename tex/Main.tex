@@ -16,13 +16,31 @@
 \usepackage{datetime}
 \usepackage[style=verbose]{biblatex}
 \usepackage{systeme} %for math sys o. equ.
-\usepackage{float}
+\usepackage{float} %needed to display images
+\usepackage{ifthen,xcolor} %somehow needed for tabs
+
+\newlength{\tabcont} %something with tabs
+
 
 %systeme config
 \sysdelim..
 \syslineskipcoeff{1.2}\setlength{\tabskip}{3pt}
 
 %user defined commands
+\newcommand{\tab}[1]{
+	% weils sonst anscheinend keinen tab gibt in latex
+	% verwenden:
+	% \tab{1} \tab{2}
+	% \tab{3} \tab{4}
+	% gibt:
+	% 1    2
+	% 3    4
+	\settowidth{\tabcont}{#1}
+	\ifthenelse{\lengthtest{\tabcont < .25\linewidth}}
+	{\makebox[.25\linewidth][l]{#1}\ignorespaces}
+	{\makebox[.5\linewidth][l]{#1}\ignorespaces}
+}
+
 \newcommand{\displaycode}[1] {
 	% fallst mal versuchst, code mit syntax-highlighting darzustellen:
 	% geht anscheinend nicht in makros, da diese code-interpreter
@@ -44,7 +62,7 @@
 	\begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=#3\textwidth]{#1}
-		\caption[Da kamma verschiedene Sachen reinschreiben]{#2} % könnt nützlich werden für das was der schaupp gsagt hat
+		\caption[Soll ma da reinschreiben, dass die Bilder von uns sind?]{#2} % könnt nützlich werden für das was der schaupp gsagt hat
 	\end{center}
 	\end{figure}
 }
@@ -88,6 +106,7 @@
 \include{Chapter_Marketing}
 
 \listoffigures
+\newpage
 \printbibliography
 
 \end{document}

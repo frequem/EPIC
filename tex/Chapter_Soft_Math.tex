@@ -1,7 +1,7 @@
 \subsection{Das Mathematik-Paket}
 \textit{Mathematik-Paket} ist der interne Name für diejenige Software Komponente, die alles in Bezug auf mathematische Vorgänge verarbeitet. Aus dem Versuch, diese Komponente in Programmcode zu fassen, erlangte ich eine wesentliche Erkenntnis: Theoretische Mathematik und Informatik sind viel weiter voneinander entfernt, als man glauben mag.\\\\
 In der Mathematik sieht man Konstrukte als abstrakt, soweit sollte die mathematische Sicht der Dinge ja bekannt sein. Durch Definitionen schafft sich ein Mathematiker Freiraum, wodurch auch der Level der Abstraktion steigt. Zum Beispiel ist uns möglicherweise nicht sofort bewusst, dass wir beim 'mit $x$ multiplizieren' tatsächlich $x$-Mal zusammenzählen. Beim 'hoch $x$ rechnen' wird eigentlich $x$-Mal multipliziert, also wie oft addiert? Natürlich stellen die Grundrechenarten programmtechnisch kein Problem dar, jedoch ist bereits diese einfache Frage ohne mehr Information nicht zu beantworten, was zeigen soll, wie tief wir bereits drin stecken, ohne jemals angefangen zu haben.\\\\
-In diesem Teil der Programmierung geht es also darum, die abstrakten mathematischen Beschreibungen der Dinge in konkretisierte, ausführbare, Programmstücke zu fassen. Zuerst haben wir uns ein Grundkonzept überlegt, das folgenden Anforderungen entsprechen sollte:
+In diesem Teil der Programmierung geht es also darum, die abstrakten mathematischen Beschreibungen der Dinge in konkretisierte, ausführbare, Programmstücke zu fassen. Zuerst haben wir uns ein Grundkonzept überlegt, das folgenden Anforderungen entsprechen sollte:\\
 \begin{itemize}
 	\item Alle Mathematischen Vorgänge sollen abbildbar sein
 	\begin{itemize}
@@ -14,6 +14,7 @@ In diesem Teil der Programmierung geht es also darum, die abstrakten mathematisc
 	\item durch geringen Aufwand änderbar
 	\item durch geringen Aufwand durchsuchbar
 \end{itemize}
+\ \\
 Der Grund für die notwendige Änderungsfähigkeit ist ganz einfach, dass der Benutzer zu jedem Zeitpunkt in der Lage sein soll, die Eingabe zu bearbeiten. Die Suchfunktion ist erklärbar, wenn man einen Schritt weiter denkt: mathematische Funktionen sowie andere Vorgänge müssen unvermeidlich die zu ersetzenden Variablen ausfindig machen und stattdessen Zahlen einfügen. Ich spreche hier ''andere Vorgänge'' an, da beispielsweise Gleichungssysteme oder das einfache Einsetzen von Variablen diese Funktionalität ebenfalls gebrauchen könnten, das hängt jedoch von der Implementierung ab.\\
 Schlussendlich fanden wir zwei Lösungen, die für die engere Auswahl in Frage kamen:\\
 \\

@@ -46,16 +46,17 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
     
     @Override
     public void parseContent(int offset){
+        if(this.parent == null)
+            return;
+        
         Term t = null;
+        
         for(Parser po : Parser.OP_PARSERS){
             t = po.tryParse(data);
             if(t != null){
-                //System.out.println("I found an op!");
-                if(this.parent != null){
                     MathObject.transferProps(this, t);
                     this.parent.changeSubterm(this, t);
                     t.parseContent(offset);
-                }
                 return;
             }
         }

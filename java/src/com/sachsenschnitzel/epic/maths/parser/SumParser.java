@@ -19,26 +19,6 @@ public class SumParser extends Parser{
     
     @Override
     public Sum tryParse(String data){
-        /*ArrayList<UnfinishedTerm> auft = new ArrayList<UnfinishedTerm>();
-        int i, last;
-        for(i = 0, last = 0; i < data.length(); i++) //collect ufts
-            if(data.charAt(i) == '+' && i-last > 0){
-                auft.add(new UnfinishedTerm(data.substring(last, i)));
-                last = ++i;
-            }
-        
-        if(data.length() > 0 && data.charAt(data.length()-1) == '+')
-            auft.add(new UnfinishedTerm(""));
-        else
-            auft.add(new UnfinishedTerm(data.substring(last, i)));
-        
-        Sum s = null;
-        if(auft.size() > 1){
-            Term[] t = auft.toArray(new Term[0]);
-            s = new Sum(t);
-            s.setCursor(auft.size()-1);
-        }
-        return s;*/
         Term[] elements = Parser.separateToUnfinishedBy(data, '+');
         
         Sum s = null;
