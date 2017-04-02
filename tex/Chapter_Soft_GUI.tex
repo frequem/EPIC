@@ -47,4 +47,4 @@ Actions sind all jene Operationen, welche reversibel d.h. wieder rückgängig ma
 
 Der Cursor ist jener Programmteil, welcher dafür verantwortlich ist, einen Cursor (grafisch ein Strich) an eine gewisse Stelle innerhalb eines Textes zu setzen. Ein großes Problem, welches ich lösen mussten war es den Cursor so zu implementieren, dass er zwischen verschiedenen Characters fixiert ist. Um möglichst effizient und mit wenig Rechenaufwand den nähesten fixen Punkt einer gegebenen Koordinate zu finden wandte ich eine binäre Suche an. Es wird anfangs die x-Koordinate des Punktes berechnet, welcher sich in der Mitte des Strings befindet. Anschließend wird je nach Position der gesuchte Koordinate entweder die linke oder die rechte Hälfte des String überprüft. Dieser Vorgang wird so lange wiederholt, bis die näheste Einrast-Position gefunden wurde.\\
 Programmtechnisch wurde dies so realisiert:
-\displayimage{img/frequem/cursor_find_snap}{Realisierung der binären Suche der Cursor-Position}{0.8}
+\displayimage{img/frequem/cursor_find_snap}{Realisierung der binären Suche der Cursor-Position}{Realisierung der binären Suche der Cursor-Position}{0.8}
