@@ -1,12 +1,9 @@
 package com.frequem.epic;
 
 import com.frequem.epic.mode.DrawMode;
-import com.sachsenschnitzel.epic.maths.term.Constant;
-import com.sachsenschnitzel.epic.maths.term.Fraction;
-import com.sachsenschnitzel.epic.maths.term.Product;
-import com.sachsenschnitzel.epic.maths.term.Sum;
-import com.sachsenschnitzel.epic.maths.term.Term;
-import com.sachsenschnitzel.epic.maths.term.Variable;
+import com.sachsenschnitzel.epic.maths.Equation;
+import com.sachsenschnitzel.epic.maths.term.*;
+import com.sachsenschnitzel.epic.maths.term.encap.Parenthesis;
 import java.awt.*;
 import javax.swing.*;
 
@@ -34,5 +31,6 @@ public class JCalculator extends JPanel{
        this.panel.setMode(new DrawMode(this.panel));
        
        this.repaint();
+       
     }
 }

@@ -1,12 +1,12 @@
 \section{Hardware}
 Um eine volle Alternative zu jeglichen Taschenrechnern bieten zu können, musste eine entsprechende Hardware entwickelt werden, auf der man problemlos unsere Software bedienen kann. Dazu brauchten wir eine Recheneinheit, einen Display, eine für den Benutzer einfach zu bedienende Eingabemöglichkeit und ein passendes Gehäuse.\\
-
+\\
 Von Anfang an war klar, dass die Hauptrecheneinheit unseres Prototypen fähig sein musste, den Rechenaufwand unserer Software problemlos zu bewältigen. Ein weiteres wichtiges Kriterium war, einen kleinen Formfarktor einhalten zu können, um zu garantieren, dass unsere Einheit in einem handlichen Gehäuse Platz findet. Beiden Punkten zugleich wird lediglich ein \textit{single-board-computer} gerecht, er vereint hohe Rechenleistung mit minimalem Platzaufkommen.\\
-
+\\
 Das Display musste groß genug sein, um dem Benutzer genug Platz zu bieten, seine Berechnungen und Notizen durchzuführen. Allerdings war auch wichtig darauf zu achten, dass es nicht zu groß war um nicht die Portabilität unseres Gerätes einzuschränken.\\
-
+\\
 Mittels dem \textit{Touchscreen} ist es möglich, Berechnungen einzugeben sowie Mitschriften zu tätigen. Er wird mithilfe eines Stiftes bedient.\\
-
+\\
 Da der single-board-computer und Display einen relativ hohen Energiebedarf aufweisen, musste eine Hardware-Komponente her, welche beide je nach Bedarf aus-und-einschalten kann. Bei dieser Komponente war darauf zu achten, dass diese dem Gerät so wenig Energie wie möglich entzieht um eine lange \textit{Standby-Zeit} zu garantieren. Die Komponente kann auf Knopfdruck Display und Recheneinheit getrennt von einander stromlos machen.\\
 
 \subsection{Recheneinheit}
@@ -27,7 +27,7 @@ Die GPIO-Pins des Raspberry Pi sind folgendermaßen aufgebaut:\\
 Beim Display handelt es sich um ein 7 Zoll Exemplar von Waveshare, welches mittels HDMI an den Raspberry Pi angeschlossen wird. Wir entschieden uns für diese Größe, da sie unserer Meinung einen idealen Kompromiss zwischen Größe, um auf dem Gerät ordentlich arbeiten zu können und Portabilität, um es leicht transportieren zu können bietet. Das Display überzeugt mit einer für die Größe relativen hohen Auflösung von 1024x600 Pixel, diese Auflösung wäre zum Beispiel nicht möglich gewesen, wenn wir uns für einen Display entschieden hätten, welcher über die GPIO Pins des Raspberry angesteuert wird.\\
 \\
 Das HDMI Kabel musste modifiziert werden, um das ein- und ausschalten des Displays unabhängig von der Recheneinheit durchführen zu können. Es wurden jeweils die Litzen von Pin 12 und 18 entfernt, um die beiden Geräte elektrisch voneinander zu trennen. So kann mithilfe von Liestungs-NFETs bei jedem Gerät jeweils auf GROUND durchgeschalten werden um es mit Strom zu versorgen.\\
-
+\\
 Ein HDMI-Kabel ist folgendermaßen aufgebaut (Pin 12 und 18 sind zu entfernen): 
 \displayimageg{img/frequem/hdmi_pins}{HDMI Male Typ A Pin Layout \footcite{hdmi_pinout}}
 
@@ -43,17 +43,17 @@ Die Kalibrierung des Touchscreen wurde mithilfe des Tools xinput-calibrator durc
 \subsection{Power-Button}
 
 Es war uns sehr wichtig, den Display und den Raspberry Pi durch einfaches Klicken eines Knopfes vom Strom trennen zu können, dies schränkt nicht nur den Stromverbrauch des Gerätes drastisch ein, es macht es auch möglich, den Display und Touchscreen unabhängig vom Raspberry Pi abzuschalten.\\
-
+\\
 Wir setzten uns folgende Anforderungen für unseren Knopf:\\
 \textit{Durch einfaches, kurzes Klicken auf den Knopf wird der Display ein- bzw. ausgeschaltet.
 Durch längeres, dreisekündiges Halten des Knopfes und anschließendes Loslassen, wird die Recheneinheit ein- bzw. ausgeschaltet.}
-
+\\
 Um diese Anforderungen umzusetzen nahmen wir einen \textit{Mikrocontroller} zur Hilfe. Wir entschieden uns für einen \textit{Arduino Pro Mini}, da dieser einen minimalen Energieverbrauch hat und leicht mit der Programmiersprache \textit{C} programmierbar ist.\\
-
-Da es nicht möglich ist, sehr große Ströme mit dem Arduino allein zu schalten, verbauten wir für Display und Recheneinheit jeweils einen \textit{Leistungs-NFET}, der einen Strom von bis zu 3 Ampere schalten kann, ausreichend für unsere Zwecke also.\\\\
-
+\\
+Da es nicht möglich ist, sehr große Ströme mit dem Arduino allein zu schalten, verbauten wir für Display und Recheneinheit jeweils einen \textit{Leistungs-NFET}, der einen Strom von bis zu 3 Ampere schalten kann, ausreichend für unsere Zwecke also.\\
+\\
 Weiters musste es möglich sein, dem Raspberry Pi ein Ausschaltsignal zu senden, welches ihn dazu bringt, sich selbst herunterzufahren um Korruption des Raspbian-Systems auf der Recheneinheit zu verhindern. Auch in die andere Richtung musste eine Signalleitung gelegt werden, die dem Mikrokontroller anzeigt, wenn der Raspberry Pi vollständig heruntergefahren ist, um ihn anschließend stromlos zu machen. Dazu wurde in jede Richtung jeweils ein \textit{NPN-Transistor} verbaut, um eine Brücke zwischen den 5 Volt des Arduino und den 3,3 Volt des Raspberry Pi herzustellen.\\
-
+\\
 Um einen minimalen Leistungsaufwand des Mikrocontrollers zu garantieren wurde die LowPower-Library verwendet und mit Interrupts programmiert. Der Mikrocontroller schläft somit solange, bis der Knopf zum ein- und ausschalten betätigt wird.
 
 \subsection{Akku}

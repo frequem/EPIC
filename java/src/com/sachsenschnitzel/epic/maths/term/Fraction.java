@@ -15,6 +15,10 @@ public class Fraction extends Term{
         this.numerator = numerator;
         denom = denominator;
     }
+
+    public Fraction() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     @Override
     public void print(){
