@@ -53,7 +53,7 @@
 \newcommand{\displayownimageg}[3]{
 	% wieder gschissen, aber hängt einen Verweis
 	% auf den Bildinhaber an
-	\displayimage{#1}{#2}{#2 (Quelle: #3)}{0.9}
+	\displayownimage{#1}{#2}{#3}{0.9}
 }
 
 \newcommand{\displayimageg}[2]{
@@ -62,6 +62,10 @@
 	% 0.9 is halt meine standardeinstellung, schaut nicht so deppat
 	% aus wie 1, aber ma sieht noch was
 	\displayimage{#1}{#2}{#2}{0.9}
+}
+
+\newcommand{\displayownimage}[4]{
+	\displayimage{#1}{#2}{#2 (Quelle: #3)}{#4}
 }
 
 \newcommand{\displayimage}[4]{
