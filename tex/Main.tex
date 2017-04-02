@@ -50,19 +50,25 @@
 	{\fontfamily{qcr}\selectfont #1}
 }
 
+\newcommand{\displayownimageg}[3]{
+	% wieder gschissen, aber hängt einen Verweis
+	% auf den Bildinhaber an
+	\displayimage{#1}{#2}{#2 (Quelle: #3)}{0.9}
+}
+
 \newcommand{\displayimageg}[2]{
 	% oida in latex kamma 'commands' mit untersch. parameteranzahl
 	% nicht gleich nennen... ich nenn das jetzt _g für gschissen
 	% 0.9 is halt meine standardeinstellung, schaut nicht so deppat
 	% aus wie 1, aber ma sieht noch was
-	\displayimage{#1}{#2}{0.9}
+	\displayimage{#1}{#2}{#2}{0.9}
 }
 
-\newcommand{\displayimage}[3]{
+\newcommand{\displayimage}[4]{
 	\begin{figure}[H]
 	\begin{center}
-		\includegraphics[width=#3\textwidth]{#1}
-		\caption[Soll ma da reinschreiben, dass die Bilder von uns sind?]{#2} % könnt nützlich werden für das was der schaupp gsagt hat
+		\includegraphics[width=#4\textwidth]{#1}
+		\caption[#3]{#2} % könnt nützlich werden für das was der schaupp gsagt hat
 	\end{center}
 	\end{figure}
 }
@@ -71,6 +77,28 @@
 	% wennst iwas zitierst bitte die funktion verwenden. wieder ausm
 	% gleichen grund: zentralisieren, wenn iwas net passt, hier ändern
 	<<#1>>
+}
+
+\newcommand{\makeowntitle}{
+	\begin{titlepage}
+		\centering
+		{\scshape\Large {HTBL Hollabrunn}\\}
+		{\scshape\large {Höhere Lehranstalt für Wirtschaftsingenieure}\\}
+		{\scshape\normalsize Ausbildungsschwerpunkt Betriebsinformatik\\}
+		
+		\vspace{4.5cm}
+		
+		{\huge \textbf{EPIC}}\\
+		\vspace{1cm}
+		{\LARGE \textbf{Electronic Programmable Intelligent Calculator}}\\
+		\vspace{1.5cm}
+		%\vfill
+		{\Large Michael Friesenhengst, Florian Weinzerl}\\
+		\vspace{0.5cm}
+		{\Large Betreuer: Ing. Leopold Mayer MBA StR}\\
+		\vspace{1.5cm}
+		{\large \today}
+	\end{titlepage}
 }
 
 %add refs
@@ -95,8 +123,10 @@
 
 \begin{document}
 
-\maketitle
+\makeowntitle
 \newpage
+%\maketitle
+%\newpage
 \tableofcontents
 
 \include{Chapter_Intro}
