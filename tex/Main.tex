@@ -18,6 +18,7 @@
 \usepackage{systeme} %for math sys o. equ.
 \usepackage{float} %needed to display images
 \usepackage{ifthen,xcolor} %somehow needed for tabs
+\usepackage{pdfpages} %for importing pdfs
 
 \newlength{\tabcont} %something with tabs
 
@@ -116,24 +117,23 @@
 \fancyhf{}
 \rhead{Florian Weinzerl, Michael Friesenhengst}
 \lhead{\leftmark}
-\cfoot{\thepage}
 
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 \onehalfspacing
-
-\title{{\huge EPIC}\\\Large Electronic Programmable Intelligent Calculator}
-\author{Michael Friesenhengst, Florian Weinzerl}
-\date{\today}
 
 \begin{document}
 
 \makeowntitle
 \newpage
-%\maketitle
-%\newpage
 \include{Eidesstattliche_Erklaerung}
+\includepdf[pages={1,2}]{ext/HTL_RDP_Dokumentation_DA_DE_A4.pdf}
+\includepdf[pages={1,2}]{ext/HTL_RDP_Dokumentation_DA_EN_A4.pdf}
 
 \tableofcontents
+\newpage
+
+\setcounter{page}{1}
+\cfoot{\thepage}
 
 \include{Chapter_Intro}
 \include{Chapter_Bedienungsanleitung}
@@ -141,6 +141,7 @@
 \include{Chapter_Soft}
 \include{Chapter_Marketing}
 \include{Chapter_Dank}
+\include{Chapter_Time}
 
 \listoffigures
 \newpage
