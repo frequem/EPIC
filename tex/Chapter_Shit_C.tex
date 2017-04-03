@@ -1,0 +1,222 @@
+\subsection{C}
+
+C entstand Anfang der siebziger Jahre im Zusammenhang mit dem Betriebssystem Unix an den AT\&T Bell Laboratories. Eine wesentliche Rolle spielte dabei Dennis Ritchie.\\
+Wichtige Ideen stammen aus der Sprache BCPL, die von M. Richards entwickelt wurde.\\
+Unmittelbarer Vorgänger von C ist das von K. Thompson 1970 im Zusammenhang mit der Unix-Entwicklung entstandene B.\\
+\\
+Bekannt wurde C vor allem im Zusammenhang mit dem Ende der siebziger Jahre freigegebenen Betriebssystem Unix, Version 7, und dem 1978 erschienenen Buch ''The C Programming Language'' von Kernighan und Ritchie bzw. durch den Report Programming in C: A Tutorial von Kernighan.\\
+\\
+Mitunter wird C etwas grob vereinfachend als eine Kreuzung von Pascal und Assembler bezeichnet:\\
+
+C unterstützt in ähnlichem Umfang wie Pascal strukturiertes Programmieren.
+Die Syntax von C und Pascal folgt - bei unterschiedlicher Ausprägung - teilweise gleichen Grundideen. (Diese gehen auf die gemeinsame Vorgängersprache ALGOL 60 zurück. Beeinflusst hat beide Sprachen auch die Diskussion um ALGOL 68.)\\
+C gestattet - fast in gleichem Maße wie Assembler - maschinennahes Programmieren.\\
+Ähnlich wie Assembler lässt C dem Programmierer einen sehr weitgehenden Gestaltungsspielraum. \\
+
+Im Gegensatz zu den ersten höheren Programmiersprachen wie FORTRAN, ALGOL 60 (wissenschaftlich-technische Berechnungen) und COBOL (kommerzielle Anwendungen) ist C ''universell'' einsetzbar. Gegenüber in den sechziger Jahren entstandenen Universalsprachen wie PL/I oder ALGOL 68, die letztendlich an ihrer Komplexität scheiterten, besitzt C einen eng begrenzten Sprachumfang.\\
+Dieser eng begrenzte Sprachumfang hat vor allem zur schnellen Portierung von C auf alle gängigen Rechnerplattformen beigetragen.\\
+Der C-Sprachumfang lässt jedoch eine ungeheure Flexibilität zu, so dass auch ''Programmentwicklung in C'' zu einem sehr komplexen Thema wird.\\
+Im Vergleich zum etwa zur gleichen Zeit entstandenen Pascal ist C weit besser für die professionelle Software-Entwicklung einsetzbar, ist jedoch als Ausbildungssprache wenig geeignet.\\
+\\
+C lässt bewusst Spielraum zwischen zwei Polen:
+\begin{itemize}
+\item Entwicklung hochportabler Programme
+\item Einsatz als ''höherer Assembler''\\
+d.h. Entwicklung maschinennaher, nicht portabler Programme 
+\end{itemize}
+
+\subsubsection{Verwendung}
+Trotz des eher hohen Alters ist die Sprache C auch heute weit verbreitet und wird sowohl im Hochschulbereich, wie auch in der Industrie und im Open-Source-Bereich verwendet.
+\paragraph{System- und Anwendungsprogrammierung}
+\ \\
+Das Haupteinsatzgebiet von C liegt in der Systemprogrammierung einschließlich der Erstellung von Betriebssystemen und der Programmierung von eingebetteten Systemen. Der Grund liegt in der Kombination von erwünschten Charakteristiken wie Portabilität und Effizienz mit der Möglichkeit, Hardware direkt anzusprechen und dabei niedrige Anforderungen an die Laufzeitumgebung zu haben.\\
+\\
+Auch Anwendungssoftware wird oft in C erstellt. Viele Programmierschnittstellen für Anwendungsprogramme und Betriebssystem-APIs werden in Form von C-Schnittstellen implementiert, zum Beispiel Win32. Gemäß C-Standard existieren jedoch keine Funktionen zur positionierten Ausgabe auf Displays, d.h. text- oder grafisch orientierte Benutzeroberflächen sind in reinem C nicht realisierbar. Es existieren jedoch zahlreiche Bibliotheken, die für das jeweilige Zielsystem eine solche Ausgabe ermöglichen.\\
+
+\paragraph{Implementierung anderer Sprachen}
+\ \\
+Wegen der hohen Ausführungsgeschwindigkeit und geringen Codegröße werden Compiler, Programmbibliotheken und Interpreter anderer höherer Programmiersprachen (wie z. B. die Java Virtual Machine) oft in C implementiert.\\
+\\
+C wird als Zwischencode einiger Implementierungen höherer Programmiersprachen verwendet. Dabei wird diese zuerst in C-Code übersetzt, der dann kompiliert wird. Dieser Ansatz wird entweder verwendet, um die Portabilität zu erhöhen (C-Compiler existieren für nahezu jede Plattform), oder aus Bequemlichkeit, da kein maschinenspezifischer Codegenerator entwickelt werden muss.\\
+\\
+C wurde allerdings als Programmiersprache und nicht als Zielsprache für Compiler entworfen. Als Zwischensprache ist es daher eher schlecht geeignet. Das führte zu C-basierten Zwischensprachen wie C--.\\
+\\
+C wird oft für die Erstellung von Anbindungen (engl. bindings) genutzt (zum Beispiel Java Native Interface). Diese Anbindungen erlauben es Programmen, die in einer anderen Hochsprache geschrieben sind, Funktionen aufzurufen, die in C implementiert wurden. Der umgekehrte Weg ist oft ebenfalls möglich und kann verwendet werden, um in C geschriebene Programme mit einer anderen Sprache zu erweitern.\\
+
+\subsubsection{Syntax}
+
+C besitzt eine sehr kleine Menge an Schlüsselwörtern. Die Anzahl der Schlüsselwörter ist so gering, weil fast alle Aufgaben, welche in anderen Sprachen über eigene Schlüsselwörter realisiert werden, über Funktionen der C-Standard-Bibliothek realisiert werden (zum Beispiel die Ein- und Ausgabe über Konsole oder Dateien, dynamische Speicherverwaltung, usw.).\\
+
+\paragraph{Datentypen}
+\ \\
+\ \\
+\textbf{char}\\
+Zum Speichern eines Zeichens (sowie von kleinen Zahlen) verwendet man in C üblicherweise den Integer-Datentyp Character, geschrieben als \displaycode{char}. Vom Computer tatsächlich gespeichert wird nicht das Zeichen (wie zum Beispiel ''A'') sondern eine gleichbedeutende acht Bit lange Binärzahl (wie zum Beispiel 01000001). Diese Binärzahl steht im Speicher und kann anhand einer Tabelle jederzeit automatisch in den entsprechenden Buchstaben umgewandelt werden. Zum Beispiel steht 01000001 gemäß der ASCII-Tabelle für das Zeichen ''A''. Um auch Zeichen aus Zeichensätzen aufnehmen zu können, die mehr Zeichen umfassen als der relativ kleine ASCII-Zeichensatz, wurde mit wchar\_t bald ein zweiter für Zeichen konzipierter Datentyp eingeführt.\\
+\ \\
+\displaycode{
+char zeichen = 'A';    /* gespeichert wird 01000001 */\\
+printf(''\%d'', zeichen); /* gibt 01000001 als Dezimalzahl aus (65) */\\
+printf(''\%c'', zeichen); /* gibt 01000001 als ASCII-Zeichen aus (''A'') */
+}\\
+\ \\
+\textbf{int}\\
+Zum Speichern einer Ganzzahl (wie zum Beispiel 3) verwendet man eine Variable vom Datentyp Integer, geschrieben als \displaycode{int}. Die Größe eines Integers beträgt heutzutage (je nach Prozessorarchitektur und Betriebssystem) meist 32 Bit, oft aber auch schon 64 und manchmal noch 16 Bit. In 16 Bit lassen sich 65536 verschiedene Werte speichern. Um die Verwendung von negativen Zahlen zu ermöglichen, reicht der Wertebereich bei 16 Bit gewöhnlich von -32768 bis 32767. Werden keine negativen Zahlen benötigt, kann der Programmierer mit \displaycode{unsigned int} aber einen vorzeichenlosen Integer verwenden. Bei 16 Bit großen Integern ergibt das einen Wertebereich von 0 bis 65535.\\
+\\
+Um den Wertebereich eines Integers zu verkleinern oder zu vergrößern, stellt man ihm einen der Qualifizierer short, long oder long long voran. Das Schlüsselwort \displaycode{int} kann dann auch weggelassen werden, so ist \displaycode{long} gleichbedeutend mit \displaycode{long int}. Um zwischen vorzeichenbehafteten und vorzeichenlosen Ganzzahlen zu wechseln, gibt es die beiden Qualifizierer \displaycode{signed} und \displaycode{unsigned}. Für einen vorzeichenbehafteten Integer kann der Qualifizierer aber auch weggelassen werden, so ist \displaycode{signed int} gleichbedeutend mit \displaycode{int}. Die C-Standard-Bibliothek ergänzt diese Datentypen über die plattformunabhängige Header-Datei <stdint.h> in der ein Set von Ganzzahltypen mit fester Länge definiert ist.\\
+\ \\
+\displaycode{
+char ganzzahl = 1;      /* >= 8b, 256 mögliche Werte */\\
+short ganzzahl = 2;     /* >= 16b, 65536 mögliche Werte */\\
+int ganzzahl = 3;       /* >= 16b, 65536 mögliche Werte */\\
+long ganzzahl = 4;      /* >= 32b, 4294967296 mögliche Werte */\\
+long long ganzzahl = 5; /* >= 64b, 18446744073709551616 mögliche Werte */\\
+}\\
+\ \\
+\textbf{float und double}\\
+Zahlen mit Nachkommastellen werden in einem der drei Datentypen \displaycode{float}, \displaycode{double} und \displaycode{long double} gespeichert. In den meisten C-Implementierungen entsprechen die Datentypen Float und Double dem international gültigen Standard für binäre Gleitpunktarithmetiken (IEC 559, im Jahr 1989 aus dem älteren amerikanischen Standard IEEE 754 hervorgegangen). Ein Float implementiert das „einfach lange Format“, ein Double das „doppelt lange Format“. Dabei umfasst ein Float 32 Bit, ein Double 64 Bit. Doubles sind also genauer. Floats werden aufgrund dieses Umstands nur noch in speziellen Fällen verwendet. Die Größe von Long Doubles ist je nach Implementierung unterschiedlich, ein Long Double darf aber auf keinen Fall kleiner sein als ein Double. Die genauen Eigenschaften und Wertebereiche auf der benutzten Architektur können über die Headerdatei <float.h> ermittelt werden.\\
+\ \\
+\displaycode{
+float kommaz = 0.000001;           /* 6-stellige Genauigkeit */\\
+double kommaz = 0.000000000000002; /* 15-stellige Genauigkeit */\\
+long double kommaz = 0.3;          /* Genauigkeit ist implementierunsabhängig */\\
+}\\
+\ \\
+\textbf{void}\\
+Der Datentyp void wird im C-Standard als ''unvollständiger Typ'' bezeichnet. Man kann keine Variablen von diesem Typ erzeugen. Verwendet wird void erstens, wenn eine Funktion keinen Wert zurückgeben soll und zweitens, wenn ein Zeiger auf ''Objekte beliebigen Typs'' zeigen soll.\\
+\ \\
+\displaycode{
+void funktionsname();      /* Funktion, die keinen Wert zurückgibt */\\
+void* zeigername;          /* Zeiger auf ein Objekt von beliebigem Typ */
+}\\
+\ \\
+\textbf{Zeiger}\\
+Wie Zeiger in anderen Programmiersprachen sind Zeiger in C Variablen, die statt eines direkt verwendbaren Wertes (wie das Zeichen ''A'' oder die Zahl 5) eine Speicheradresse (wie etwa die Adresse 170234) speichern. die Adressen im Speicher sind durchnummeriert. An der Speicheradresse 170234 könnte zum Beispiel der Wert 00000001 gespeichert sein (Binärwert der Dezimalzahl 1). Zeiger ermöglichen es, auf den Wert zuzugreifen, der an einer Speicheradresse liegt. Dieser Wert kann wiederum eine Adresse sein, die auf eine weitere Speicheradresse zeigt. Bei der Deklaration eines Zeigers wird zuerst der Datentyp des Objekts angegeben, auf das gezeigt wird, danach ein Asterisk, danach der gewünschte Name des Zeigers.\\
+\ \\
+\displaycode{
+char *zeiger;    /* kann die Adresse eines Characters speichern */\\
+double *zeiger;  /* kann die Adresse eines Doubles speichern */
+}\\
+\ \\
+\textbf{struct}\\
+Um verschiedenartige Daten in einer Variable zu speichern, verwendet man Structures, geschrieben als \displaycode{struct}. Auf diese Weise können Variablen verschiedenen Datentyps zusammengefasst werden.\\
+\ \\
+\displaycode{
+struct person\{\\
+\blank{1cm}	char* vorname;\\
+\blank{1cm}	char nachname[20];\\
+\blank{1cm}	int alter;\\
+\blank{1cm}	double groesse;\\
+\};
+}\\
+\ \\
+\textbf{enum}\\
+Wie in anderen Programmiersprachen dient ein Enum in C dazu, mehrere konstante Werte zu einem Typ zu kombinieren.\\
+\ \\
+\displaycode{
+enum Temperatur \{ WARM, KALT, MITTEL \};\\
+enum Temperatur heutige\_temperatur = WARM;\\
+if(heutige\_temperatur == KALT)\{\\
+\blank{1cm}printf(''Warm anziehen!'');               /* keine Ausgabe, da es ''WARM'' ist */\\
+\}
+}\\
+\ \\
+\textbf{typedef}\\
+Das Schlüsselwort Typedef wird zur Erstellung eines Alias für einen Datentyp verwendet.\\
+\ \\
+\displaycode{
+typedef int Ganzzahl;  /* legt Alias ''Ganzzahl'' für ''int'' an */\\
+Ganzzahl a, b;         /* ist jetzt gleichbedeutend zu ''int a, b;'' */
+}\\
+\ \\
+\textbf{\_Bool}\\
+Bis zum C99-Standard gab es keinen Datentyp zum Speichern eines Wahrheitswerts. Erst seit 1999 können Variablen als \_Bool deklariert werden und einen der beiden Werte 0 (falsch) oder 1 (wahr) aufnehmen. Inkludiert man den Header stdbool.h kann auch der Alias \displaycode{bool} statt \displaycode{\_Bool} verwendet werden, sowie \displaycode{false} und \displaycode{true} statt \displaycode{0} und \displaycode{1}.\\
+\ \\
+\displaycode{
+\_Bool a = 1;   /* seit C99 */
+}\\
+\ \\
+\textbf{\_Complex und \_Imaginary}\\
+Seit C99 gibt es drei Gleitkomma-Datentypen für komplexe Zahlen, welche aus den drei Gleitkommatypen abgeleitet sind: float \_Complex, double \_Complex und long double \_Complex. Ebenfalls in C99 eingeführt wurden Gleitkomma-Datentypen für rein imaginäre Zahlen: float \_Imaginary, double \_Imaginary und long double \_Imaginary.\\
+
+\subsubsection{Funktionen}
+
+Ein C-Programm besteht aus der main-Funktion und optional aus weiteren Funktionen. Weitere Funktionen können entweder selbst definiert werden oder vorgefertigt aus der C-Standard-Bibliothek übernommen werden.
+
+\paragraph{main}
+\ \\
+Jedes C-Programm muss eine Funktion mit dem Namen main haben, anderenfalls wird das Programm nicht kompiliert. Die main-Funktion ist der Einsprungspunkt eines C-Programms, das heißt die Programmausführung beginnt immer mit dieser Funktion.\\
+\\
+Außer der main-Funktion müssen in einem C-Programm keine weiteren Funktionen enthalten sein. Sollen andere Funktionen ausgeführt werden, müssen sie in der main-Funktionen aufgerufen werden. Die main-Funktion wird deshalb auch als Hauptprogramm bezeichnet, alle weiteren Funktionen als Unterprogramme.
+\paragraph{Selbstdefinierte Funktionen}
+\ \\
+In C lassen sich beliebig viele Funktionen selbst definieren. Eine Funktionsdefinition besteht aus erstens aus dem Datentyp des Rückgabewerts, zweitens dem Namen der Funktion, drittens einer eingeklammerten Liste von Parametern und viertens aus einem eingeklammerten Funktionsrumpf, in welchem ausprogrammiert wird, was die Funktion tun soll.\\
+\ \\
+\displaycode{
+int summe (int x, int y)\{  /* Datentyp, Funktionsname, zwei Parameter */\\
+\blank{1cm}	return x + y;         /* Funktionsrumpf (Summenberechnung)*/\\
+\}\\
+\\
+int main (void)\{\\
+\blank{1cm}		int ergebnis = summe(2, 3);   /* Funktionsaufruf mit den Werten 2 und 3, Rückgabewert wird in „ergebnis“ gespeichert */\\
+\blank{1cm}	return ergebnis;              /* main gibt den Wert von „ergebnis“ zurück */\\
+\}
+}\\
+\ \\
+Für die Definition einer Funktion, die nichts zurückgeben soll, verwendet man das Schlüsselwort void. Ebenso falls der Funktion keine Parameter übergeben werden sollen.\\
+\ \\
+\displaycode{
+void begruessung (void)\{\\
+\blank{1cm}		printf("Hi!");\\
+\blank{1cm}		return;\\
+\}
+}
+
+\paragraph{C-Standard-Bibliothek}
+\ \\
+Die Funktionen der Standard-Bibliothek sind nicht Teil der Programmiersprache C. Sie werden jedoch mit fast jedem Compiler mitgeliefert und können verwendet werden, sobald man die jeweils entsprechende Header-Datei eingebunden hat. Beispielsweise dient die Funktion printf zur Ausgabe von Text. Sie kann verwendet werden, nachdem man die Header-Datei stdio.h eingebunden hat.\\
+\ \\
+\displaycode{
+\#include <stdio.h>;\\
+main()\{\\
+\blank{1cm}	printf("hello world!\\n");\\
+\}
+}
+\ \\
+\paragraph{Anweisungen}
+\ \\
+Eine Funktion besteht aus Anweisungen. Wie in den meisten Programmiersprachen sind die wichtigsten Anweisungen: Deklarationen und Definitionen, Zuweisungen, bedingte Anweisungen, Anweisungen die Schleifen umsetzen sowie Funktionsaufrufe.\\
+\ \\
+\displaycode{
+void funktion\_die\_nichts\_tut(void)\{    /* Definition */\\
+\blank{1cm}	return;                             /* Return-Anweisung */\\
+\}\\
+int plus\_eins\_funktion(int argument)\{  /* Definition */\\
+\blank{1cm}	return argument + 1;                /* Return-Anweisung */\\
+\}\\
+\\
+int main()\{                            /* Definition */\\
+\blank{1cm}	int zahl;                           /* Definition */\\
+\blank{1cm}	funktion\_die\_nichts\_tut();          /* Funktionsaufruf */\\
+\blank{1cm}	zahl = 5;                           /* Zuweisung */\\
+\blank{1cm}	zahl = plus\_eins\_funktion(zahl);    /* Funktionsaufruf und Zuweisung */\\
+\blank{1cm}	if(zahl > 5)\{                      /* bedingte Anweisung */\\
+\blank{1cm}\blank{1cm}		zahl = zahl - 1;                /* Zuweisung: Wert von „zahl“ ist wieder „5“ */\\
+\blank{1cm}	\}\\
+\blank{1cm}	return 0;                           /* Return-Anweisung */\\
+\}
+}
+
+\subsubsection{Namen}
+Beim Benennen von eigenen Variablen, Konstanten, Funktionen und Datentypen muss man sich an einige Regeln zur Namensgebung halten. Erstens muss das erste Zeichen eines Bezeichners ein Buchstabe oder Unterstrich sein. Zweitens dürfen die folgenden Zeichen nur die Buchstaben A bis Z und a bis z, Ziffern und der Unterstrich sein. Und drittens darf der Name keines der Schlüsselwörter sein.\\
+\\
+Seit C95 sind auch Zeichen aus dem Universal Character Set in Bezeichnern erlaubt, sofern die Implementierung es unterstützt. Die erlaubten Zeichen sind in Anhang D des ISO-C-Standards aufgelistet. Vereinfacht gesagt, sind es all jene Zeichen, die in irgendeiner Sprache als Buchstabe oder buchstabenähnliches Zeichen Verwendung finden. Im Quelltext lassen sich diese Zeichen plattformunabhängig über eine Escape-Sequenz wie folgt ersetzen:
+\begin{itemize}
+\item \textbackslash uXXXX (wobei X für eine Hexadezimalziffer steht) für Zeichen mit einem Code von 00A0 bis FFFF.
+\item \textbackslash UXXXXXXXX für alle Zeichen mit einem Code >= 00A0.
+\end{itemize}
+Bestimmte Bezeichner sind außerdem für die Implementierung reserviert:
+\begin{itemize}
+\item Bezeichner, die mit zwei aufeinanderfolgenden Unterstrichen beginnen
+\item Bezeichner, die mit Unterstrich gefolgt von einem Großbuchstaben anfangen.
+\end{itemize}
+Erweiterungen am Sprachkern, die neue Schlüsselwörter erfordern, verwenden dafür ebenfalls Namen aus diesem reservierten Bereich, um zu vermeiden, dass sie mit Bezeichnern in existierenden C-Programmen kollidieren, z. B. \displaycode{\_\_attribute\_\_}, \displaycode{\_Complex}, \displaycode{\_Generic}.
