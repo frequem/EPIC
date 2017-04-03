@@ -1,15 +1,15 @@
 \subsection{Arduino und C}
 
-Um das Ein- und Ausschalten der Hardware-Komponenten möglich zu machen wurde der verwendete Arduino Mikrocontroller mithilfe der Arduino IDE programmiert. Der Arduino wird mit der Programmiersprache C programmiert, da ich diese Programmiersprache bereits beherrscht habe, ist mir die Programmierung leicht gefallen.\\
+Um das Ein- und Ausschalten der Hardware-Komponenten möglich zu machen, wurde der verwendete Arduino Mikrocontroller mithilfe der Arduino IDE programmiert. Der Arduino wird mit der Programmiersprache C programmiert. Da ich diese Programmiersprache bereits beherrscht habe, ist mir die Programmierung leicht gefallen.\\
 \\
 Es sollten folgende Spezifikationen erfüllt werden:
 \begin{itemize}
-	\item Wenn der Knopf gedrückt und innerhalb von 3 Sekunden losgelassen wird soll, solange der Raspberry Pi eingeschaltet ist, der Displaystrom getoggelt, also je nach Zustand aus- oder eingeschaltet werden.
-	\item Wenn der Knopf gedrückt und nach 3-sekündigem Halten losgelassen wird soll, solange der Raspberry Pi eingeschaltet ist, dem Raspberry Pi ein Signal zum Herunterfahren geschickt werden. Sobald dieser Shutdown-Prozess beendet ist sollen Raspberry und Display vom Strom getrennt werden.
-	\item Wenn der Knopf gedrückt und nach 3-sekündigem Halten losgelassen wird soll, solange der Raspberry Pi ausgeschaltet ist, der Strom zum Raspberry Pi und zum Display frei gegeben d.h. eingeschaltet werden.
+	\item Wenn der Knopf gedrückt und innerhalb von 3 Sekunden losgelassen wird, soll, solange der Raspberry Pi eingeschaltet ist, der Displaystrom getoggelt, also je nach Zustand aus- oder eingeschaltet werden.
+	\item Wenn der Knopf gedrückt und nach 3-sekündigem Halten losgelassen wird, soll, solange der Raspberry Pi eingeschaltet ist, dem Raspberry Pi ein Signal zum Herunterfahren geschickt werden. Sobald dieser Shutdown-Prozess beendet ist sollen Raspberry und Display vom Strom getrennt werden.
+	\item Wenn der Knopf gedrückt und nach 3-sekündigem Halten losgelassen wird, soll, solange der Raspberry Pi ausgeschaltet ist, der Strom zum Raspberry Pi und zum Display frei gegeben d.h. eingeschaltet werden.
 \end{itemize}
 \ \\
-Um im Standby-Modus (wenn Display und Raspberry Pi ausgeschaltet sind) möglichst stromsparend zu arbeiten, wurde die LowPower-Library \footcite{lowpower_lib} verwendet und mit Interrupts programmiert, dies macht es möglich den Mikrocontroller in einen Schlafmodus zu versetzen, so hat dieser einen sehr geringen Arbeitsstrom.
+Um im Standby-Modus (wenn Display und Raspberry Pi ausgeschaltet sind) möglichst stromsparend zu arbeiten, wurde die LowPower-Library \footcite{lowpower_lib} verwendet und mit Interrupts programmiert. Dies macht es möglich, den Mikrocontroller in einen Schlafmodus zu versetzen, so hat dieser einen sehr geringen Arbeitsstrom.
 \\
 Dies wurde folgendermaßen realisiert:
 \displayownimageg{img/frequem/arduino_loop}{Arduino Event Loop}{Michael Friesenhengst}

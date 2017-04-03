@@ -1,50 +1,50 @@
 \subsection{GUI - Das Graphical User Interface}
 
-Das GUI ist der Teil unserer Software welcher dem Benutzer eine Oberfläche bietet, auf der er alle seine Berechnungen, Notizen, etc. durchführen kann. Wir überlegten uns, dass dem Benutzer etwas zur Verfügung stehen sollte, auf dem er alles tun kann was die Software bietet. Wir wollten dafür ein zentrales Fenster, da dadurch die Bedienung wesentlich erleichtert wird und auch verschiedene Dinge wie Berechnungen oder Notizen nebeneinander, in einer dem Benutzer überlassenen Anordnung, angezeigt werden kann. Dieses zentrale Fenster bezeichneten wir als das \textit{Spritepanel}.\\
+Das GUI ist jener Teil unserer Software, welcher dem Benutzer eine Oberfläche bietet, auf der er alle seine Berechnungen, Notizen, etc. durchführen kann. Wir überlegten uns, dass dem Benutzer etwas zur Verfügung stehen sollte, auf dem er alles tun kann, was die Software bietet. Wir wollten dafür ein zentrales Fenster, da dadurch die Bedienung wesentlich erleichtert wird und verschiedene Dinge wie Berechnungen oder Notizen nebeneinander, in einer dem Benutzer überlassenen Anordnung, angezeigt werden können. Dieses zentrale Fenster bezeichneten wir als das \textit{Spritepanel}.\\
 \\
-Alle Objekte, die auf dem Spritepanel angezeigt werden können, werden in unserer Struktur als \textit{Sprites} bezeichnet. Dies ist auch in der Objektstruktur das gemeinsame Glied, auf dem alle zeichenbaren Objekte, wie \textit{Terms} oder \textit{Drawings} aufsetzen. Im Programmcode wurde das Sprite als Interface ausgeführt.\\
+Alle Objekte, die auf dem Spritepanel angezeigt werden können, werden in unserer Struktur als \textit{Sprites} bezeichnet. Dies ist auch in der Objektstruktur das gemeinsame Glied, auf dem alle zeichenbaren Objekte, wie \textit{Terms} oder \textit{Drawings} aufsetzen. Im Programmcode wurde \displaycode{Sprite} als Interface ausgeführt.\\
 \\
-Um auf dem Spritepanel verschiedene Dinge, wie zeichnen, schreiben, ... durchführen zu können muss es eine Möglichkeit geben, zwischen diesen Modi schnell und effizient hin- und herzuschalten, auch um andere Operationen wie das Wechseln der Schriftfarbe oder der Strichstärke durchführen zu können musste es eine einfache Lösung geben. Wir entschieden uns dafür, auf dem oberen Rand des Bildschirmes eine Menüleiste zu erstellen, auf der es dem Benutzer möglich ist alle das Spritepanel betreffenden Optionen zu tätigen.\\
+Um auf dem Spritepanel verschiedene Dinge, wie zeichnen, schreiben, usw. durchführen zu können, muss es eine Möglichkeit geben, zwischen diesen Modi schnell und effizient hin- und herzuschalten, auch um andere Operationen wie das Wechseln der Schriftfarbe oder der Strichstärke durchführen zu können, musste es eine einfache Lösung geben. Wir entschieden uns dafür, auf dem oberen Rand des Bildschirmes eine Menüleiste zu erstellen, auf welcher es dem Benutzer möglich ist, alle, das Spritepanel betreffenden Optionen, zu tätigen.\\
 \\
-Alle Optionen, welche sinntechnisch zusammen gehören wurden auch zusammen in Untermenüs gegliedert. Jedes dieser Untermenüs hat dann zu jeder Optionen jeweils ein Item, mit dem diese Option steuerbar ist. Diese Items können nach einem Touch auf den Touchscreen verschiedene Reaktionen aufweisen. So ist es möglich dass ein Item nach einem Touch ein neues Fenster spawnt, auf dem der Benutzer seine Einstellungen treffen kann, auf einem anderem Item wiederum kann man seine Einstellung direkt treffen.\\
+Alle Optionen, welche semantisch gesehen zusammen gehören, wurden auch zusammen in Untermenüs gegliedert. Jedes dieser Untermenüs hat zu jeder Option jeweils ein Item, mit dem diese steuerbar ist. Diese Items können nach einem Touch auf den Touchscreen verschiedene Reaktionen aufweisen. So ist es möglich, dass ein Item nach einem Touch ein neues Fenster spawnt, auf dem der Benutzer seine Einstellungen treffen kann, auf einem anderem Item wiederum kann man seine Einstellung direkt treffen.\\
 
 \subsubsection{Spritepanel und Sprites}
 
-Das Spritepanel ist der zentrale Bestandteil unserer Software, auf ihm werden alle Sprites dargestellt und auf ihm bauen alle weiteren Bestandteile der Software auf. Alle Menüs, Menüitems, etc. haben eine Referenz auf dieses Spritepanel um auf ihm Veränderungen durchführen zu können.\\
+Das Spritepanel ist der zentrale Bestandteil unserer Software, auf ihm werden alle Sprites dargestellt und auf ihm bauen alle weiteren Bestandteile der Software auf. Alle Menüs, Menüitems, etc. haben eine Referenz auf dieses Spritepanel um darauf Veränderungen durchführen zu können.\\
 \\
-Diese zentrale Denkweise bietet zahlreiche Vorteile: Alle Sprites, sei es Text, Term, ... werden gleich behandelt, d.h. haben eine gewisse Grundfunktionalität ohne, dass diese jedes Mal neu implementiert werden muss. Dinge wie das Verschieben oder Markieren von Sprites werden daher mit jedem Sprite möglich sein, auch wenn neue Funktionen hinzugefügt werden.
+Diese zentrale Denkweise bietet zahlreiche Vorteile: Alle Sprites, sei es Text, Term oder andere, werden gleich behandelt, d.h. sie haben eine gewisse Grundfunktionalität, ohne, dass diese jedes Mal neu implementiert werden muss. Dinge wie das Verschieben oder Markieren von Sprites werden daher mit jedem Sprite möglich sein, auch wenn neue Funktionen hinzugefügt werden.
 
 \subsubsection{Modes}
 
-Ein Mode ist ein Modus in dem sich das Spritepanel zu einem gewissen Zeitpunkt befindet. Wir unternahmen diese Einteilung um es möglich zu machen, alle Sprites zentral auf einer Oberfläche verarbeiten zu können. Ohne Modes wäre es nicht möglich gewesen verschiedene Operationen mit der selben Geste (durch Klicken des Touchscreens) durchzuführen.\\
+Ein \displaycode{Mode} ist ein Modus, in dem sich das Spritepanel zu einem gewissen Zeitpunkt befindet. Wir unternahmen diese Einteilung, um es zu ermöglichen, alle Sprites zentral auf einer Oberfläche verarbeiten zu können. Ohne Modes wäre es nicht möglich gewesen verschiedene Operationen mit der selben Geste (durch Klicken des Touchscreens) durchzuführen.\\
 Wir haben folgende Unterteilung getroffen:
 
 \setcounter{secnumdepth}{4}
 \paragraph{Draw Mode}\ \\
-In diesem Modus kann mithilfe des Touchscreen gezeichnet oder handschriftlich geschrieben werden. Es wird die aktuelle Color und Stroke (Strichbreite) des Spritepanels verwendet.
+In diesem Modus kann mithilfe des Touchscreen gezeichnet oder handschriftlich geschrieben werden. Es wird die aktuelle \displaycode{Color} und \displaycode{Stroke} (Strichbreite) des Spritepanels verwendet.
 \paragraph{Text Mode}\ \\
-Dieser Modus ist dafür da, um mit dem On-Screen-Keyboard Texte zu verfassen. Die aktuelle Color des Spritepanels wird verwendet. 
+Dieser Modus ist dafür da, um mit dem On-Screen-Keyboard Texte zu verfassen. Die aktuelle \displaycode{Color} des Spritepanels wird verwendet. 
 \paragraph{Math Mode}\ \\
 In diesem Modus können Berechnungen durchgeführt werden, die Eingabe erfolgt über das On-Screen-Keyboard. 
 \paragraph{Selection Mode}\ \\
-Dieser Modus dient zur Auswahl von mehreren Sprites, es kann mithilfe des Touchscreen ein Rechteck um die auszuwählenden Sprites gezogen werden. Markierte Sprites werden mit einer blau-strichlierten Umrandung dargestellt.
+Dieser Modus dient zur Auswahl von mehreren Sprites. Es kann mithilfe des Touchscreens ein Rechteck um die auszuwählenden Sprites gezogen werden. Markierte Sprites werden mit einer blau-strichlierten Umrandung dargestellt.
 \paragraph{Move Mode}\ \\
 In diesem Modus können Markierte Sprites über das Spritepanel bewegt werden. Es ist weiterhin möglich durch einmaliges Klicken auf ein Sprite, dieses zu markieren und anschließend zu bewegen.
 
 \subsubsection{Menubar und Menuitems}
 
-Die Menubar ist jener Teil des GUI, welcher zur Steuerung des Spritepanel dient. Von ihr aus können alle Operationen, welche Änderungen jeglicher Art am Spritepanel hervorrufen verwendet werden. Alle Funktionen, welche verwendet werden können, auf eine Seite des Fensters zu konzentrieren hat den Vorteil übersichtlich und einfach zu bedienen zu sein.\\
+Die Menubar ist jener Teil des GUI, welcher zur Steuerung des Spritepanel dient. Von ihr aus können alle Operationen, welche Änderungen jeglicher Art am Spritepanel hervorrufen, verwendet werden. Alle verfügbaren Funktionen auf eine Seite des Fensters zu konzentrieren hat den Vorteil, übersichtlich und einfach bedienbar zu sein.\\
 \\
-Auf der Menubar sind alle auswählbaren Operationen in verschiedene Kategorien welche wir als \displaycode{JMenu} bezeichnen gegliedert. Für jede Operation ist ein auswählbares Menuitem vorgesehen, ein klickbarer Button also, der die jeweilige Operation startet. Es kann sich bei der Operation um ein Dropdown-Menu handeln, bei dem man mehrere Dinge aus einer Liste auswählen kann. Ein Button der ein neues Fenster auf dem man seine Auswahl treffen kann, aber auch ein Button welcher nach dem Klick sofort die gewünschte Operation erfüllt ist möglich. Menuitems, die einen Mode wählen, werden getrennt behandelt, sobald ein Mode ausgewählt wurde wird der vorherige Mode überschrieben und das Menuitem mit dem aktuellen so gekennzeichnet, dass man erkennt das dieser ausgewählt ist.\\
+Auf der Menubar sind alle auswählbaren Operationen in verschiedene Kategorien, welche wir als \displaycode{JMenu} bezeichnen, gegliedert. Für jede Operation ist ein auswählbares Menuitem vorgesehen, ein klickbarer Button, der die jeweilige Operation startet. Es kann sich bei der Operation um ein Dropdown-Menu handeln, bei dem man mehrere Dinge aus einer Liste auswählen kann. Ein Button, der ein neues Fenster, auf dem man seine Auswahl treffen kann, aber auch ein Button, welcher nach dem Klick sofort die gewünschte Operation erfüllt, ist möglich. Menuitems, die einen Mode wählen, werden getrennt behandelt. Sobald ein Mode ausgewählt wurde, wird der vorherige Mode überschrieben und das Menuitem mit dem aktuellen so gekennzeichnet, dass man erkennt dass dieser ausgewählt ist.\\
 \\
-Wenn innerhalb eines \displaycode{JMenu} Platzmangel herrscht, wird ein Button angezeigt, mit welchem man das dann erweiterte Menü in einem neuen Fenster anzeigen kann. Dies hat den Vorteil möglichst viel Platz, welcher dringend für das Spritepanel gebraucht wird, zu sparen.
+Wenn innerhalb eines \displaycode{JMenu} Platzmangel herrscht, wird ein Button angezeigt, mit welchem man das dann erweiterte Menü in einem neuen Fenster anzeigen kann. Dies hat den Vorteil, möglichst viel Platz, welcher dringend für das Spritepanel gebraucht wird, einzusparen.
 
 \subsubsection{Actions}
 
-Actions sind all jene Operationen, welche reversibel d.h. wieder rückgängig machbar sind. Durch diese Programmiertechnik war es möglich eine Historie in das Programm einzufügen um etwaige Fehleingaben rückgängig zu machen. Es wurden dazu zu jeder Operation, die wir als Action einführen wollten jeweils eine Action-Klasse und ein Interface, welches das Subjekt der Action (z.B. Color) beschreibt, erstellt.
+Actions sind all jene Operationen, welche reversibel d.h. rückgängig machbar sind. Durch diese Programmiertechnik war es möglich, eine Historie in das Programm einzufügen, um etwaige Fehleingaben rückgängig zu machen. Es wurden dazu zu jeder Operation, die wir als \displaycode{Action} einführen wollten, jeweils eine \displaycode{Action}-Klasse und ein Interface, welches das Subjekt der \displaycode{Action} (z.B. Color) beschreibt, erstellt.
 
 \subsubsection{Cursor}
 
-Der Cursor ist jener Programmteil, welcher dafür verantwortlich ist, einen Cursor (grafisch ein Strich) an eine gewisse Stelle innerhalb eines Textes zu setzen. Ein großes Problem, welches ich lösen mussten war es den Cursor so zu implementieren, dass er zwischen verschiedenen Characters fixiert ist. Um möglichst effizient und mit wenig Rechenaufwand den nähesten fixen Punkt einer gegebenen Koordinate zu finden wandte ich eine binäre Suche an. Es wird anfangs die x-Koordinate des Punktes berechnet, welcher sich in der Mitte des Strings befindet. Anschließend wird je nach Position der gesuchte Koordinate entweder die linke oder die rechte Hälfte des String überprüft. Dieser Vorgang wird so lange wiederholt, bis die näheste Einrast-Position gefunden wurde.\\
+Der Cursor ist jener Programmteil, welcher dafür verantwortlich ist, einen Cursor (grafisch ein Strich) an eine gewisse Stelle innerhalb eines Textes zu setzen. Ein großes Problem, welches ich lösen musste, war es, den Cursor so zu implementieren, dass er zwischen verschiedenen Characters fixiert ist. Um möglichst effizient und mit wenig Rechenaufwand den nächstgelegenen fixen Punkt einer gegebenen Koordinate zu finden, wandte ich eine binäre Suche an. Es wird anfangs die x-Koordinate des Punktes berechnet, welcher sich in der Mitte des Strings befindet. Anschließend wird je nach Position der gesuchten Koordinate entweder die linke oder die rechte Hälfte des Strings überprüft. Dieser Vorgang wird so lange wiederholt, bis die am nächsten gelegene Einrast-Position gefunden wurde.\\
 Programmtechnisch wurde dies so realisiert:
 \displayownimageg{img/frequem/cursor_find_snap}{Binäre Suche der Cursor-Position}{Michael Friesenhengst}
