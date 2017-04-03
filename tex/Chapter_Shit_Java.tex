@@ -55,7 +55,7 @@ Java ist so aufgebaut, dass es sich an dynamisch ändernde Rahmenbedingungen anp
 
 \subsubsection{Konzepte}
 
-\paragraph{Objekt}
+\paragraph{Objekte}
 Um das Prinzip der Objektorientierung verstehen zu können, muss man sich zunächst vor Augen halten, was ein Objekt genau ist:\\
 \\
 Nehmen wir uns zur Veranschaulichung ein Beispiel:\\
@@ -69,7 +69,7 @@ Nicht immer sind Objekte jedoch greifbare Gegenstände aus dem realen Leben. Oft
 \\
 Die Attribute können zusätzlich selber Objekte sein. Beispielsweise könnte bei der Realisierung einer Kundenverwaltung der Kunde neben seinen Attributen Kundennummer, Name usw. auch die Adresse als Attribut haben, die, wie eben dargestellt, selber als Objekt aufgebaut sein kann.
 
-\paragraph{Klasse}
+\paragraph{Klassen}
 Ein Objekt ist eine genaue Beschreibung z.B. unseres Kugelschreibers. Die Attribute (Eigenschaften) haben  einen Wert bzw. einen festen Zustand. Unser Kugelschreiber hatte beispielsweise die Außenfarbe weiß und die Schreibfarbe schwarz.\\
 \\
 Die Klasse hingegen ist eine Verallgemeinerung aller Kugelschreiberobjekte. Sie beschreibt, welche Attribute ein Kugelschreiber haben kann ohne diesen einen Wert zuzuweisen. Erst das Objekt repräsentiert den Gegenstand Kugelschreiber, den wir vor uns liegen haben mit  all seinen Eigenschaften.\\
@@ -91,7 +91,7 @@ Die Superklasse ist eben sehr allgemein gehalten, wohingegen die Subklasse eine 
 \\
 In der Programmiersprache Java kann allerdings eine Subklasse nur genau eine Superklasse besitzen. In der Programmiersprache C++ ist dies anders, da dort eine Subklasse von mehreren Superklassen erben kann.\\
 \\
-\paragraph{Interface}
+\paragraph{Interfaces}
 Um die Mehrfachvererbung in Java zu umgehen, wurden als eine Art Kompromiss Interfaces eingeführt. Ein Interface ist eine Schnittstelle, in der festgelegt wird, über welche Methoden die Klassen, die das Interface implementieren, verfügen müssen. Die Interfaces selber enthalten daher nur Funktionsköpfe und Konstanten. Alle Klassen, die das Interface implementieren, müssen sämtliche Methoden, die das Interface vorgibt, enthalten.\\
 \\
 Interfaces werden verwendet, um Gemeinsamkeiten (z.B. gleiche Funktionalitäten), die mehreren Klassen zugrunde liegen, in einer separaten Klasse zu definieren. Die Objekte der implementierenden Klasse sind wie bei der Vererbung gleichzeitig auch Objekte des Interfaces. In Java werden Interfaces daher oft genutzt, um die fehlende Mehrfachvererbung gewissermaßen zu simulieren, da eine Klasse zwar nur von einer Superklasse abgeleitet werden kann, jedoch beliebig viele Interfaces implementieren kann.\\
@@ -99,3 +99,22 @@ Interfaces werden verwendet, um Gemeinsamkeiten (z.B. gleiche Funktionalitäten)
 In der Praxis werden Interfaces häufig für Kommunikationszwecke verwendet. Zwei miteinander kommunizierende Seiten besitzen beispielsweise ein festgelegtes Interface, damit eine reibungslose Kommunikation durchgeführt werden kann. So wird gewährleistet, dass beide Seiten die vom Interface vorgegebenen Methoden implementieren.\\
 \\
 Das Interface dient auch dazu, den eigenen Quellcode vor fremden Entwicklern zu schützen, da diese nur auf die Methoden des Interfaces zugreifen können.
+
+\paragraph{Arrays}
+Eindimensionale Arrays (deutsch: Felder) sind im Prinzip einfache Listen. Diese Arrays werden mit einem Datentypen deklariert, d.h. alle Werte, die in diesem Array gespeichert werden sollen, müssen von demselben Datentyp sein, mit dem das Array deklariert wurde.\\
+\\
+Das Array erhält außerdem eine festgelegte unveränderbare Größe, die in dem Attribut length gespeichert wird und zur Laufzeit abfragbar ist. Wird bei einem Array z.B. auf ein elftes Element zugegriffen und das Array wurde mit einer Länge von zehn deklariert, so wird eine sogenannte \displaycode{java.lang.ArrayIndexOutOfBoundsException} (Ausnahme) geworfen. \\
+\\
+Kennzeichnend für ein Array sind die eckigen Klammern. Diese können wahlweise zwischen Datentyp und Arrayname oder nach dem Arraynamen stehen. Da es sich bei einem Array um einen komplexen Datentyp handelt, benötigt man bei der Erzeugung des Arrays den \displaycode{new}-Operator.\\
+\\
+Um ein bestimmtes Element des Arrays ansprechen zu können, hat jedes Element eine Nummer, den sogenannten Index. Das erste Element bekommt den Index 0, das zweite den Index 1 usw. Mit der sogenannten Initialisierungsliste ist es möglich, bereits bei der Erstellung des Arrays den Elementen in einem Schritt sofort Werte zuzuweisen. Hier ist dann kein \displaycode{new}-Operator erforderlich.\\
+
+\displayownimageg{img/sachsenschnitzel/shit_code_1}{Beispiele für die Initialisierung von Arrays}{Florian Weinzerl}
+\ \\
+In dem obigen Beispiel haben wir mit dem new-Operator ein Array erzeugt, das die Größe 5 hat und dessen Elemente vom Datentyp int sind. Das Array enthält jedoch noch keine Werte. Die zweite Erzeugung erfolgt über die  Initialisierungsliste. Dabei wird direkt jedes Feld-Element eines Arrays mit einem Wert belegt.\\
+\\
+Um auf ein Element zuzugreifen, muss nach dem Array-Namen in eckigen Klammer der Index des Elementes angegeben werden.\\
+
+\displayownimageg{img/sachsenschnitzel/shit_code_2}{Beispiele für den Elementzugriff in Arrays}{Florian Weinzerl}
+\ \\
+In der ersten Zeile erzeugen wir durch Initialisierungsliste ein String-Array mit fünf Namen. In der zweiten Zeile speichern wir das Element mit dem Index 3 in der Variablen name ab. In diesem Fall enthält die Variable den Namen "Maria" (Nicht vergessen: Bei 0 wird zu zählen begonnen!).
