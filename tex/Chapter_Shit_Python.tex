@@ -1,0 +1,185 @@
+\subsection{Python}
+\noindent
+Python ist eine einfach zu lernende, aber mächtige Programmiersprache mit effizienten abstrakten Datenstrukturen und einem einfachen, aber effektiven Ansatz zur objektorientierten Programmierung. Durch die elegante Syntax und die dynamische Typisierung ist Python als interpretierte Sprache sowohl für Skripte als auch für schnelle Anwendungsentwicklung (Rapid Application Development) hervorragend geeignet.\\
+\\
+Der Python-Interpreter und die umfangreiche Standardbibliothek sind als Quelltext und in binärer Form für alle wichtigen Plattformen auf der Webseite http://www.python.org frei verfügbar, und können frei weiterverbreitet werden. Auf der gleichen Seite finden sich Distributionen von Drittanbietern, Verweise auf weitere freie Module, Programme und Werkzeuge, sowie zusätzliche Dokumentation.\\
+\\
+Der Python-Interpreter kann auf einfache Weise um neue Funktionen und Datentypen erweitert werden, die in C oder C++ (oder andere Sprachen, die sich von C aus ausführen lassen) implementiert sind. Auch als Erweiterungssprache für anpassbare Applikationen ist Python hervorragend geeignet.
+
+\subsubsection{Warum Python?}
+
+Wer viel am Computer arbeitet, kommt irgendwann zu dem Schluss, dass es Aufgaben gibt, die er gern automatisieren würde. Beispielsweise ein Suchen-und-Ersetzen für eine Vielzahl von Dateien oder eine Möglichkeit, einen Haufen Fotodateien auf komplizierte Art umzubenennen oder umzuräumen. Oder man hätte gerne eine kleine Datenbank nach Maß, eine spezialisierte GUI-Anwendung oder ein einfaches Spiel.\\
+\\
+Als professioneller Softwareentwickler muss man vielleicht mit mehreren C/C++/Java-Bibliotheken arbeiten, findet aber den üblichen Schreiben/Kompilieren/Testen/Re-Kompilieren-Zyklus zu langsam. Wer eine Testsuite für solch eine Bibliothek schreibt, hält es vielleicht für eine ermüdende Aufgabe, den Testcode zu schreiben. Vielleicht hat der ein oder andere auch ein Programm geschrieben, das eine Erweiterungssprache gebrauchen könnte, will aber keine ganz neue Sprache für sein Programm entwerfen und implementieren. Dann ist Python genau die richtige Sprache!\\
+\\
+Man könnte natürlich Unix-Shellskripte oder Windows-Batchdateien für ein paar dieser Aufgaben schreiben. Mit Shellskripten lassen sich gut Dateien verschieben und Textdaten verändern, zur Entwicklung von GUI-Applikationen oder Spielen sind sie aber weniger geeignet. Man könnte ein entsprechendes C/C++/Java-Programm dafür schreiben, aber es kostet in der Regel bereits viel Entwicklungszeit, um überhaupt einen ersten Programmentwurf zu entwickeln. Python ist einfacher zu nutzen, verfügbar für Windows-, Mac OS X- und Unix-Betriebssysteme und hilft, die Aufgabe schneller zu erledigen.\\
+\\
+Python ist einfach in der Anwendung, aber eine echte Programmiersprache, die viel mehr Struktur und Unterstützung für große Programme bietet, als Shellskripte oder Batchdateien es könnten. Auf der anderen Seite bietet Python auch mehr Fehlerüberprüfungen als C und hat, als stark abstrahierende Hochsprache, mehr abstrakte Datentypen wie flexible Arrays und Wörterbücher (Dictionaries) eingebaut. Aufgrund seiner allgemeineren Datentypen ist Python in ausgedehnteren Problembereichen einsetzbar als Awk oder sogar Perl, und dennoch sind viele Dinge in Python mindestens so einfach wie in diesen Sprachen.\\
+\\
+Python erlaubt die Aufteilung von Programmen in Module, die in anderen Python-Programmen wiederverwendet werden können. Es kommt mit einer großen Sammlung von Standardmodulen, die als Grundlage für eigene Programme genutzt werden können; oder als Beispiele, um in Python Programmieren zu lernen. Manche der Module stellen Datei-I/O, Systemaufrufe, Sockets und sogar Schnittstellen zu GUI-Toolkits wie Tk bereit.\\
+\\
+Python ist eine interpretierte Sprache, wodurch sich bei der Programmentwicklung erheblich Zeit sparen lässt, da Kompilieren und Linken nicht nötig sind. Der Interpreter kann interaktiv genutzt werden, so dass man einfach mit den Fähigkeiten der Sprache experimentieren, Wegwerf-Code schreiben oder Funktionen während der Bottom-Up-Programmentwicklung testen kann. Es ist auch ein praktischer Tischrechner.\\
+\\
+Python ermöglicht die Entwicklung von kompakten und lesbaren Programmen. Programme, die in Python geschrieben sind, sind aus mehreren Gründen viel kürzer als C/C++/Java-Äquivalente:\\
+
+\begin{itemize}
+\item Die abstrakten Datentypen erlauben es, komplexe Operationen in einer einzigen Anweisung auszudrücken;
+\item Anweisungen werden durch Einrückungen und nicht durch öffnende und schließende Klammern gruppiert
+\item Variablen- oder Argumentdeklarationen sind nicht nötig.
+\end{itemize}
+\ \\
+Python ist erweiterbar: Wer in C programmieren kann, kann einfach eine neue eingebaute Funktion oder ein Modul zum Interpreter hinzuzufügen. Entweder um zeitkritische Operationen mit maximaler Geschwindigkeit auszuführen oder um Python-Programme zu Bibliotheken zu linken, die nur in binärer Form (wie beispielsweise herstellerspezifische Grafikbibliotheken) verfügbar sind. Wenn man erst einmal mit Python vertraut ist, kann man den Python-Interpreter zu in C geschriebenen Applikationen linken und Python als Erweiterung oder Kommandosprache für diese Applikation nutzen.\\
+
+\subsubsection{Datentypen und Strukturen}
+Python besitzt eine größere Anzahl von grundlegenden Datentypen. Neben der herkömmlichen Arithmetik unterstützt es transparent auch beliebig große Ganzzahlen und komplexe Zahlen.\\
+\\
+Die Sprache verfügt über die übliche Ausstattung an Zeichenkettenoperationen. Zeichenketten sind in Python allerdings unveränderliche Objekte (wie auch in Java). Daher geben Operationen, die das Ändern einer Zeichenkette bewerkstelligen sollen – wie z. B. das Ersetzen von Zeichen – immer eine neue Zeichenkette zurück.\\
+\\
+In Python ist alles ein Objekt; Klassen, Typen, Methoden, Module etc. Der Datentyp ist jeweils an das Objekt (den Wert) gebunden und nicht an eine Variable, d. h. Datentypen werden dynamisch vergeben, so wie bei Smalltalk oder Lisp – und nicht wie bei Java.\\
+\\
+Trotz der dynamischen Typverwaltung enthält Python eine gewisse Typprüfung. Diese ist strenger als bei Perl, aber weniger strikt als etwa bei Objective CAML. Implizite Umwandlungen nach dem Duck-Typing-Prinzip sind unter anderem für numerische Typen definiert, so dass man beispielsweise eine komplexe Zahl mit einer langen Ganzzahl ohne explizite Typumwandlung multiplizieren kann. Mit dem Format-Operator \% gibt es eine implizite Umwandlung eines Objekts in eine Zeichenkette. Der Operator == überprüft zwei Objekte auf (Wert-)Gleichheit. Der Operator is überprüft die tatsächliche Identität zweier Objekte.
+
+\paragraph{Sammeltypen}\ \\
+Python besitzt mehrere Sammeltypen, darunter Listen, Tupel, Mengen (Sets) und assoziative Arrays (Dictionaries). Listen, Tupel und Zeichenketten sind Folgen (Sequenzen, Arrays) und kennen fast alle die gleichen Methoden: Über die Zeichen einer Kette kann man ebenso iterieren wie über die Elemente einer Liste. Außerdem gibt es die unveränderlichen Objekte, die nach ihrer Erzeugung nicht mehr geändert werden können. Listen sind z. B. erweiterbare Felder (Arrays), wohingegen Tupel und Zeichenketten eine feste Länge haben und unveränderlich sind.\\
+\\
+Der Zweck solcher Unveränderlichkeit hängt z. B. mit den Wörterbüchern zusammen, einem Datentyp, der auch als assoziatives Array bezeichnet wird. Um die Datenkonsistenz zu sichern, müssen die Schlüssel eines Wörterbuches vom Typ „unveränderlich“ sein. Die ins Wörterbuch eingetragenen Werte können dagegen von beliebigem Typ sein.\\
+\\
+Sets sind Mengen von Objekten und in CPython ab Version 2.4 im Standardsprachumfang enthalten. Diese Datenstruktur kann beliebige (paarweise unterschiedliche) Objekte aufnehmen und stellt Mengenoperationen wie beispielsweise Durchschnitt, Differenz und Vereinigung zur Verfügung.
+
+\paragraph{Objektsystem}\ \\
+
+Das Typsystem von Python ist auf das Klassensystem abgestimmt. Obwohl die eingebauten Datentypen genau genommen keine Klassen sind, können Klassen von einem Typ erben. So kann man die Eigenschaften von Zeichenketten oder Wörterbüchern erweitern – auch von Ganzzahlen. Python unterstützt Mehrfachvererbung.\\
+\\
+Die Sprache unterstützt direkt den Umgang mit Typen und Klassen. Typen können ausgelesen (ermittelt) und verglichen werden und verhalten sich wie Objekte – in Wirklichkeit sind die Typen selbst ein Objekt. Die Attribute eines Objektes können als Wörterbuch extrahiert werden.
+
+\subsubsection{Syntax}
+Eines der Entwurfsziele für Python war die gute Lesbarkeit des Quellcodes. Die Anweisungen benutzen häufig englische Schlüsselwörter, wo andere Sprachen Symbole einsetzen. Darüber hinaus besitzt Python weniger syntaktische Konstruktionen als viele andere strukturierte Sprachen wie C, Perl oder Pascal:\\
+\begin{itemize}
+\item zwei Schleifenformen
+	\begin{itemize}
+		\item for zur Iteration über die Elemente einer Sequenz
+		\item while zur Wiederholung einer Schleife, solange ein logischer Ausdruck wahr ist.
+	\end{itemize}
+\item Verzweigungen
+	\begin{itemize}
+		\item if … elif … else für Verzweigungen
+	\end{itemize}
+\end{itemize}
+\ \\
+Beim letzten Punkt bieten andere Programmiersprachen zusätzlich switch und/oder goto. Diese wurden zugunsten der Lesbarkeit in Python weggelassen und müssen durch if-Konstrukte oder andere Verzweigungsmöglichkeiten (Slices, Wörterbücher) abgebildet werden. Im Gegensatz zu vielen anderen Sprachen können for- und while-Schleifen einen else-Zweig haben. Dieser wird nur ausgeführt, wenn die Schleife vollständig durchlaufen wurde und nicht mittels break abgebrochen wird.
+
+\paragraph{Strukturierung durch Einrücken}\ \\
+Python benutzt wie Miranda und Haskell Einrückungen als Strukturierungselement. Diese Idee wurde erstmals von Peter J. Landin vorgeschlagen und von ihm off-side rule („Abseitsregel“) genannt. In den meisten anderen Programmiersprachen werden Blöcke durch Klammern oder Schlüsselwörter markiert, während verschieden große Leerräume außerhalb von Zeichenketten keine spezielle Semantik tragen. Bei diesen Sprachen ist die Einrückung zur optischen Hervorhebung eines Blockes zwar erlaubt und in der Regel auch erwünscht, aber nicht vorgeschrieben. Für Programmierneulinge wird der Zwang zu lesbarem Stil aber als Vorteil gesehen.\\
+\\
+Hierzu als Beispiel die Berechnung der Fakultät einer Ganzzahl, einmal in C und einmal in Python:\\
+\\
+Fakultätsfunktion in C:\\
+\\
+\displaycode{
+int fakult(int x)\{\\
+\blank{1cm} if (x > 1)\\
+\blank{2cm} return x * fakult(x - 1);\\
+\blank{1cm} else\\
+\blank{2cm} return 1;\\
+\}
+}\\
+\\
+Die gleiche Funktion in Python:\\
+\\
+\displaycode{
+def fakult(x):\\
+\blank{1cm}if x > 1:\\
+\blank{1cm}\blank{1cm}return x * fakult(x - 1)\\
+\blank{1cm}else:\\
+\blank{1cm}\blank{1cm}return 1\\
+}\\
+\\
+Es ist jedoch darauf zu achten, die Einrückungen im gesamten Programmtext gleich zu gestalten. Die gemischte Verwendung von Leerzeichen und Tabulatorzeichen kann zu Problemen führen, da der Python-Interpreter Tabstops im Abstand von acht Leerzeichen annimmt. Je nach Konfiguration des Editors können Tabulatoren optisch mit weniger als acht Leerzeichen dargestellt werden, was zu Syntaxfehlern oder ungewollter Programmstrukturierung führen kann.\\
+\\
+Man kann die Fakultätsfunktion aber auch wie in C einzeilig mit ternärem Operator formulieren:\\
+\\
+Die Fakultätsfunktion in C:\\
+\\
+\displaycode{
+int fakult(int x)\{\\
+\blank{1cm}return (x > 1) ? (x * fakult(x - 1)) : 1;\\
+\}\\
+}\\
+\\
+Die Fakultätsfunktion in Python:\\
+\\
+\displaycode{
+def fakult(x):\\
+\blank{1cm}return x * fakult(x - 1) if x > 1 else 1\\
+}\\
+
+\paragraph{Funktionales Programmieren}\ \\
+
+Ausdrucksstarke syntaktische Elemente zur funktionalen Programmierung vereinfachen das Arbeiten mit Listen und anderen Sammeltypen. Eine solche Vereinfachung ist die Listennotation, die aus der funktionalen Programmiersprache Haskell stammt; hier bei der Berechnung der ersten fünf Zweierpotenzen:\\
+\\
+\displaycode{
+zahlen = [1, 2, 3, 4, 5]\\
+zweierpotenzen = [2 ** n for n in zahlen]
+}\\
+\\
+Weil in Python Funktionen als Argumente auftreten dürfen, kann man auch ausgeklügeltere Konstruktionen ausdrücken, wie den Continuation-passing style.\\
+\\
+Pythons Schlüsselwort lambda könnte manche Anhänger der funktionalen Programmierung fehlleiten. Solche lambda-Blöcke in Python können nur Ausdrücke enthalten, aber keine Anweisungen. Damit werden solche Anweisungen generell nicht verwendet, um eine Funktion zurückzugeben. Die übliche Vorgehensweise ist stattdessen, den Namen einer lokalen Funktion zurückzugeben. Das folgende Beispiel zeigt dies anhand einer einfachen Funktion nach den Ideen von Haskell Brooks Curry:\\
+\\
+\displaycode{
+def add\_and\_print\_maker(x):\\
+\blank{1cm}def temp(y):\\
+\blank{1cm}\blank{1cm}print("\{\} + \{\} = \{\}".format(x, y, x + y))\\
+\blank{1cm}return temp\\
+}\\
+\\
+Damit ist auch Currying auf einfache Art möglich, um generische Funktionsobjekte auf problemspezifische herunterzubrechen. Hier ein einfaches Beispiel:\\
+\\
+\displaycode{
+def curry(func, knownargument):\\
+\blank{1cm}return lambda unknownargument: func(unknownargument, knownargument)\\
+}\\
+Wird die curry-Funktion aufgerufen, erwartet diese eine Funktion mit zwei notwendigen Parametern sowie die Parameterbelegung für den zweiten Parameter dieser Funktion. Der Rückgabewert von curry ist eine Funktion, die dasselbe tut wie func, aber nur noch einen Parameter benötigt.\\
+\\
+Anonyme Namensräume (sog. Closures) sind mit den o. g. Mechanismen in Python ebenfalls einfach möglich. Ein simples Beispiel für einen Stack, intern durch eine Liste repräsentiert:\\
+\\
+\displaycode{
+def stack():\\
+\blank{1cm}l = []\\
+\\
+\blank{1cm}def pop():\\
+\blank{1cm}\blank{1cm}if not is\_empty():\\
+\blank{1cm}\blank{1cm}\blank{1cm}return l.pop()\\
+\\
+\blank{1cm}def push(element):\\
+\blank{1cm}\blank{1cm}l.append(element)\\
+\\
+\blank{1cm}def is\_empty():\\
+\blank{1cm}\blank{1cm}return len(l) == 0\\
+\\
+\blank{1cm}return pop, push, is\_empty\\
+\\
+pop, push, is\_empty = stack()\\
+}\\
+\\
+Auf diese Weise erhält man die drei Funktionsobjekte pop, push, is\_empty, um den Stack zu modifizieren bzw. auf enthaltene Elemente zu prüfen, ohne l direkt modifizieren zu können.\\
+
+\paragraph{Ausnahmebehandlung}\ \\
+
+Python nutzt ausgiebig die Ausnahmebehandlung (engl. exception handling) als ein Mittel, um Fehlerbedingungen zu testen. Dies ist so weit in Python integriert, dass es teilweise sogar möglich ist, Syntaxfehler abzufangen und zur Laufzeit zu behandeln.\\
+\\
+Ausnahmen haben einige Vorteile gegenüber anderen beim Programmieren üblichen Verfahren der Fehlerbehandlung (wie z. B. Fehler-Rückgabewerte und globale Statusvariablen). Sie sind Thread-sicher und können leicht bis in die höchste Programmebene weitergegeben oder an einer beliebigen anderen Ebene der Funktionsaufruffolge behandelt werden. Der korrekte Einsatz von Ausnahmebehandlungen beim Zugriff auf dynamische Ressourcen erleichtert es zudem, bestimmte auf Race Conditions basierende Sicherheitslücken zu vermeiden, die entstehen können, wenn Zugriffe auf bereits veralteten Statusabfragen basieren.\\
+\\
+Der Python-Ansatz legt den Einsatz von Ausnahmen nahe, wann immer eine Fehlerbedingung entstehen könnte. Nützlich ist dieses Prinzip beispielsweise bei der Konstruktion robuster Eingabeaufforderungen:\\
+\\
+\displaycode{\\
+while True:\\
+\blank{1cm}num = raw\_input("Eine Zahl eingeben: ")\\
+\blank{1cm}try:\\
+\blank{1cm}\blank{1cm}num = int(num)\\
+\blank{1cm}\blank{1cm}break\\
+\blank{1cm}except ValueError:\\
+\blank{1cm}\blank{1cm}print("Eine Zahl bitte!")\\
+}\\
+\\
+Dieser Code wird den Benutzer so lange nach einer Nummer fragen, bis dieser eine Zeichenfolge eingibt, die sich per int() in eine Ganzzahl konvertieren lässt. Durch die Ausnahmebehandlung wird hier vermieden, dass eine Fehleingabe zu einem Laufzeitfehler führt, der das Programm zur Beendigung zwingt.
