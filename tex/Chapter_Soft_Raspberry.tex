@@ -1,5 +1,4 @@
-\subsection{Python auf dem Raspberry Pi}
-
+\subsection{Python auf dem Raspberry Pi}\displayauthor{Michael Friesenhengst}\ \\
 Um das Shutdown-Signal, welches der Arduino sendet, am Raspberry Pi zu verarbeiten, habe ich mich für die Programmiersprache Python entschieden. Python wurde deshalb verwendet, da die Libraries für die Ansteuerung der GPIO-Pins sehr gut dokumentiert und einfach zu verwenden sind.\\
 \\
 Sobald ein HIGH-Signal auf Pin 23 des Raspberry Pi eingeht, führt dieser einen Befehl zum Herunterfahren aus. Um dem Arduino zu signalisieren, wann der Raspberry fertig heruntergefahren ist, wird Pin 24 standardmäßig auf ein HIGH-Potential gesetzt, nach Beendigung des Shutdown-Vorgangs wird dieser Pin automatisch auf LOW gesetzt.
