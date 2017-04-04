@@ -14,8 +14,6 @@ Der Entwurf der Programmiersprache Java strebte hauptsächlich fünf Ziele an:
 \end{itemize}
 \noindent
 
-
-\setcounter{secnumdepth}{4}
 \paragraph{Einfachheit}
 Java ist im Vergleich zu anderen objektorientierten Programmiersprachen wie C++ oder C\# einfach, da es einen reduzierten Sprachumfang besitzt und beispielsweise Operatorüberladung und Mehrfachvererbung nicht unterstützt.
 
@@ -51,7 +49,7 @@ Java wird in maschinenunabhängigen Bytecode kompiliert, dieser wiederum kann au
 Java unterstützt Multithreading, also den parallelen Ablauf von eigenständigen Programmabschnitten. Dazu bietet die Sprache selbst die Schlüsselwörter synchronized und volatile – Konstrukte, die das „Monitor \& Condition Variable Paradigma“ von C. A. R. Hoare unterstützen. Die Klassenbibliothek enthält weitere Unterstützungen für parallele Programmierung mit Threads. Moderne JVMs bilden einen Java-Thread auf Betriebssystem-Threads ab und profitieren somit von Prozessoren mit mehreren Rechenkernen.
 
 \paragraph{Dynamik}
-Java ist so aufgebaut, dass es sich an dynamisch ändernde Rahmenbedingungen anpassen lässt. Da die Module erst zur Laufzeit gelinkt werden, können beispielsweise Teile der Software (etwa Bibliotheken) neu ausgeliefert werden, ohne die restlichen Programmteile anpassen zu müssen. Interfaces können als Basis für die Kommunikation zwischen zwei Modulen eingesetzt werden; die eigentliche Implementierung kann aber dynamisch und beispielsweise auch während der Laufzeit geändert werden. 
+Java ist so aufgebaut, dass es sich an dynamisch ändernde Rahmenbedingungen anpassen lässt. Da die Module erst zur Laufzeit gelinkt werden, können beispielsweise Teile der Software (etwa Bibliotheken) neu ausgeliefert werden, ohne die restlichen Programmteile anpassen zu müssen. Interfaces können als Basis für die Kommunikation zwischen zwei Modulen eingesetzt werden; die eigentliche Implementierung kann aber dynamisch und beispielsweise auch während der Laufzeit geändert werden.\footcite{shit_java_wiki}
 
 \subsubsection{Konzepte}
 
@@ -67,7 +65,7 @@ In der Softwaretechnik benutzt man Funktionen in der Regel, um auf die Eigenscha
 \\
 Nicht immer sind Objekte jedoch greifbare Gegenstände aus dem realen Leben. Oft bildet man auf diese Weise Datenstrukturen ab. Ein Beispiel dafür ist die Adresse. Auch die Adresse wird in der objektorientierten Programmierung zu einem Objekt. Die Eigenschaften sind in dem Fall Straße, Hausnummer, Postleitzahl und Ort. Eine Funktion könnte z.B. darin bestehen, die Eigenschaften nach einem Umzug zu ändern.\\
 \\
-Die Attribute können zusätzlich selber Objekte sein. Beispielsweise könnte bei der Realisierung einer Kundenverwaltung der Kunde neben seinen Attributen Kundennummer, Name usw. auch die Adresse als Attribut haben, die, wie eben dargestellt, selber als Objekt aufgebaut sein kann.
+Die Attribute können zusätzlich selber Objekte sein. Beispielsweise könnte bei der Realisierung einer Kundenverwaltung der Kunde neben seinen Attributen Kundennummer, Name usw. auch die Adresse als Attribut haben, die, wie eben dargestellt, selber als Objekt aufgebaut sein kann.\footcite{shit_java_tut}
 
 \paragraph{Klassen}
 Ein Objekt ist eine genaue Beschreibung z.B. unseres Kugelschreibers. Die Attribute (Eigenschaften) haben  einen Wert bzw. einen festen Zustand. Unser Kugelschreiber hatte beispielsweise die Außenfarbe weiß und die Schreibfarbe schwarz.\\
@@ -80,7 +78,7 @@ In der objektorientierten Programmierung  gehört also jedes Objekt zu einer Kla
 \\
 In der Softwaretechnik spricht man auch davon, dass Klassen einen eigenen Datentypen (siehe Glossar o. Kapitel Java-Datentypen) bilden. Da jedes Attribut durch einen Datentyp beschrieben wird, kann eine Klasse auch Attribute beinhalten, die selber wieder Objekte einer anderen oder sogar der eigenen Klasse sind. Als Beispiel hatten wir im Kapitel ''Objekt'' die Klasse Adresse angeführt, die die Attribute Straße, Hausnummer, PLZ und Ort hat. Unsere Klasse Mensch kann nun zur besseren Strukturierung der Daten  ein Attribut ''Anschrift'' beinhalten, das wiederum ein Objekt der Klasse Adresse ist.\\
 \\
-Wenn wir bei der Klasse Mensch bleiben, könnte man sich z.B. zum Aufbau eines Stammbaums außerdem die Attribute ''Vater'' und ''Mutter'' denken, die selber auch wieder zur Klasse Mensch gehören und ebenfalls mit Attributen wie Name und Adresse ausgestattet sind.
+Wenn wir bei der Klasse Mensch bleiben, könnte man sich z.B. zum Aufbau eines Stammbaums außerdem die Attribute ''Vater'' und ''Mutter'' denken, die selber auch wieder zur Klasse Mensch gehören und ebenfalls mit Attributen wie Name und Adresse ausgestattet sind.\footcite{shit_java_tut}
  
  \paragraph{Vererbung}
 Der Begriff Vererbung hört sich erst einmal sehr familiär an. Man kann im weitesten Sinne unter Vererbung verstehen, dass etwas weiter gereicht wird. Im familiären Umfeld bekommen also Kinder etwas von Ihren Eltern oder gar Großeltern vererbt.\\
@@ -89,8 +87,8 @@ In der Objektorientierung wird eine Kindsklasse als Child- oder Subklasse bezeic
 \\
 Die Superklasse ist eben sehr allgemein gehalten, wohingegen die Subklasse eine spezielle Ausprägung der Superklasse ist. Eine Superklasse kann beliebig viele Subklassen haben. Als Beispiel lässt sich auch hier der Kugelschreiber verwenden. Eine Superklasse könnte hier ''Stift'' lauten, der bereits die Attribute ''Stiftfarbe'' und ''Schreibfarbe'' hat. Die Kugelschreiber-Klasse ist eine Child-Klasse der Klasse ''Stift'' und erbt diese Attribute. Zusätzlich kommen noch Funktionen für das Ein- und Ausfahren der Kugeschreibermine hinzu. Die Klasse ''Kugelschreiber'' könnte selber wiederum eine Superklasse von ''Drehkugelschreiber'' und ''Druckkugelschreiber'' sein. Die Hierarchie kann beliebig tief sein.\\
 \\
-In der Programmiersprache Java kann allerdings eine Subklasse nur genau eine Superklasse besitzen. In der Programmiersprache C++ ist dies anders, da dort eine Subklasse von mehreren Superklassen erben kann.\\
-\\
+In der Programmiersprache Java kann allerdings eine Subklasse nur genau eine Superklasse besitzen. In der Programmiersprache C++ ist dies anders, da dort eine Subklasse von mehreren Superklassen erben kann.\footcite{shit_java_tut}
+
 \paragraph{Interfaces}
 Um die Mehrfachvererbung in Java zu umgehen, wurden als eine Art Kompromiss Interfaces eingeführt. Ein Interface ist eine Schnittstelle, in der festgelegt wird, über welche Methoden die Klassen, die das Interface implementieren, verfügen müssen. Die Interfaces selber enthalten daher nur Funktionsköpfe und Konstanten. Alle Klassen, die das Interface implementieren, müssen sämtliche Methoden, die das Interface vorgibt, enthalten.\\
 \\
@@ -98,7 +96,7 @@ Interfaces werden verwendet, um Gemeinsamkeiten (z.B. gleiche Funktionalitäten)
 \\
 In der Praxis werden Interfaces häufig für Kommunikationszwecke verwendet. Zwei miteinander kommunizierende Seiten besitzen beispielsweise ein festgelegtes Interface, damit eine reibungslose Kommunikation durchgeführt werden kann. So wird gewährleistet, dass beide Seiten die vom Interface vorgegebenen Methoden implementieren.\\
 \\
-Das Interface dient auch dazu, den eigenen Quellcode vor fremden Entwicklern zu schützen, da diese nur auf die Methoden des Interfaces zugreifen können.
+Das Interface dient auch dazu, den eigenen Quellcode vor fremden Entwicklern zu schützen, da diese nur auf die Methoden des Interfaces zugreifen können.\footcite{shit_java_tut}
 
 \paragraph{Arrays}
 Eindimensionale Arrays (deutsch: Felder) sind im Prinzip einfache Listen. Diese Arrays werden mit einem Datentypen deklariert, d.h. alle Werte, die in diesem Array gespeichert werden sollen, müssen von demselben Datentyp sein, mit dem das Array deklariert wurde.\\
@@ -117,4 +115,4 @@ Um auf ein Element zuzugreifen, muss nach dem Array-Namen in eckigen Klammer der
 
 \displayownimageg{img/sachsenschnitzel/shit_code_2}{Beispiele für den Elementzugriff in Arrays}{Florian Weinzerl}
 \ \\
-In der ersten Zeile erzeugen wir durch Initialisierungsliste ein String-Array mit fünf Namen. In der zweiten Zeile speichern wir das Element mit dem Index 3 in der Variablen name ab. In diesem Fall enthält die Variable den Namen "Maria" (Nicht vergessen: Bei 0 wird zu zählen begonnen!).
+In der ersten Zeile erzeugen wir durch Initialisierungsliste ein String-Array mit fünf Namen. In der zweiten Zeile speichern wir das Element mit dem Index 3 in der Variablen name ab. In diesem Fall enthält die Variable den Namen "Maria" (Nicht vergessen: Bei 0 wird zu zählen begonnen!).\footcite{shit_java_tut}
