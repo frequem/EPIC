@@ -12,46 +12,48 @@ Der Entwurf der Programmiersprache Java strebte hauptsächlich fünf Ziele an:
 \end{itemize}
 \noindent
 
-\paragraph{Einfachheit}
+\paragraph{Einfachheit}\ \\
 Java ist im Vergleich zu anderen objektorientierten Programmiersprachen wie C++ oder C\# einfach, da es einen reduzierten Sprachumfang besitzt und beispielsweise Operatorüberladung und Mehrfachvererbung nicht unterstützt.
 
-\paragraph{Objektorientierung}
+\paragraph{Objektorientierung}\ \\
 Java gehört zu den objektorientierten Programmiersprachen.
 
-\paragraph{Verteilt}
+\paragraph{Verteilt}\ \\
 Eine Reihe einfacher Möglichkeiten für Netzwerkkommunikation, von TCP/IP-Protokollen über Remote Method Invocation bis zu Webservices werden vor allem über Javas Klassenbibliothek angeboten; die Sprache Java selbst beinhaltet keine direkte Unterstützung für verteilte Ausführung.
 
-\paragraph{Vertrautheit}
+\paragraph{Vertrautheit}\ \\
 Wegen der syntaktischen Nähe zu C++, der ursprünglichen Ähnlichkeit der Klassenbibliothek zu Smalltalk-Klassenbibliotheken und der Verwendung von Entwurfsmustern in der Klassenbibliothek zeigt Java für den erfahrenen Programmierer keine unerwarteten Effekte.
 
-\paragraph{Robustheit}
+\paragraph{Robustheit}\ \\
 Viele der Designentscheidungen bei der Definition von Java reduzieren die Wahrscheinlichkeit ungewollter Systemfehler; zu nennen sind die starke Typisierung, Garbage Collection, Ausnahmebehandlung sowie Verzicht auf Zeigerarithmetik.
 
 
-\paragraph{Sicherheit}
+\paragraph{Sicherheit}\ \\
 Dafür stehen Konzepte wie der Class-Loader, der die sichere Zuführung von Klasseninformationen zur Java Virtual Machine steuert, und Security-Manager, die sicherstellen, dass nur Zugriff auf Programmobjekte erlaubt wird, für die entsprechende Rechte vorhanden sind.
 
-\paragraph{Architekturneutralität}
+\paragraph{Architekturneutralität}\ \\
 Java wurde so entwickelt, dass dieselbe Version eines Programms prinzipiell auf einer beliebigen Computerhardware läuft, unabhängig von ihrem Prozessor oder anderen Hardwarebestandteilen.
 
-\paragraph{Portabilität}
+\paragraph{Portabilität}\ \\
 Zusätzlich zur Architekturneutralität ist Java portabel. Das heißt, dass primitive Datentypen sowohl in ihrer Größe und internen Darstellung als auch in ihrem arithmetischen Verhalten standardisiert sind. Beispielsweise ist ein float immer ein IEEE 754 Float von 32 Bit Länge. Dasselbe gilt beispielsweise auch für die Klassenbibliothek, mit deren Hilfe man eine vom Betriebssystem unabhängige GUI erzeugen kann.
 
-\paragraph{Leistungsfähigkeit}
+\paragraph{Leistungsfähigkeit}\ \\
 Java hat aufgrund der Optimierungsmöglichkeit zur Laufzeit das Potential, eine bessere Performance als auf Compilezeit-Optimierungen begrenzte Sprachen (C++, etc) zu erreichen. Dem entgegen steht der Overhead durch die Java-Laufzeitumgebung, sodass die Leistungsfähigkeit von beispielsweise C++-Programmen in einigen Kontexten übertroffen, in anderen aber nicht erreicht wird.
 
-\paragraph{Interpretierbarkeit}
+\paragraph{Interpretierbarkeit}\ \\
 Java wird in maschinenunabhängigen Bytecode kompiliert, dieser wiederum kann auf der Zielplattform interpretiert werden. Die Java Virtual Machine der Firma Oracle (früher Sun) interpretiert Java-Bytecode, bevor sie ihn aus Performancegründen kompiliert und optimiert.
 
-\paragraph{Parallelisierbarkeit}
+\paragraph{Parallelisierbarkeit}\ \\
 Java unterstützt Multithreading, also den parallelen Ablauf von eigenständigen Programmabschnitten. Dazu bietet die Sprache selbst die Schlüsselwörter synchronized und volatile – Konstrukte, die das „Monitor \& Condition Variable Paradigma“ von C. A. R. Hoare unterstützen. Die Klassenbibliothek enthält weitere Unterstützungen für parallele Programmierung mit Threads. Moderne JVMs bilden einen Java-Thread auf Betriebssystem-Threads ab und profitieren somit von Prozessoren mit mehreren Rechenkernen.
 
-\paragraph{Dynamik}
-Java ist so aufgebaut, dass es sich an dynamisch ändernde Rahmenbedingungen anpassen lässt. Da die Module erst zur Laufzeit gelinkt werden, können beispielsweise Teile der Software (etwa Bibliotheken) neu ausgeliefert werden, ohne die restlichen Programmteile anpassen zu müssen. Interfaces können als Basis für die Kommunikation zwischen zwei Modulen eingesetzt werden; die eigentliche Implementierung kann aber dynamisch und beispielsweise auch während der Laufzeit geändert werden.\footcite{shit_java_wiki}
+\paragraph{Dynamik}\ \\
+Java ist so aufgebaut, dass es sich an dynamisch ändernde Rahmenbedingungen anpassen lässt. Da die Module erst zur Laufzeit gelinkt werden, können beispielsweise Teile der Software (etwa Bibliotheken) neu ausgeliefert werden, ohne die restlichen Programmteile anpassen zu müssen. Interfaces können als Basis für die Kommunikation zwischen zwei Modulen eingesetzt werden; die eigentliche Implementierung kann aber dynamisch und beispielsweise auch während der Laufzeit geändert werden.\\
+\\
+\cite{shit_java_wiki}
 
 \subsubsection{Konzepte}
 
-\paragraph{Objekte}
+\paragraph{Objekte}\ \\
 Um das Prinzip der Objektorientierung verstehen zu können, muss man sich zunächst vor Augen halten, was ein Objekt genau ist:\\
 \\
 Nehmen wir uns zur Veranschaulichung ein Beispiel:\\
@@ -65,7 +67,7 @@ Nicht immer sind Objekte jedoch greifbare Gegenstände aus dem realen Leben. Oft
 \\
 Die Attribute können zusätzlich selber Objekte sein. Beispielsweise könnte bei der Realisierung einer Kundenverwaltung der Kunde neben seinen Attributen Kundennummer, Name usw. auch die Adresse als Attribut haben, die, wie eben dargestellt, selber als Objekt aufgebaut sein kann.\footcite{shit_java_tut}
 
-\paragraph{Klassen}
+\paragraph{Klassen}\ \\
 Ein Objekt ist eine genaue Beschreibung z.B. unseres Kugelschreibers. Die Attribute (Eigenschaften) haben  einen Wert bzw. einen festen Zustand. Unser Kugelschreiber hatte beispielsweise die Außenfarbe weiß und die Schreibfarbe schwarz.\\
 \\
 Die Klasse hingegen ist eine Verallgemeinerung aller Kugelschreiberobjekte. Sie beschreibt, welche Attribute ein Kugelschreiber haben kann ohne diesen einen Wert zuzuweisen. Erst das Objekt repräsentiert den Gegenstand Kugelschreiber, den wir vor uns liegen haben mit  all seinen Eigenschaften.\\
@@ -78,7 +80,7 @@ In der Softwaretechnik spricht man auch davon, dass Klassen einen eigenen Datent
 \\
 Wenn wir bei der Klasse Mensch bleiben, könnte man sich z.B. zum Aufbau eines Stammbaums außerdem die Attribute ''Vater'' und ''Mutter'' denken, die selber auch wieder zur Klasse Mensch gehören und ebenfalls mit Attributen wie Name und Adresse ausgestattet sind.\footcite{shit_java_tut}
  
- \paragraph{Vererbung}
+ \paragraph{Vererbung}\ \\
 Der Begriff Vererbung hört sich erst einmal sehr familiär an. Man kann im weitesten Sinne unter Vererbung verstehen, dass etwas weiter gereicht wird. Im familiären Umfeld bekommen also Kinder etwas von Ihren Eltern oder gar Großeltern vererbt.\\
 \\
 In der Objektorientierung wird eine Kindsklasse als Child- oder Subklasse bezeichnet, wohingegen die Elternklasse Parent- oder Superklasse genannt wird. Man spricht in der Objektorientierung von Vererbung, wenn eine Subklasse Attribute und Methoden von der Superklasse vererbt bekommt. Eine Subklasse besitzt sowohl alle Attribute und Methoden der Superklasse als auch eigene speziellere Attribute und Methoden, die die Subklasse näher beschreiben.\\
@@ -87,7 +89,7 @@ Die Superklasse ist eben sehr allgemein gehalten, wohingegen die Subklasse eine 
 \\
 In der Programmiersprache Java kann allerdings eine Subklasse nur genau eine Superklasse besitzen. In der Programmiersprache C++ ist dies anders, da dort eine Subklasse von mehreren Superklassen erben kann.\footcite{shit_java_tut}
 
-\paragraph{Interfaces}
+\paragraph{Interfaces}\ \\
 Um die Mehrfachvererbung in Java zu umgehen, wurden als eine Art Kompromiss Interfaces eingeführt. Ein Interface ist eine Schnittstelle, in der festgelegt wird, über welche Methoden die Klassen, die das Interface implementieren, verfügen müssen. Die Interfaces selber enthalten daher nur Funktionsköpfe und Konstanten. Alle Klassen, die das Interface implementieren, müssen sämtliche Methoden, die das Interface vorgibt, enthalten.\\
 \\
 Interfaces werden verwendet, um Gemeinsamkeiten (z.B. gleiche Funktionalitäten), die mehreren Klassen zugrunde liegen, in einer separaten Klasse zu definieren. Die Objekte der implementierenden Klasse sind wie bei der Vererbung gleichzeitig auch Objekte des Interfaces. In Java werden Interfaces daher oft genutzt, um die fehlende Mehrfachvererbung gewissermaßen zu simulieren, da eine Klasse zwar nur von einer Superklasse abgeleitet werden kann, jedoch beliebig viele Interfaces implementieren kann.\\
@@ -96,7 +98,7 @@ In der Praxis werden Interfaces häufig für Kommunikationszwecke verwendet. Zwe
 \\
 Das Interface dient auch dazu, den eigenen Quellcode vor fremden Entwicklern zu schützen, da diese nur auf die Methoden des Interfaces zugreifen können.\footcite{shit_java_tut}
 
-\paragraph{Arrays}
+\paragraph{Arrays}\ \\
 Eindimensionale Arrays (deutsch: Felder) sind im Prinzip einfache Listen. Diese Arrays werden mit einem Datentypen deklariert, d.h. alle Werte, die in diesem Array gespeichert werden sollen, müssen von demselben Datentyp sein, mit dem das Array deklariert wurde.\\
 \\
 Das Array erhält außerdem eine festgelegte unveränderbare Größe, die in dem Attribut length gespeichert wird und zur Laufzeit abfragbar ist. Wird bei einem Array z.B. auf ein elftes Element zugegriffen und das Array wurde mit einer Länge von zehn deklariert, so wird eine sogenannte \displaycode{java.lang.ArrayIndexOutOfBoundsException} (Ausnahme) geworfen. \\

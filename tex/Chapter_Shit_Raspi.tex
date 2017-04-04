@@ -7,7 +7,7 @@ Das Motiv hinter der Entwicklung eines preisgünstigen Rechners war die sinkende
 
 \subsubsection{Bauteile}
 \setcounter{secnumdepth}{4}
-\paragraph{Prozessor}
+\paragraph{Prozessor}\ \\
 Der Prozessor der ersten Generation nutzt den ARMv6-Instruktionssatz. Des Weiteren werden die ARM-Instruktionssatz-Erweiterungen Thumb und Java-Bytecode unterstützt (Jazelle). Der Speicher ist über einen 64 Bit breiten Bus angebunden und wird direkt als Package-on-Package auf den Prozessor gelötet.\\
 \\
 Da die Raspberry Pi Foundation eine Verringerung der Lebensdauer bei Übertaktung befürchtete, wurde der Prozessor zunächst mit einem „Sticky (engl. wörtlich „klebenden“, das bedeutet: nicht rücksetzbaren) Bit“ ausgestattet, welches unwiderruflich gesetzt wird, sobald der Prozessor übertaktet wird und somit ein Erlöschen der Garantie signalisiert. Nachdem ausführliche Tests zeigten, dass sich ein Übertakten auf bis zu 1 GHz kaum auf die Lebensdauer auswirkt, wurde am 19. September 2012 mit einem Treiber-Update die Möglichkeit geschaffen, sowohl Prozessor als auch GPU und Speicher ohne Garantieverlust zu übertakten. Die Frequenz und Spannung wird dabei im Betrieb nur dann erhöht, wenn die Leistung benötigt wird und die Temperatur des Chips nicht über 85 $^{\circ}$C liegt. Das Sticky-Bit wird nur noch gesetzt, wenn stärker als empfohlen übertaktet wird.\\
@@ -18,24 +18,24 @@ In der zweiten Generation kommt ein SoC mit der Bezeichnung BCM2836 ebenfalls vo
 \\
 In der dritten Generation wird ein BCM2837 von Broadcom eingesetzt. Der verwendete ARM Cortex-A53 mit 1,2 GHz Taktfrequenz hat 50–60 \% mehr Leistung als die zweite Generation bzw. fast die zehnfache Leistung gegenüber der ersten Generation.\footcite{shit_raspi}
 
-\paragraph{Grafik}
+\paragraph{Grafik}\ \\
 Der ARM11-Prozessor ist mit Broadcoms „VideoCore“-Grafikkoprozessor kombiniert. OpenGL ES 2.0 wird unterstützt, und Filme in Full-HD-Auflösung (1080p30 H.264 high-profile) können dekodiert und über die HDMI-Buchse und FBAS-Cinchbuchse ausgegeben werden.\\
 \\
 Am 24. August 2012 wurde bekanntgegeben, dass Lizenzen für das hardwarebeschleunigte Dekodieren von VC1- und MPEG-2-kodierten Videos zusätzlich erworben werden können. Die Lizenz beschränkt sich dabei auf den bei der Bestellung mit der Seriennummer spezifizierten Raspberry Pi, so dass für jeden dieser Mikrorechner eine eigene Lizenz erforderlich ist. Die vorhandene Lizenz zum Dekodieren von H.264-kodierten Videos erlaubt nach Angaben der Raspberry Pi Foundation auch das Kodieren solcher Videos.\\
 \\
 Im März 2014 legte Broadcom Dokumentation und Treibercode für den SoC BCM21553 unter einer BSD-Lizenz offen, mit dem auch ein freier Grafiktreiber für den verwendeten BCM2835 erstellt werden kann. Ein entsprechender Treiber wurde nach einem von der Raspberry Pi Foundation ausgerufenen und mit 10.000 USD dotierten Programmierwettbewerb im März 2014 von einem einzelnen Programmierer veröffentlicht.\footcite{shit_raspi}
 
-\paragraph{Audio}
+\paragraph{Audio}\ \\
 
 Das Audiosignal erzeugt das System-on-Chip (SoC) BCM 2835 von Broadcom durch eine einfache Pulsweitenmodulation (PWM) und gibt es über den Audioausgang der 3,5-mm-Klinkenbuchse aus. Auf einen echten Digital-Analog-Umsetzer (DAC) wurde aus Kostengründen verzichtet. Diese Lösung gilt jedoch als schwach, weil DAC und Tiefpassfilter fehlen, da ohne diese störende Nebengeräusche, die als Vielfaches der Modulationsfrequenz entstehen, nicht beseitigt werden. Elektrisch ist dieser Ausgang besser zum Anschluss von Aktivboxen oder am Verstärker einer herkömmlichen Stereoanlage geeignet als für verstärkerlose Kopfhörer. Des Weiteren wird ein Audiosignal in digitaler Form über den HDMI-Ausgang ausgegeben.\\
 \\
 Verschiedene Dritthersteller bieten daher auch dedizierte Audiolösungen in Form von USB-Audio-Karten oder als Aufsteckkarten an, die eine simulierte I$^2$S-Schnittstelle nutzen. Ferner existieren Lösungen, die das Audiosignal aus der HDMI-Schnittstelle extrahieren.\footcite{shit_raspi}
 
-\paragraph{RTC}
+\paragraph{RTC}\ \\
 
 Der Raspberry Pi enthält keine Echtzeituhr. Das Gerät kennt daher nach dem Anschalten weder Datum noch Uhrzeit. Sofern es mit dem Netzwerk verbunden ist und es nicht selbst kritische Teile der Netzwerkinfrastruktur (etwa den Namensdienst) anbietet, kann die Zeit meist via NTP beschafft werden. Ansonsten muss eine separate Echtzeituhr angeschlossen werden, wenn eine verwendete Software die korrekte Uhrzeit benötigt.\footcite{shit_raspi}
 
-\paragraph{GPIO}
+\paragraph{GPIO}\ \\
 
 Der Raspberry Pi bietet eine frei programmierbare Schnittstelle (auch bekannt als GPIO, General Purpose Input/Output), worüber LEDs, Sensoren, Displays und andere Geräte angesteuert werden können. Es gibt fünf GPIO-Anschlüsse, wobei im Allgemeinen nur der Anschluss P1 gebraucht wird. Die GPIO-Schnittstelle P1 besteht bei Modell A und Modell B aus 26 Pins und bei Modell A+ und Modell B+ aus 40 Pins, jeweils ausgeführt als doppelreihige Stiftleiste, wovon\\
 
