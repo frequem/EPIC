@@ -1,5 +1,4 @@
-\subsection{C}
-
+\subsection{C}\displayauthor{Michael Friesenhengst}\ \\
 C entstand Anfang der siebziger Jahre im Zusammenhang mit dem Betriebssystem Unix an den AT\&T Bell Laboratories. Eine wesentliche Rolle spielte dabei Dennis Ritchie.\\
 Wichtige Ideen stammen aus der Sprache BCPL, die von M. Richards entwickelt wurde.\\
 Unmittelbarer Vorgänger von C ist das von K. Thompson 1970 im Zusammenhang mit der Unix-Entwicklung entstandene B.\\
@@ -23,15 +22,15 @@ C lässt bewusst Spielraum zwischen zwei Polen:
 \item Entwicklung hochportabler Programme
 \item Einsatz als ''höherer Assembler''\\
 d.h. Entwicklung maschinennaher, nicht portabler Programme 
-\end{itemize}
+\end{itemize}\cite{c_lang_intro}
 
 \subsubsection{Verwendung}
-Trotz des eher hohen Alters ist die Sprache C auch heute weit verbreitet und wird sowohl im Hochschulbereich, wie auch in der Industrie und im Open-Source-Bereich verwendet.
+Trotz des eher hohen Alters ist die Sprache C auch heute weit verbreitet und wird sowohl im Hochschulbereich, wie auch in der Industrie und im Open-Source-Bereich verwendet.\footcite{c_wiki}
 \paragraph{System- und Anwendungsprogrammierung}
 \ \\
 Das Haupteinsatzgebiet von C liegt in der Systemprogrammierung einschließlich der Erstellung von Betriebssystemen und der Programmierung von eingebetteten Systemen. Der Grund liegt in der Kombination von erwünschten Charakteristiken wie Portabilität und Effizienz mit der Möglichkeit, Hardware direkt anzusprechen und dabei niedrige Anforderungen an die Laufzeitumgebung zu haben.\\
 \\
-Auch Anwendungssoftware wird oft in C erstellt. Viele Programmierschnittstellen für Anwendungsprogramme und Betriebssystem-APIs werden in Form von C-Schnittstellen implementiert, zum Beispiel Win32. Gemäß C-Standard existieren jedoch keine Funktionen zur positionierten Ausgabe auf Displays, d.h. text- oder grafisch orientierte Benutzeroberflächen sind in reinem C nicht realisierbar. Es existieren jedoch zahlreiche Bibliotheken, die für das jeweilige Zielsystem eine solche Ausgabe ermöglichen.\\
+Auch Anwendungssoftware wird oft in C erstellt. Viele Programmierschnittstellen für Anwendungsprogramme und Betriebssystem-APIs werden in Form von C-Schnittstellen implementiert, zum Beispiel Win32. Gemäß C-Standard existieren jedoch keine Funktionen zur positionierten Ausgabe auf Displays, d.h. text- oder grafisch orientierte Benutzeroberflächen sind in reinem C nicht realisierbar. Es existieren jedoch zahlreiche Bibliotheken, die für das jeweilige Zielsystem eine solche Ausgabe ermöglichen.\footcite{c_wiki}\\
 
 \paragraph{Implementierung anderer Sprachen}
 \ \\
@@ -41,11 +40,11 @@ C wird als Zwischencode einiger Implementierungen höherer Programmiersprachen v
 \\
 C wurde allerdings als Programmiersprache und nicht als Zielsprache für Compiler entworfen. Als Zwischensprache ist es daher eher schlecht geeignet. Das führte zu C-basierten Zwischensprachen wie C--.\\
 \\
-C wird oft für die Erstellung von Anbindungen (engl. bindings) genutzt (zum Beispiel Java Native Interface). Diese Anbindungen erlauben es Programmen, die in einer anderen Hochsprache geschrieben sind, Funktionen aufzurufen, die in C implementiert wurden. Der umgekehrte Weg ist oft ebenfalls möglich und kann verwendet werden, um in C geschriebene Programme mit einer anderen Sprache zu erweitern.\\
+C wird oft für die Erstellung von Anbindungen (engl. bindings) genutzt (zum Beispiel Java Native Interface). Diese Anbindungen erlauben es Programmen, die in einer anderen Hochsprache geschrieben sind, Funktionen aufzurufen, die in C implementiert wurden. Der umgekehrte Weg ist oft ebenfalls möglich und kann verwendet werden, um in C geschriebene Programme mit einer anderen Sprache zu erweitern.\footcite{c_wiki}\\
 
 \subsubsection{Syntax}
 
-C besitzt eine sehr kleine Menge an Schlüsselwörtern. Die Anzahl der Schlüsselwörter ist so gering, weil fast alle Aufgaben, welche in anderen Sprachen über eigene Schlüsselwörter realisiert werden, über Funktionen der C-Standard-Bibliothek realisiert werden (zum Beispiel die Ein- und Ausgabe über Konsole oder Dateien, dynamische Speicherverwaltung, usw.).\\
+C besitzt eine sehr kleine Menge an Schlüsselwörtern. Die Anzahl der Schlüsselwörter ist so gering, weil fast alle Aufgaben, welche in anderen Sprachen über eigene Schlüsselwörter realisiert werden, über Funktionen der C-Standard-Bibliothek realisiert werden (zum Beispiel die Ein- und Ausgabe über Konsole oder Dateien, dynamische Speicherverwaltung, usw.).\footcite{c_wiki}\\
 
 \paragraph{Datentypen}
 \ \\
@@ -137,16 +136,17 @@ Bis zum C99-Standard gab es keinen Datentyp zum Speichern eines Wahrheitswerts. 
 \ \\
 \textbf{\_Complex und \_Imaginary}\\
 Seit C99 gibt es drei Gleitkomma-Datentypen für komplexe Zahlen, welche aus den drei Gleitkommatypen abgeleitet sind: float \_Complex, double \_Complex und long double \_Complex. Ebenfalls in C99 eingeführt wurden Gleitkomma-Datentypen für rein imaginäre Zahlen: float \_Imaginary, double \_Imaginary und long double \_Imaginary.\\
-
+\ \\
+\cite{c_wiki}
 \subsubsection{Funktionen}
 
-Ein C-Programm besteht aus der main-Funktion und optional aus weiteren Funktionen. Weitere Funktionen können entweder selbst definiert werden oder vorgefertigt aus der C-Standard-Bibliothek übernommen werden.
+Ein C-Programm besteht aus der main-Funktion und optional aus weiteren Funktionen. Weitere Funktionen können entweder selbst definiert werden oder vorgefertigt aus der C-Standard-Bibliothek übernommen werden.\footcite{c_wiki}
 
 \paragraph{main}
 \ \\
 Jedes C-Programm muss eine Funktion mit dem Namen main haben, anderenfalls wird das Programm nicht kompiliert. Die main-Funktion ist der Einsprungspunkt eines C-Programms, das heißt die Programmausführung beginnt immer mit dieser Funktion.\\
 \\
-Außer der main-Funktion müssen in einem C-Programm keine weiteren Funktionen enthalten sein. Sollen andere Funktionen ausgeführt werden, müssen sie in der main-Funktionen aufgerufen werden. Die main-Funktion wird deshalb auch als Hauptprogramm bezeichnet, alle weiteren Funktionen als Unterprogramme.
+Außer der main-Funktion müssen in einem C-Programm keine weiteren Funktionen enthalten sein. Sollen andere Funktionen ausgeführt werden, müssen sie in der main-Funktionen aufgerufen werden. Die main-Funktion wird deshalb auch als Hauptprogramm bezeichnet, alle weiteren Funktionen als Unterprogramme.\footcite{c_wiki}
 \paragraph{Selbstdefinierte Funktionen}
 \ \\
 In C lassen sich beliebig viele Funktionen selbst definieren. Eine Funktionsdefinition besteht aus erstens aus dem Datentyp des Rückgabewerts, zweitens dem Namen der Funktion, drittens einer eingeklammerten Liste von Parametern und viertens aus einem eingeklammerten Funktionsrumpf, in welchem ausprogrammiert wird, was die Funktion tun soll.\\
@@ -171,6 +171,8 @@ void begruessung (void)\{\\
 \}
 }
 
+\cite{c_wiki}
+
 \paragraph{C-Standard-Bibliothek}
 \ \\
 Die Funktionen der Standard-Bibliothek sind nicht Teil der Programmiersprache C. Sie werden jedoch mit fast jedem Compiler mitgeliefert und können verwendet werden, sobald man die jeweils entsprechende Header-Datei eingebunden hat. Beispielsweise dient die Funktion printf zur Ausgabe von Text. Sie kann verwendet werden, nachdem man die Header-Datei stdio.h eingebunden hat.\\
@@ -181,6 +183,8 @@ main()\{\\
 \blank{1cm}	printf("hello world!\\n");\\
 \}
 }
+\ \\
+\cite{c_wiki}
 \ \\
 \paragraph{Anweisungen}
 \ \\
@@ -205,6 +209,8 @@ int main()\{                            /* Definition */\\
 \blank{1cm}	return 0;                           /* Return-Anweisung */\\
 \}
 }
+\ \\
+\cite{c_wiki}
 
 \subsubsection{Namen}
 Beim Benennen von eigenen Variablen, Konstanten, Funktionen und Datentypen muss man sich an einige Regeln zur Namensgebung halten. Erstens muss das erste Zeichen eines Bezeichners ein Buchstabe oder Unterstrich sein. Zweitens dürfen die folgenden Zeichen nur die Buchstaben A bis Z und a bis z, Ziffern und der Unterstrich sein. Und drittens darf der Name keines der Schlüsselwörter sein.\\
@@ -219,4 +225,4 @@ Bestimmte Bezeichner sind außerdem für die Implementierung reserviert:
 \item Bezeichner, die mit zwei aufeinanderfolgenden Unterstrichen beginnen
 \item Bezeichner, die mit Unterstrich gefolgt von einem Großbuchstaben anfangen.
 \end{itemize}
-Erweiterungen am Sprachkern, die neue Schlüsselwörter erfordern, verwenden dafür ebenfalls Namen aus diesem reservierten Bereich, um zu vermeiden, dass sie mit Bezeichnern in existierenden C-Programmen kollidieren, z. B. \displaycode{\_\_attribute\_\_}, \displaycode{\_Complex}, \displaycode{\_Generic}.
+Erweiterungen am Sprachkern, die neue Schlüsselwörter erfordern, verwenden dafür ebenfalls Namen aus diesem reservierten Bereich, um zu vermeiden, dass sie mit Bezeichnern in existierenden C-Programmen kollidieren, z. B. \displaycode{\_\_attribute\_\_}, \displaycode{\_Complex}, \displaycode{\_Generic}.\footcite{c_wiki}

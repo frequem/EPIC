@@ -1,10 +1,11 @@
-\subsection{Python}
+\subsection{Python}\displayauthor{Michael Friesenhengst}\ \\
 \noindent
 Python ist eine einfach zu lernende, aber mächtige Programmiersprache mit effizienten abstrakten Datenstrukturen und einem einfachen, aber effektiven Ansatz zur objektorientierten Programmierung. Durch die elegante Syntax und die dynamische Typisierung ist Python als interpretierte Sprache sowohl für Skripte als auch für schnelle Anwendungsentwicklung hervorragend geeignet.\\
 \\
 Der Python-Interpreter und die umfangreiche Standardbibliothek sind als Quelltext und in binärer Form für alle wichtigen Plattformen auf der Webseite http://www.python.org frei verfügbar, und können frei weiterverbreitet werden. Auf der gleichen Seite finden sich Distributionen von Drittanbietern, Verweise auf weitere freie Module, Programme und Werkzeuge, sowie Dokumentation.\\
 \\
-Der Python-Interpreter kann auf einfache Weise um neue Funktionen und Datentypen erweitert werden, die in C oder C++ (oder andere Sprachen, die sich von C aus ausführen lassen) implementiert sind. Auch als Erweiterungssprache für anpassbare Applikationen ist Python hervorragend geeignet.
+Der Python-Interpreter kann auf einfache Weise um neue Funktionen und Datentypen erweitert werden, die in C oder C++ (oder andere Sprachen, die sich von C aus ausführen lassen) implementiert sind. Auch als Erweiterungssprache für anpassbare Applikationen ist Python hervorragend geeignet.\footcite{python_tutorial_intro}
+
 
 \subsubsection{Warum Python?}
 
@@ -27,8 +28,7 @@ Python ermöglicht die Entwicklung von kompakten und lesbaren Programmen. Progra
 \item Anweisungen werden durch Einrückungen und nicht durch öffnende und schließende Klammern gruppiert
 \item Variablen- oder Argumentdeklarationen sind nicht nötig.
 \end{itemize}
-\ \\
-Python ist erweiterbar: Wer in C programmieren kann, kann einfach eine neue eingebaute Funktion oder ein Modul zum Interpreter hinzuzufügen. Entweder um zeitkritische Operationen mit maximaler Geschwindigkeit auszuführen oder um Python-Programme zu Bibliotheken zu linken, die nur in binärer Form (wie beispielsweise herstellerspezifische Grafikbibliotheken) verfügbar sind. Wenn man erst einmal mit Python vertraut ist, kann man den Python-Interpreter zu in C geschriebenen Applikationen linken und Python als Erweiterung oder Kommandosprache für diese Applikation nutzen.\\
+Python ist erweiterbar: Wer in C programmieren kann, kann einfach eine neue eingebaute Funktion oder ein Modul zum Interpreter hinzuzufügen. Entweder um zeitkritische Operationen mit maximaler Geschwindigkeit auszuführen oder um Python-Programme zu Bibliotheken zu linken, die nur in binärer Form (wie beispielsweise herstellerspezifische Grafikbibliotheken) verfügbar sind. Wenn man erst einmal mit Python vertraut ist, kann man den Python-Interpreter zu in C geschriebenen Applikationen linken und Python als Erweiterung oder Kommandosprache für diese Applikation nutzen.\footcite{python_tutorial_appetite}
 
 \subsubsection{Datentypen und Strukturen}
 Python besitzt eine größere Anzahl von grundlegenden Datentypen. Neben der herkömmlichen Arithmetik unterstützt es transparent auch beliebig große Ganzzahlen und komplexe Zahlen.\\
@@ -37,20 +37,20 @@ Die Sprache verfügt über die übliche Ausstattung an Zeichenkettenoperationen.
 \\
 In Python ist alles ein Objekt; Klassen, Typen, Methoden, Module etc. Der Datentyp ist jeweils an das Objekt (den Wert) gebunden und nicht an eine Variable, d. h. Datentypen werden dynamisch vergeben – nicht wie bei Java.\\
 \\
-Trotz der dynamischen Typverwaltung enthält Python eine gewisse Typprüfung. Implizite Umwandlungen nach dem Duck-Typing-Prinzip sind unter anderem für numerische Typen definiert, so dass man beispielsweise eine komplexe Zahl mit einer langen Ganzzahl ohne explizite Typumwandlung multiplizieren kann. Mit dem Format-Operator \displaycode{\%} gibt es eine implizite Umwandlung eines Objekts in eine Zeichenkette. Der Operator \displaycode{==} überprüft zwei Objekte auf (Wert-)Gleichheit. Der Operator \displaycode{is} überprüft die tatsächliche Identität zweier Objekte.
+Trotz der dynamischen Typverwaltung enthält Python eine gewisse Typprüfung. Implizite Umwandlungen nach dem Duck-Typing-Prinzip sind unter anderem für numerische Typen definiert, so dass man beispielsweise eine komplexe Zahl mit einer langen Ganzzahl ohne explizite Typumwandlung multiplizieren kann. Mit dem Format-Operator \displaycode{\%} gibt es eine implizite Umwandlung eines Objekts in eine Zeichenkette. Der Operator \displaycode{==} überprüft zwei Objekte auf (Wert-)Gleichheit. Der Operator \displaycode{is} überprüft die tatsächliche Identität zweier Objekte.\footcite{python_wiki}
 
 \paragraph{Sammeltypen}\ \\
 Python besitzt mehrere Sammeltypen, darunter Listen, Tupel, Mengen (Sets) und assoziative Arrays (Dictionaries). Listen, Tupel und Zeichenketten sind Folgen (Sequenzen, Arrays) und kennen fast alle die gleichen Methoden: Über die Zeichen einer Kette kann man ebenso iterieren wie über die Elemente einer Liste. Außerdem gibt es die unveränderlichen Objekte, die nach ihrer Erzeugung nicht mehr geändert werden können. Listen sind z. B. erweiterbare Felder (Arrays), wohingegen Tupel und Zeichenketten eine feste Länge haben und unveränderlich sind.\\
 \\
 Der Zweck solcher Unveränderlichkeit hängt z. B. mit den Wörterbüchern zusammen, einem Datentyp, der auch als assoziatives Array bezeichnet wird. Um die Datenkonsistenz zu sichern, müssen die Schlüssel eines Wörterbuches vom Typ „unveränderlich“ sein. Die ins Wörterbuch eingetragenen Werte können dagegen von beliebigem Typ sein.\\
 \\
-Sets sind Mengen von Objekten und in CPython ab Version 2.4 im Standardsprachumfang enthalten. Diese Datenstruktur kann beliebige (paarweise unterschiedliche) Objekte aufnehmen und stellt Mengenoperationen wie beispielsweise Durchschnitt, Differenz und Vereinigung zur Verfügung.
+Sets sind Mengen von Objekten und in CPython ab Version 2.4 im Standardsprachumfang enthalten. Diese Datenstruktur kann beliebige (paarweise unterschiedliche) Objekte aufnehmen und stellt Mengenoperationen wie beispielsweise Durchschnitt, Differenz und Vereinigung zur Verfügung.\footcite{python_wiki}
 
 \paragraph{Objektsystem}\ \\
 
 Das Typsystem von Python ist auf das Klassensystem abgestimmt. Obwohl die eingebauten Datentypen genau genommen keine Klassen sind, können Klassen von einem Typ erben. So kann man die Eigenschaften von Zeichenketten oder Wörterbüchern erweitern – auch von Ganzzahlen. Python unterstützt Mehrfachvererbung.\\
 \\
-Die Sprache unterstützt direkt den Umgang mit Typen und Klassen. Typen können ausgelesen (ermittelt) und verglichen werden und verhalten sich wie Objekte – in Wirklichkeit sind die Typen selbst ein Objekt. Die Attribute eines Objektes können als Wörterbuch extrahiert werden.
+Die Sprache unterstützt direkt den Umgang mit Typen und Klassen. Typen können ausgelesen (ermittelt) und verglichen werden und verhalten sich wie Objekte – in Wirklichkeit sind die Typen selbst ein Objekt. Die Attribute eines Objektes können als Wörterbuch extrahiert werden.\footcite{python_wiki}
 
 \subsubsection{Syntax}
 Eines der Entwurfsziele für Python war die gute Lesbarkeit des Quellcodes. Die Anweisungen benutzen häufig englische Schlüsselwörter, wo andere Sprachen Symbole einsetzen. Darüber hinaus besitzt Python weniger syntaktische Konstruktionen als viele andere strukturierte Sprachen wie C, Perl oder Pascal:\\
@@ -66,7 +66,7 @@ Eines der Entwurfsziele für Python war die gute Lesbarkeit des Quellcodes. Die 
 	\end{itemize}
 \end{itemize}
 \ \\
-Beim letzten Punkt bieten andere Programmiersprachen zusätzlich \displaycode{switch} und/oder \displaycode{goto}. Diese wurden zugunsten der Lesbarkeit in Python weggelassen und müssen durch \displaycode{if}-Konstrukte oder andere Verzweigungsmöglichkeiten (Slices, Wörterbücher) abgebildet werden. Im Gegensatz zu vielen anderen Sprachen können \displaycode{for}- und \displaycode{while}-Schleifen einen \displaycode{else}-Zweig haben. Dieser wird nur ausgeführt, wenn die Schleife vollständig durchlaufen wurde und nicht mittels \displaycode{break} abgebrochen wird.
+Beim letzten Punkt bieten andere Programmiersprachen zusätzlich \displaycode{switch} und/oder \displaycode{goto}. Diese wurden zugunsten der Lesbarkeit in Python weggelassen und müssen durch \displaycode{if}-Konstrukte oder andere Verzweigungsmöglichkeiten (Slices, Wörterbücher) abgebildet werden. Im Gegensatz zu vielen anderen Sprachen können \displaycode{for}- und \displaycode{while}-Schleifen einen \displaycode{else}-Zweig haben. Dieser wird nur ausgeführt, wenn die Schleife vollständig durchlaufen wurde und nicht mittels \displaycode{break} abgebrochen wird.\footcite{python_wiki}
 
 \paragraph{Strukturierung durch Einrücken}\ \\
 Python benutzt Einrückungen als Strukturierungselement. Diese Idee wurde erstmals von Peter J. Landin vorgeschlagen und von ihm off-side rule („Abseitsregel“) genannt. In den meisten anderen Programmiersprachen werden Blöcke durch Klammern oder Schlüsselwörter markiert, während verschieden große Leerräume außerhalb von Zeichenketten keine spezielle Semantik tragen. Bei diesen Sprachen ist die Einrückung zur optischen Hervorhebung eines Blockes zwar erlaubt und in der Regel auch erwünscht, aber nicht vorgeschrieben. Für Programmierneulinge wird der Zwang zu lesbarem Stil aber als Vorteil gesehen.\\
@@ -94,7 +94,7 @@ def fakult(x):\\
 \blank{1cm}\blank{1cm}return 1\\
 }\\
 \\
-Es ist jedoch darauf zu achten, die Einrückungen im gesamten Programmtext gleich zu gestalten. Die gemischte Verwendung von Leerzeichen und Tabulatorzeichen kann zu Problemen führen, da der Python-Interpreter Tabstops im Abstand von acht Leerzeichen annimmt. Je nach Konfiguration des Editors können Tabulatoren optisch mit weniger als acht Leerzeichen dargestellt werden, was zu Syntaxfehlern oder ungewollter Programmstrukturierung führen kann.\\
+Es ist jedoch darauf zu achten, die Einrückungen im gesamten Programmtext gleich zu gestalten. Die gemischte Verwendung von Leerzeichen und Tabulatorzeichen kann zu Problemen führen, da der Python-Interpreter Tabstops im Abstand von acht Leerzeichen annimmt. Je nach Konfiguration des Editors können Tabulatoren optisch mit weniger als acht Leerzeichen dargestellt werden, was zu Syntaxfehlern oder ungewollter Programmstrukturierung führen kann.\footcite{python_wiki}\\
 \\
 Man kann die Fakultätsfunktion aber auch wie in C einzeilig mit ternärem Operator formulieren:\\
 \\
@@ -164,7 +164,7 @@ def stack():\\
 pop, push, is\_empty = stack()\\
 }\\
 \\
-Auf diese Weise erhält man die drei Funktionsobjekte pop, push, is\_empty, um den Stack zu modifizieren bzw. auf enthaltene Elemente zu prüfen, ohne l direkt modifizieren zu können.\\
+Auf diese Weise erhält man die drei Funktionsobjekte pop, push, is\_empty, um den Stack zu modifizieren bzw. auf enthaltene Elemente zu prüfen, ohne l direkt modifizieren zu können.\footcite{python_wiki}\\
 
 \paragraph{Ausnahmebehandlung}\ \\
 
@@ -184,4 +184,4 @@ while True:\\
 \blank{1cm}\blank{1cm}print("Eine Zahl bitte!")\\
 }\\
 \\
-Dieser Code wird den Benutzer so lange nach einer Nummer fragen, bis dieser eine Zeichenfolge eingibt, die sich per int() in eine Ganzzahl konvertieren lässt. Durch die Ausnahmebehandlung wird hier vermieden, dass eine Fehleingabe zu einem Laufzeitfehler führt, der das Programm zur Beendigung zwingt.
+Dieser Code wird den Benutzer so lange nach einer Nummer fragen, bis dieser eine Zeichenfolge eingibt, die sich per int() in eine Ganzzahl konvertieren lässt. Durch die Ausnahmebehandlung wird hier vermieden, dass eine Fehleingabe zu einem Laufzeitfehler führt, der das Programm zur Beendigung zwingt.\footcite{python_wiki}
