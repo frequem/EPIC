@@ -1,0 +1,35 @@
+\subsection{Arduino}\displayauthor{Michael Friesenhengst}\ \\
+Arduino ist eine aus Soft- und Hardware bestehende Physical-Computing-Plattform. Beide Komponenten sind open-source und somit quelloffen. Die Hardware besteht aus einem einfachen Input/Output-Board mit einem Mikrocontroller und analogen und digitalen Ein- und Ausgängen. Die Entwicklungsumgebung soll auch technisch weniger Versierten den Zugang zur Programmierung und zu Mikrocontrollern erleichtern. Die Programmierung selbst erfolgt in C bzw. C++, wobei technische Details wie Header-Dateien vor den Anwendern weitgehend verborgen werden und umfangreiche Bibliotheken und Beispiele die Programmierung vereinfachen. Arduino kann verwendet werden, um eigenständige interaktive Objekte zu steuern oder um mit Softwareanwendungen auf Computern zu interagieren.\footcite{arduino_wiki}
+
+\subsubsection{Hardware}
+Die Hardware eines typischen Arduino basiert auf einem Atmel-AVR-Mikrocontroller aus der megaAVR-Serie. Abweichungen davon gibt es unter anderem bei den Arduinoboards Arduino Due (ARM Cortex-M3 32-Bit-Prozessor vom Typ Atmel SAM3X8E), Yún, Tre, Gemma und Zero, wo andere Mikrocontroller von Atmel eingesetzt werden. Eine Besonderheit stellen zudem die Arduinoboards Yún und Tre dar, die zusätzlich zum Mikrocontroller einen stärkeren Mikroprozessor besitzen. Alle Boards werden entweder über USB (5 V) oder eine externe Spannungsquelle (7–12 V) versorgt und verfügen über eine Taktung von 16-MHz. Es gibt auch Varianten mit 3,3 V-Versorgungsspannung und welche mit abweichender Taktung.\\
+\\
+Konzeptionell werden alle Boards über eine serielle Schnittstelle programmiert, wenn Reset aktiviert ist. Der Mikrocontroller ist mit einem Bootloader vorprogrammiert, wodurch die Programmierung direkt über die serielle Schnittstelle ohne externes Programmiergerät erfolgen kann. Bei älteren Boards wurde dafür die RS-232-Schnittstelle genutzt. Bei aktuellen Boards geschieht die Umsetzung von USB nach seriell über einen eigens entwickelten USB-Seriell-Konverter.\\
+\\
+Alle Arduinoboards, bis auf den Arduino Esplora, stellen digitale Input- und Output-Pins (kurz: I/O-Pins) des Mikrocontrollers zur Nutzung für elektronische Schaltungen zur Verfügung. Üblich ist auch, dass eine bestimmte Anzahl dieser Pins PWM-Signale ausgeben können. Zusätzlich stehen dem Benutzer eine bestimmte Anzahl an analogen Eingängen zur Verfügung. Für die Erweiterung werden vorbestückte oder teilweise unbestückte Platinen – sogenannte „Shields“ – angeboten, die auf das Arduino-Board aufsteckbar sind. Es können aber auch z.B. Steckplatinen für den Aufbau von Schaltungen verwendet werden.\footcite{arduino_wiki}
+
+\subsubsection{Software}
+Arduino bringt eine eigene integrierte Entwicklungsumgebung (IDE). Dabei handelt es sich um eine Java-Anwendung, die für die gängigen Plattformen Windows, Linux und MacOS kostenlos verfügbar ist. Die Arduino-IDE bringt einen Code-Editor mit und bindet gcc als Compiler ein. Zusätzlich werden die avr-gcc-Library und weitere Arduino-Libraries eingebunden, die die Programmierung in C und C++ stark vereinfachen.\\
+\\
+Für ein funktionstüchtiges Programm genügt es, zwei Funktionen zu definieren:
+\begin{itemize}
+\item setup() – wird beim Start des Programms (entweder nach dem Übertragen auf das Board oder nach Drücken des Reset-Tasters) einmalig aufgerufen, um z.B. Pins als Eingang oder Ausgang zu definieren.
+\item loop() – wird durchgehend immer wieder durchlaufen, solange das Arduino-Board eingeschaltet ist.
+\end{itemize}
+Hier ein Beispiel für ein Programm, das eine an das Arduino-Board angeschlossene LED blinken lässt:\\
+\ \\
+\displaycode{
+const int ledPin = 13;         // Die LED ist an Pin 13 angeschlossen\\
+void setup()\{\\
+\blank{1cm}	pinMode(ledPin, OUTPUT);     // legt den LED-Pin als Ausgang fest\\
+\}\\
+\\
+void loop()\{\\
+\blank{1cm}	digitalWrite(ledPin, HIGH);  // LED anschalten\\
+\blank{1cm}	delay(1000);                 // 1000 Millisekunden warten\\
+\blank{1cm}	digitalWrite(ledPin, LOW);   // LED ausschalten\\
+\blank{1cm}	delay(1000);                 // weitere 1000 Millisekunden warten\\
+\}
+}
+\ \\
+\cite{arduino_wiki}
