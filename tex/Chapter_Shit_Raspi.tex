@@ -1,0 +1,56 @@
+\subsection{Raspberry Pi 3}
+
+Der Raspberry Pi 3 Model B ist ein handlicher Single-Board-Computer, der auf dem Betriebssystem Raspbian läuft. Raspbian ist eine Linux-Distribution, die auf Debian basiert. Es folgt eine kleine Zusammenfassung, was die Idee des Paspberry Pi ist und wie sie umgesetzt wurde.
+
+\subsubsection{Idee}
+Das Motiv hinter der Entwicklung eines preisgünstigen Rechners war die sinkende Anzahl an Informatikstudenten an der Universität Cambridge sowie die jedes Jahr geringeren Programmierkenntnisse der Studienanfänger. Für einen der Gründe hielt man, dass Computer heute in der Regel teuer und komplex sind und Eltern ihren Kindern deswegen häufig verbieten, mit dem Familien-PC zu experimentieren. Man wollte daher Jugendlichen einen günstigen Computer zum Experimentieren und Erlernen des Programmierens an die Hand geben. Dabei hoffte man, dass sie wie in der Anfangszeit der Heimcomputer (z. B. IMSAI 8080, Apple I, Sinclair ZX80) die Computergrundlagen und -programmierung spielerisch erlernen würden.\footcite{shit_raspi}
+
+\subsubsection{Bauteile}
+\setcounter{secnumdepth}{4}
+\paragraph{Prozessor}
+Der Prozessor der ersten Generation nutzt den ARMv6-Instruktionssatz. Des Weiteren werden die ARM-Instruktionssatz-Erweiterungen Thumb und Java-Bytecode unterstützt (Jazelle). Der Speicher ist über einen 64 Bit breiten Bus angebunden und wird direkt als Package-on-Package auf den Prozessor gelötet.\\
+\\
+Da die Raspberry Pi Foundation eine Verringerung der Lebensdauer bei Übertaktung befürchtete, wurde der Prozessor zunächst mit einem „Sticky (engl. wörtlich „klebenden“, das bedeutet: nicht rücksetzbaren) Bit“ ausgestattet, welches unwiderruflich gesetzt wird, sobald der Prozessor übertaktet wird und somit ein Erlöschen der Garantie signalisiert. Nachdem ausführliche Tests zeigten, dass sich ein Übertakten auf bis zu 1 GHz kaum auf die Lebensdauer auswirkt, wurde am 19. September 2012 mit einem Treiber-Update die Möglichkeit geschaffen, sowohl Prozessor als auch GPU und Speicher ohne Garantieverlust zu übertakten. Die Frequenz und Spannung wird dabei im Betrieb nur dann erhöht, wenn die Leistung benötigt wird und die Temperatur des Chips nicht über 85 $^{\circ}$C liegt. Das Sticky-Bit wird nur noch gesetzt, wenn stärker als empfohlen übertaktet wird.\\
+\\
+Ein starkes Untertakten auf bis zu 50 MHz und Verringern der Spannung ist ebenfalls möglich, was vor allem beim Modell A zu einer deutlich reduzierten Leistungsaufnahme führt.\\
+\\
+In der zweiten Generation kommt ein SoC mit der Bezeichnung BCM2836 ebenfalls vom Hersteller Broadcom zum Einsatz. Der dort in einer Quadcore-Konfiguration eingesetzte ARM Cortex-A7 mit 900 MHz Taktfrequenz nutzt den ARMv7-Instruktionssatz und kommt auf eine Gesamtrechenleistung von 6.840 DMIPS. Dazu ist der Prozessor um Faktor 3 energieeffizienter als sein Vorgänger.\\
+\\
+In der dritten Generation wird ein BCM2837 von Broadcom eingesetzt. Der verwendete ARM Cortex-A53 mit 1,2 GHz Taktfrequenz hat 50–60 \% mehr Leistung als die zweite Generation bzw. fast die zehnfache Leistung gegenüber der ersten Generation.\footcite{shit_raspi}
+
+\paragraph{Grafik}
+Der ARM11-Prozessor ist mit Broadcoms „VideoCore“-Grafikkoprozessor kombiniert. OpenGL ES 2.0 wird unterstützt, und Filme in Full-HD-Auflösung (1080p30 H.264 high-profile) können dekodiert und über die HDMI-Buchse und FBAS-Cinchbuchse ausgegeben werden.\\
+\\
+Am 24. August 2012 wurde bekanntgegeben, dass Lizenzen für das hardwarebeschleunigte Dekodieren von VC1- und MPEG-2-kodierten Videos zusätzlich erworben werden können. Die Lizenz beschränkt sich dabei auf den bei der Bestellung mit der Seriennummer spezifizierten Raspberry Pi, so dass für jeden dieser Mikrorechner eine eigene Lizenz erforderlich ist. Die vorhandene Lizenz zum Dekodieren von H.264-kodierten Videos erlaubt nach Angaben der Raspberry Pi Foundation auch das Kodieren solcher Videos.\\
+\\
+Im März 2014 legte Broadcom Dokumentation und Treibercode für den SoC BCM21553 unter einer BSD-Lizenz offen, mit dem auch ein freier Grafiktreiber für den verwendeten BCM2835 erstellt werden kann. Ein entsprechender Treiber wurde nach einem von der Raspberry Pi Foundation ausgerufenen und mit 10.000 USD dotierten Programmierwettbewerb im März 2014 von einem einzelnen Programmierer veröffentlicht.\footcite{shit_raspi}
+
+\paragraph{Audio}
+
+Das Audiosignal erzeugt das System-on-Chip (SoC) BCM 2835 von Broadcom durch eine einfache Pulsweitenmodulation (PWM) und gibt es über den Audioausgang der 3,5-mm-Klinkenbuchse aus. Auf einen echten Digital-Analog-Umsetzer (DAC) wurde aus Kostengründen verzichtet. Diese Lösung gilt jedoch als schwach, weil DAC und Tiefpassfilter fehlen, da ohne diese störende Nebengeräusche, die als Vielfaches der Modulationsfrequenz entstehen, nicht beseitigt werden. Elektrisch ist dieser Ausgang besser zum Anschluss von Aktivboxen oder am Verstärker einer herkömmlichen Stereoanlage geeignet als für verstärkerlose Kopfhörer. Des Weiteren wird ein Audiosignal in digitaler Form über den HDMI-Ausgang ausgegeben.\\
+\\
+Verschiedene Dritthersteller bieten daher auch dedizierte Audiolösungen in Form von USB-Audio-Karten oder als Aufsteckkarten an, die eine simulierte I$^2$S-Schnittstelle nutzen. Ferner existieren Lösungen, die das Audiosignal aus der HDMI-Schnittstelle extrahieren.\footcite{shit_raspi}
+
+\paragraph{RTC}
+
+Der Raspberry Pi enthält keine Echtzeituhr. Das Gerät kennt daher nach dem Anschalten weder Datum noch Uhrzeit. Sofern es mit dem Netzwerk verbunden ist und es nicht selbst kritische Teile der Netzwerkinfrastruktur (etwa den Namensdienst) anbietet, kann die Zeit meist via NTP beschafft werden. Ansonsten muss eine separate Echtzeituhr angeschlossen werden, wenn eine verwendete Software die korrekte Uhrzeit benötigt.\footcite{shit_raspi}
+
+\paragraph{GPIO}
+
+Der Raspberry Pi bietet eine frei programmierbare Schnittstelle (auch bekannt als GPIO, General Purpose Input/Output), worüber LEDs, Sensoren, Displays und andere Geräte angesteuert werden können. Es gibt fünf GPIO-Anschlüsse, wobei im Allgemeinen nur der Anschluss P1 gebraucht wird. Die GPIO-Schnittstelle P1 besteht bei Modell A und Modell B aus 26 Pins und bei Modell A+ und Modell B+ aus 40 Pins, jeweils ausgeführt als doppelreihige Stiftleiste, wovon\\
+
+\begin{itemize}
+\item 2 Pins eine Spannung von 5 Volt bereitstellen, aber auch genutzt werden können, um den Raspberry Pi mit Strom zu versorgen,
+\item 2 Pins eine Spannung von 3,3 Volt bereitstellen,
+\item 1 Pin als Masse dient,
+\item 4 Pins, die zukünftig eine andere Belegung bekommen könnten, derzeit ebenfalls mit Masse verbunden sind,
+\item 17 Pins (Modell A und B) bzw. 26 Pins (Modell A+ und B+, sowie Raspberry Pi 2 Modell B), welche frei programmierbar sind. \item Sie sind für eine Spannung von 3,3 Volt ausgelegt. Einige von ihnen können Sonderfunktionen übernehmen:
+\item 5 Pins können als SPI-Schnittstelle verwendet werden,
+\item 2 Pins haben einen 1,8-k$\Omega$-Pull-up-Widerstand (auf 3,3 V) und können als I$^2$C-Schnittstelle verwendet werden,
+\item 2 Pins können als UART-Schnittstelle verwendet werden.
+\end{itemize}
+\noindent
+
+Mit dem Modell B+ wurde eine offizielle Spezifikation für Erweiterungsplatinen, sogenannte Hardware attached on top (HAT), vorgestellt. Jeder HAT muss über einen EEPROM-Chip verfügen; Darin finden sich Herstellerinformationen, die Zuordnung der GPIO-Pins sowie eine Beschreibung der angeschlossenen Hardware in Form eines „device tree“-Abschnitts. Dadurch können die nötigen Treiber für den HAT automatisch geladen werden. Auch die genaue Größe und Geometrie des HAT sowie die Position der Steckverbinder werden dadurch festgelegt. Modell A+ und Raspberry Pi 2 Modell B sind mit diesen ebenfalls kompatibel.\\
+\\
+Die in der Revision 2 hinzugekommene GPIO-Schnittstelle P6 erlaubt es, den Raspberry Pi zurückzusetzen bzw. zu starten, nachdem er heruntergefahren wurde. Zur Steuerung der GPIOs existieren Bibliotheken für zahlreiche Programmiersprachen. Auch eine Steuerung durch ein Terminal oder Webinterfaces ist möglich.\footcite{shit_raspi}
