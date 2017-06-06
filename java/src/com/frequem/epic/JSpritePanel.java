@@ -38,16 +38,7 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Fonta
         this.actions = new ArrayList<>();
         this.color = Color.BLACK;
         this.stroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
-        this.font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
-        
-        this.addFocusListener(new FocusAdapter(){
-
-            @Override
-            public void focusLost(FocusEvent fe) {
-                JSpritePanel.this.requestFocusInWindow();
-            }
-        });
-        
+        this.font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);        
     }
     
     @Override
