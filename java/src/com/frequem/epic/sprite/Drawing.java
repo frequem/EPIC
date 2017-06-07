@@ -13,16 +13,21 @@ import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author user
  */
-public class Drawing extends BasicSprite{
+public class Drawing extends BasicSprite implements Serializable{
 
     private final ArrayList<Line> lines;
-    private BufferedImage image;
+    private transient BufferedImage image;
     
     private boolean buffer = false;
     
@@ -103,6 +108,15 @@ public class Drawing extends BasicSprite{
         lines.forEach((l)->l.paint(g));
     }
 
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+        ImageIO.write(this.image, "png", out); // png is lossless
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        this.image = ImageIO.read(in);
+    }
 
     
 }

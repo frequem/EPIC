@@ -7,12 +7,13 @@ package com.frequem.epic.sprite;
 
 import com.frequem.epic.iface.Sprite;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  *
  * @author user
  */
-public abstract class BasicSprite implements Sprite{
+public abstract class BasicSprite implements Sprite, Serializable{
     private int x, y, w, h;
     private boolean selected = false;
 
