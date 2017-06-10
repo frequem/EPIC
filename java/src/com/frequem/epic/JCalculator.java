@@ -1,36 +1,74 @@
 package com.frequem.epic;
 
 import com.frequem.epic.mode.DrawMode;
-import com.sachsenschnitzel.epic.maths.Equation;
-import com.sachsenschnitzel.epic.maths.term.*;
-import com.sachsenschnitzel.epic.maths.term.encap.Parenthesis;
 import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 
-public class JCalculator extends JPanel{
+public class JCalculator extends JPanel implements AdjustmentListener, MouseListener{
     
     private JSpritePanel panel;
     private JMenuBar bar;
+    private JScrollPane panelScrollPane;
+    private boolean scrollEndReached = false;
     
     public JCalculator(){
        this.setLayout(new BorderLayout());
         
-       JScrollPane scroll;
        this.panel = new JSpritePanel();
-       scroll = new JScrollPane(this.panel);
-       scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-       scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-       this.add(scroll, BorderLayout.CENTER);
+       this.panel.setPreferredSize(new Dimension(2000, 2000));
+       this.panelScrollPane = new JScrollPane(this.panel);
+       this.panelScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+       this.panelScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+       
+       this.panelScrollPane.getVerticalScrollBar().addAdjustmentListener(this);
+       this.panelScrollPane.getVerticalScrollBar().addMouseListener(this);
+       
+       this.add(this.panelScrollPane, BorderLayout.CENTER);
        
        this.bar = new JMenuBar(this.panel);
-       scroll = new JScrollPane(this.bar);
-       scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-       scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-       this.add(scroll, BorderLayout.NORTH);
+       final JScrollPane menuScroll = new JScrollPane(this.bar);
+       menuScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+       menuScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+       this.add(menuScroll, BorderLayout.NORTH);
        
        this.panel.setMode(new DrawMode(this.panel));
        
        this.repaint();
        
     }
+
+    @Override
+    public void adjustmentValueChanged(AdjustmentEvent ae) {
+        if(ae.getValueIsAdjusting()){
+            int extent = this.panelScrollPane.getVerticalScrollBar().getModel().getExtent();
+            if(this.panelScrollPane.getVerticalScrollBar().getValue() + extent >= this.panelScrollPane.getVerticalScrollBar().getMaximum()){
+                this.scrollEndReached = true;
+            }
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent me) {}
+
+    @Override
+    public void mousePressed(MouseEvent me) {}
+
+    @Override
+    public void mouseReleased(MouseEvent me) {
+        if(this.scrollEndReached){
+            this.panel.setPreferredSize(new Dimension(this.panel.getWidth(), this.panel.getHeight() + this.panel.getVisibleRect().height));
+            this.panel.revalidate();
+            this.scrollEndReached = false;
+        }
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent me) {}
+
+    @Override
+    public void mouseExited(MouseEvent me) {}
 }

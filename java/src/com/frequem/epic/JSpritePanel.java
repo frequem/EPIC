@@ -18,6 +18,9 @@ import java.awt.Stroke;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -40,14 +43,12 @@ public class JSpritePanel extends JPanel implements Colorable, Strokeable, Fonta
         this.stroke = new BasicStroke(3, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);
         this.font = new Font(Font.SANS_SERIF, Font.PLAIN, 20);
         
-        this.addFocusListener(new FocusAdapter(){
-
+        this.addMouseListener(new MouseAdapter(){
             @Override
-            public void focusLost(FocusEvent fe) {
+            public void mousePressed(MouseEvent me) {
                 JSpritePanel.this.requestFocusInWindow();
             }
         });
-        
     }
     
     @Override
