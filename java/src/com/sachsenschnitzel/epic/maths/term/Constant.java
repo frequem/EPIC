@@ -27,6 +27,8 @@ public class Constant extends Term{
         val = value;
     }
     
+    public double getValue(){ return val; }
+    
     @Override
     public void parseContent(int offset) {}
     
@@ -41,17 +43,17 @@ public class Constant extends Term{
     }
     
     @Override
-    public void changeSubterm(Term o, Term n) {}
+    public void changeSubObj(MathObject o, MathObject n) {}
 
     @Override
-    public double calc(AssignedValues avs){
-        return val;
+    public Term calc(AssignedValues avs){
+        return new Constant(val);
     }
     
-    @Override
+    /*@Override
     public int countEncaps(){
         return 0;
-    }
+    }*/
 
     @Override
     public Term derive(String var){
@@ -69,8 +71,8 @@ public class Constant extends Term{
     @Override
     public void optSize(Graphics g){
         FontMetrics fm = g.getFontMetrics();
-        w = fm.stringWidth(String.valueOf(val));
-        h = fm.getHeight();
+        setWidth(fm.stringWidth(String.valueOf(val)));
+        setHeight(fm.getHeight());
     }
 
     @Override
@@ -93,7 +95,7 @@ public class Constant extends Term{
             color = c;
         else
             g.setColor(color);
-        g.drawString(String.valueOf(val), x, y+h/*-g.getFontMetrics(font).getDescent()*/);
+        g.drawString(String.valueOf(val), getX(), getY()+getHeight());
         
         g.setFont(f);
         g.setColor(c);
@@ -107,11 +109,10 @@ public class Constant extends Term{
     @Override
     public void setCursor(int x, int y) {
         UnfinishedTerm uft = new UnfinishedTerm(this.toInputForm());
-        this.parent.changeSubterm(this, uft);
-        uft.setWidth(w);
-        uft.setHeight(h);
+        this.parent.changeSubObj(this, uft);
+        MathObject.transferProps(this, uft);
         uft.setCursor(x, y);
-        System.out.println("Constant -> UnfinishedT: " + val);
+        //System.out.println("Constant -> UnfinishedT: " + val);
     }
 
     @Override
@@ -122,4 +123,13 @@ public class Constant extends Term{
 
     @Override
     public void paintCursor(Graphics g) {}
+
+    @Override
+    public void putText(String s) {}
+
+    @Override
+    public void backspace() {}
+
+    @Override
+    public void deleteText() {}
 }

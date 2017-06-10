@@ -6,21 +6,27 @@
 package com.sachsenschnitzel.epic.maths.parser;
 
 import com.frequem.epic.mathematics.parser.Parser;
+import com.sachsenschnitzel.epic.maths.Equation;
 import com.sachsenschnitzel.epic.maths.MathObject;
 import com.sachsenschnitzel.epic.maths.term.Constant;
+import com.sachsenschnitzel.epic.maths.term.Fraction;
 import com.sachsenschnitzel.epic.maths.term.Term;
 
 /**
  *
  * @author user
  */
-public class ConstantParser extends Parser{
+public class EquationParser extends Parser{
     @Override
-    public Term tryParse(String data){
-        try{
-            return new Constant(Double.parseDouble(data));
-        }catch(NumberFormatException nfe){
-            return null;
+    public Equation tryParse(String data){
+        Term[] elements = Parser.separateToUnfinishedBy(data, '=');
+        
+        Equation e = null;
+        if(elements.length == 2){
+            e = new Equation(elements[0], elements[1]);
+        
+            e.setCursor(1);
         }
+        return e;
     }
 }

@@ -13,10 +13,13 @@ import java.awt.Rectangle;
  *
  * @author schnitzel
  */
-public abstract class MathObject extends BasicSprite implements Cursorable, Fontable, Colorable{
+public abstract class MathObject extends BasicSprite implements Cursorable, Textable, Fontable, Colorable{
     protected MathObject parent;
     protected Font font;
     protected Color color;
+    
+    //protected int x, y, w, h;
+    //protected boolean selected;
     
     public MathObject(MathObject parent){
         this.parent = parent;
@@ -62,7 +65,12 @@ public abstract class MathObject extends BasicSprite implements Cursorable, Font
      * optimizes size and positions of all possible subterms
      * @param g 
      */
-    public abstract void optStructure(Graphics g);
+    public void optStructure(Graphics g){
+        optSize(g);
+        optSubPos(g);
+    }
+    public abstract void optSize(Graphics g);
+    public abstract void optSubPos(Graphics g);
     
     public abstract void simplify();
     
@@ -71,9 +79,9 @@ public abstract class MathObject extends BasicSprite implements Cursorable, Font
      * @param o original Term
      * @param n new Term
      */
-    public abstract void changeSubterm(Term o, Term n);
+    public abstract void changeSubObj(MathObject o, MathObject n);
     
-    public static void transferProps(Term o, Term n){
+    public static void transferProps(MathObject o, MathObject n){
         n.setParent(o.getParent());
         n.setFont(o.getFont());
         n.setColor(o.getColor());

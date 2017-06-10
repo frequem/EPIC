@@ -13,7 +13,7 @@ import com.sachsenschnitzel.epic.maths.MathObjectWrapper;
 import com.sachsenschnitzel.epic.maths.term.Constant;
 import com.sachsenschnitzel.epic.maths.term.Sum;
 import com.sachsenschnitzel.epic.maths.term.UnfinishedTerm;
-import com.sachsenschnitzel.epic.maths.term.encap.Parenthesis;
+//import com.sachsenschnitzel.epic.maths.term.encap.Parenthesis;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -60,7 +60,6 @@ public class MathMode extends Mode{
                 recent.parseContent(0);
             }
             recent = (MathObjectWrapper)this.getSpritePanel().getSprites().stream().peek(s->s.setSelected(false)).filter(s->s.getBounds().contains(me.getPoint())).filter(s -> s instanceof MathObject).findFirst().get();
-            //System.out.println("found");
             recent.setCursor(me.getX(), me.getY());
             recent.setSelected(true);
         }catch(NoSuchElementException e){

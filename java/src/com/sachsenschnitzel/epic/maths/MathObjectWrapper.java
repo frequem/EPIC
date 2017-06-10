@@ -18,7 +18,7 @@ import java.awt.Rectangle;
  *
  * @author schnitzel
  */
-public class MathObjectWrapper extends MathObject implements Textable{
+public class MathObjectWrapper extends MathObject{
     private MathObject mo;
     
     public MathObjectWrapper(MathObject mo){
@@ -39,13 +39,16 @@ public class MathObjectWrapper extends MathObject implements Textable{
     public String toInputForm(){ return mo.toInputForm(); }
     
     @Override
-    public void optStructure(Graphics g){ mo.optStructure(g); }
+    public void optSize(Graphics g){ mo.optSize(g); }
+    
+    @Override
+    public void optSubPos(Graphics g){ mo.optSubPos(g); }
     
     @Override
     public void simplify(){ mo.simplify(); }
     
     @Override
-    public void changeSubterm(Term o, Term n){
+    public void changeSubObj(MathObject o, MathObject n){
         if(mo == o){
             MathObject.transferProps(o, n);
             mo = n;
@@ -107,26 +110,11 @@ public class MathObjectWrapper extends MathObject implements Textable{
     public void paintCursor(Graphics g) { mo.paintCursor(g); }
     
     @Override
-    public void putText(String s){
-        if(mo instanceof Textable)
-            ((Textable)mo).putText(s);
-        else
-            System.out.println("cannot put text on " + mo.getClass().getSimpleName());
-    }
+    public void putText(String s){ mo.putText(s); }
     
     @Override
-    public void backspace(){
-        if(mo instanceof Textable)
-            ((Textable)mo).backspace();
-        else
-            System.out.println("cannot apply backspace on " + mo.getClass().getSimpleName());
-    }
+    public void backspace(){ mo.backspace(); }
     
     @Override
-    public void deleteText(){
-        if(mo instanceof Textable)
-            ((Textable)mo).deleteText();
-        else
-            System.out.println("cannot delete text from " + mo.getClass().getSimpleName());
-    }
+    public void deleteText(){ mo.deleteText(); }
 }

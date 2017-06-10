@@ -1,6 +1,7 @@
 package com.sachsenschnitzel.epic.maths.term;
 
 import com.sachsenschnitzel.epic.maths.AssignedValues;
+import com.sachsenschnitzel.epic.maths.MathObject;
 import java.awt.Color;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -18,23 +19,17 @@ public class Variable extends Term{
     }
 
     @Override
-    public void changeSubterm(Term o, Term n){
+    public void changeSubObj(MathObject o, MathObject n){
 
     }
 
     @Override
-    public double calc(AssignedValues avs){
+    public Term calc(AssignedValues avs){
         Double assignedVal = avs.getValue(name);
         if(assignedVal != null)
-                return assignedVal;
+                return new Constant(assignedVal);
 
-        //throw exception
-        return 0;
-    }
-    
-    @Override
-    public int countEncaps(){
-        return 0;
+        return null;
     }
 
     @Override
@@ -56,8 +51,8 @@ public class Variable extends Term{
     @Override
     public void optSize(Graphics g){
         FontMetrics fm = g.getFontMetrics();
-        w = fm.stringWidth(name);
-        h = fm.getHeight();
+        setWidth(fm.stringWidth(name));
+        setHeight(fm.getHeight());
     }
 
     @Override
@@ -72,7 +67,7 @@ public class Variable extends Term{
         if(color == null)
             color = g.getColor();
         
-        g.drawString(name, x, y+h);
+        g.drawString(name, getX(), getY()+getHeight());
     }
 
     @Override
@@ -82,8 +77,7 @@ public class Variable extends Term{
 
     @Override
     public String toInputForm() {
-        System.out.println("Not supported yet.");
-        return null;
+        return name;
     }
 
     @Override
@@ -103,12 +97,23 @@ public class Variable extends Term{
     }
 
     @Override
-    public void moveCursor(int direction) {
-        System.out.println("Not supported yet.");
-    }
+    public void moveCursor(int direction) {}
 
     @Override
     public void paintCursor(Graphics g) {
         System.out.println("Not supported yet.");
+    }
+
+    @Override
+    public void putText(String s) {}
+
+    @Override
+    public void backspace() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteText() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
