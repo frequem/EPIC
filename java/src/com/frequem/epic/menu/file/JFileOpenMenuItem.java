@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -42,7 +43,9 @@ public class JFileOpenMenuItem extends JMenuItem{
     @Override
     public void mouseClicked(MouseEvent me) {
         final JFileChooser fc = new JFileChooser();
-        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Epic Spritepanel Files (*.es, *.epic)", "es", "epic");
+        fc.setFileFilter(filter);
+
         int returnVal = fc.showSaveDialog(this.getSpritePanel());
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             System.out.println("ok");
