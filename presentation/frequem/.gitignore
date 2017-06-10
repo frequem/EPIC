@@ -9,3 +9,5 @@ Main.pdf
 *.blg
 *.run.xml
 *.lof
+*.nav
+*.snm
