@@ -3,6 +3,7 @@ package com.sachsenschnitzel.epic.maths;
 import com.sachsenschnitzel.epic.maths.term.Term;
 import com.frequem.epic.iface.Sprite;
 import com.sachsenschnitzel.epic.maths.AssignedValues.AssignedValue;
+import com.sachsenschnitzel.epic.maths.term.Constant;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -43,11 +44,11 @@ public class Function implements Sprite{
         for(int i = 0; i < points.length-1; i++){
             double x = startVal+i*inc;
             avs.assignNewValue(indVars[0], x);
-            points[i] = new Point(x, funcTerm.calc(avs));
+            points[i] = new Point(x, ((Constant)funcTerm.calc(avs)).getValue());
         }
 
         avs.assignNewValue(indVars[0], endVal);
-        points[points.length-1] = new Point(endVal, funcTerm.calc(avs));
+        points[points.length-1] = new Point(endVal, ((Constant)funcTerm.calc(avs)).getValue());
 
         return points;
     }
@@ -64,13 +65,13 @@ public class Function implements Sprite{
         AssignedValues avs = new AssignedValues(new AssignedValue(indVars[0], initVal));
 
         double result;
-        while((result = Math.abs(funcTerm.calc(avs))) > accuracy){
+        while((result = Math.abs(((Constant)funcTerm.calc(avs)).getValue())) > accuracy){
             /* Newton:
              * x_(n+1) = x_n - f(x_n)/f'(x_n)
              */
             avs.assignNewValue(
                         indVars[0],
-                        avs.getValue(indVars[0]) - result/derivative.calc(avs));
+                        avs.getValue(indVars[0]) - result/((Constant)derivative.calc(avs)).getValue());
         }
 
         return avs.getValue(indVars[0]);
