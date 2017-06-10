@@ -8,12 +8,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  *
  * @author schnitzel
  */
-public abstract class MathObject extends BasicSprite implements Cursorable, Textable, Fontable, Colorable{
+public abstract class MathObject extends BasicSprite implements Serializable, Cursorable, Textable, Fontable, Colorable{
     protected MathObject parent;
     protected Font font;
     protected Color color;
