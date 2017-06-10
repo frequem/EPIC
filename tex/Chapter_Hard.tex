@@ -20,8 +20,8 @@ Für den Raspberry Pi wurde ein Python-Skript entwickelt, welches auf ein Signal
 \\
 Die GPIO-Pins des Raspberry Pi sind folgendermaßen aufgebaut:\\
 
-\displayimageg{img/frequem/rpi_gpio}{Raspberry Pi GPIO Layout \footcite{rpi_gpio}}
-
+\displayimageg{img/frequem/rpi_gpio}{Raspberry Pi GPIO Layout \protect\footnotemark}
+\footnotetext{\cite{rpi_gpio}}
 \subsection{Display}
 
 Beim Display handelt es sich um ein 7 Zoll Exemplar von Waveshare, welches mittels HDMI an den Raspberry Pi angeschlossen wird. Wir entschieden uns für diese Größe, da sie unserer Meinung nach einen idealen Kompromiss zwischen Größe, um auf dem Gerät ordentlich arbeiten zu können, und Portabilität, um es leicht transportieren zu können, bietet. Das Display überzeugt mit einer für die Größe relativ hohen Auflösung von 1024x600 Pixel, diese Auflösung wäre beispielsweise nicht möglich gewesen, wenn wir uns für einen Display entschieden hätten, welcher über die GPIO Pins des Raspberry angesteuert wird.\\
@@ -29,8 +29,8 @@ Beim Display handelt es sich um ein 7 Zoll Exemplar von Waveshare, welches mitte
 Das HDMI Kabel musste modifiziert werden, um das ein- und ausschalten des Displays unabhängig von der Recheneinheit durchführen zu können. Es wurden jeweils die Litzen von Pin 12 und 18 entfernt, um die beiden Geräte elektrisch voneinander zu trennen. So kann mithilfe von Leistungs-NFETs bei jedem Gerät jeweils auf GROUND durchgeschalten werden, um es mit Strom zu versorgen.\\
 \\
 Ein HDMI-Kabel ist folgendermaßen aufgebaut (Pin 12 und 18 sind zu entfernen): 
-\displayimageg{img/frequem/hdmi_pins}{HDMI Male Typ A Pin Layout \footcite{hdmi_pinout}}
-
+\displayimageg{img/frequem/hdmi_pins}{HDMI Male Typ A Pin Layout \protect\footnotemark}
+\footnotetext{\cite{hdmi_pinout}}
 \subsection{Touchscreen}
 
 Da es bei Touchscreens viele verschiedene Technologien gibt, welche heutzutage eingesetzt werden, war es nicht einfach einen passenden für unser Display-Modell zu finden.\\

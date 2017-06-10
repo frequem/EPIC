@@ -17,12 +17,13 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.io.Serializable;
 
 /**
  *
  * @author user
  */
-public class Text extends BasicSprite implements Textable, Cursorable, Fontable, Colorable{
+public class Text extends BasicSprite implements Serializable, Textable, Cursorable, Fontable, Colorable{
     
     private String text = null;
     private Font font;

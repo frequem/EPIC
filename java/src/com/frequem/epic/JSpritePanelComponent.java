@@ -18,6 +18,7 @@ public class JSpritePanelComponent extends JPanel implements SpritePanelable{
     
     public JSpritePanelComponent(JSpritePanel spritePanel){
         this.spritePanel = spritePanel;
+        this.setFocusable(false);
     }
     
     @Override
