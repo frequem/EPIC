@@ -9,3 +9,5 @@ rm *.bcf
 rm *.blg
 rm *.run.xml
 rm *.lof
+rm *.nav
+rm *.snm

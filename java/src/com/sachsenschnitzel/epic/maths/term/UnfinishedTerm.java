@@ -11,7 +11,9 @@ import com.frequem.epic.iface.Cursorable;
 import com.frequem.epic.iface.Textable;
 import com.frequem.epic.mathematics.parser.*;
 import com.sachsenschnitzel.epic.maths.AssignedValues;
+import com.sachsenschnitzel.epic.maths.Equation;
 import com.sachsenschnitzel.epic.maths.MathObject;
+import com.sachsenschnitzel.epic.maths.MathObjectWrapper;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -49,35 +51,23 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
         if(this.parent == null)
             return;
         
-        Term t = null;
+        MathObject mo = Parser.tryParse(data, offset);
+        if(mo == null)
+            return;
         
-        for(Parser po : Parser.OP_PARSERS){
-            t = po.tryParse(data);
-            if(t != null){
-                    MathObject.transferProps(this, t);
-                    this.parent.changeSubterm(this, t);
-                    t.parseContent(offset);
-                return;
+        MathObject.transferProps(this, mo);
+        if(mo instanceof Equation && !(parent instanceof MathObjectWrapper)){
+            MathObject p = parent;
+            while(!(p.getParent() instanceof MathObjectWrapper)) //get "root"-mo
+                p = p.getParent();
+            if(!(p instanceof Equation)){ //parse everything anew (easiest way without messing with MOs)
+                UnfinishedTerm uft = new UnfinishedTerm(p.toInputForm());
+                MathObject.transferProps(p, uft);
+                p.getParent().changeSubObj(p, uft);
+                uft.parseContent(1);
             }
-        }
-        if(offset == 0){
-            for(Parser pe : Parser.EC_PARSERS){
-                t = pe.tryParse(data);
-                if(t != null){
-                    MathObject.transferProps(this, t);
-                    this.parent.changeSubterm(this, t);
-                    t.parseContent(0);
-                    return;
-                }
-            }
-            for(Parser pd : Parser.DT_PARSERS){
-                t = pd.tryParse(data);
-                if(t != null){
-                    MathObject.transferProps(this, t);
-                    this.parent.changeSubterm(this, t);
-                    return;
-                }
-            }
+        }else{
+            this.parent.changeSubObj(this, mo);
         }
     }
     
@@ -87,17 +77,11 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
     }
     
     @Override
-    public void changeSubterm(Term o, Term n) {}
+    public void changeSubObj(MathObject o, MathObject n) {}
 
     @Override
-    public double calc(AssignedValues avs) {
-        //don't know what to do yet... possibly parse, but that wouldn't work well with the cursor.
-        return 0;
-    }
-    
-    @Override
-    public int countEncaps(){
-        return 0;
+    public Term calc(AssignedValues avs) {
+        return null;
     }
 
     @Override
@@ -112,8 +96,8 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
     @Override
     public void optSize(Graphics g) {
         FontMetrics fm = g.getFontMetrics();
-        w = fm.stringWidth(data);
-        h = fm.getHeight();
+        setWidth(fm.stringWidth(data));
+        setHeight(fm.getHeight());
     }
 
     @Override
@@ -136,7 +120,7 @@ public class UnfinishedTerm extends Term implements Cursorable, Textable{
             color = c;
         else
             g.setColor(color);
-        g.drawString(data, x, y+h/*-g.getFontMetrics(font).getDescent()*/);
+        g.drawString(data, getX(), getY()+getHeight()/*-g.getFontMetrics(font).getDescent()*/);
         
         g.setFont(f);
         g.setColor(c);

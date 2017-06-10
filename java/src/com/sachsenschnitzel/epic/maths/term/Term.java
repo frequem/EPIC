@@ -23,26 +23,17 @@ public abstract class Term extends MathObject{
     public abstract void print();
     
     //mathematical stuff...
-    public abstract double calc(AssignedValues avs);
+    public abstract Term calc(AssignedValues avs);
     public abstract Term derive(String var);
     //public abstract void simplify();
-    public double calc(){ return calc(null); }
+    public Term calc(){ return calc(null); }
     /**
      * 
      * @return +1 for open encaps, -1 for close
      */
-    public abstract int countEncaps();
+    //public abstract int countEncaps();
 
     //spritey stuff...
-    protected int x, y, w, h;
-    protected boolean selected;
-    
-    public void optStructure(Graphics g){
-        optSize(g);
-        optSubPos(g);
-    }
-    public abstract void optSize(Graphics g);
-    public abstract void optSubPos(Graphics g);
     
     public void paint(Graphics g){
         g.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
@@ -50,7 +41,7 @@ public abstract class Term extends MathObject{
         this.optSubPos(g);
     }
     
-    public Rectangle getBounds(){ return new Rectangle(x, y, w, h); }
+    /*public Rectangle getBounds(){ return new Rectangle(x, y, w, h); }
     public void setSelected(boolean s){ selected = s; }
     public boolean isSelected(){ return selected; }
 
@@ -65,7 +56,7 @@ public abstract class Term extends MathObject{
     public void moveBy(int x, int y){
         this.x -= x;
         this.y -= y;
-    }
+    }*/
     
     /**
      * 

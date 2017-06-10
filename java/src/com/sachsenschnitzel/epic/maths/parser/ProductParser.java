@@ -6,6 +6,7 @@
 package com.sachsenschnitzel.epic.maths.parser;
 
 import com.frequem.epic.mathematics.parser.Parser;
+import com.sachsenschnitzel.epic.maths.term.Product;
 import com.sachsenschnitzel.epic.maths.term.Sum;
 import com.sachsenschnitzel.epic.maths.term.Term;
 import com.sachsenschnitzel.epic.maths.term.UnfinishedTerm;
@@ -15,18 +16,18 @@ import java.util.ArrayList;
  *
  * @author user
  */
-public class SumParser extends Parser{
+public class ProductParser extends Parser{
     
     @Override
     public Term tryParse(String data){
-        Term[] elements = Parser.separateToUnfinishedBy(data, '+');
+        Term[] elements = Parser.separateToUnfinishedBy(data, '*');
         
-        Sum s = null;
+        Product p = null;
         if(elements.length > 1){
-            s = new Sum(elements);
-            s.setCursor(elements.length-1);
+            p = new Product(elements);
+            p.setCursor(elements.length-1);
         }
-        return s;
+        return p;
     }
     
     /*@Override

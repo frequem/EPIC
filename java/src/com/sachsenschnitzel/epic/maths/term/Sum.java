@@ -38,7 +38,6 @@ public class Sum extends Term implements Textable{
     
     @Override
     public void parseContent(int offset){
-        //System.out.println("parsing inside sum for: " + (summands.length-offset));
         for(int i = 0; i < summands.length-offset; i++)
             summands[i].parseContent(0);
     }
@@ -53,40 +52,37 @@ public class Sum extends Term implements Textable{
         return s;
     }
     
-    private String toInputForm(int from, int to){
-        if(to-from > summands.length || to > summands.length-1 || from < 0)
-            return "";
-        String s = summands[from].toInputForm();
-        for(int i = from+1; i <= to; i++)
-            s += "+" + summands[i].toInputForm();
-        return s;
-    }
-    
     @Override
-    public void changeSubterm(Term o, Term n){
+    public void changeSubObj(MathObject o, MathObject n){
+        if(!(o instanceof Term && n instanceof Term))
+            return;
         for(int i = 0; i < summands.length; i++)
-            if(o.equals(summands[i])){
+            if(o == summands[i]){
                 MathObject.transferProps(o, n);
-                summands[i] = n;
+                summands[i] = (Term)n;
             }
     }
     
     @Override
-    public double calc(AssignedValues avs){
-        double sm = 0;
-        for(Term summand : summands)
-            sm += summand.calc(avs);
-        return sm;
+    public Term calc(AssignedValues avs){
+        double sum = 0;
+        for(Term summand : summands){
+            Term summResult = summand.calc();
+            if(summResult == null || !(summResult instanceof Constant))
+                return null;
+            sum += ((Constant)summResult).getValue();
+        }
+        return new Constant(sum);
     }
     
-    @Override
+    /*@Override
     public int countEncaps(){
         int sum = 0; // ;P
         for(Term summand : summands){
             sum += summand.countEncaps();
         }//TODO...
         return sum;
-    }
+    }*/
 
     @Override
     public Term derive(String var){
@@ -133,7 +129,7 @@ public class Sum extends Term implements Textable{
     
     private void clean(){
         if(summands.length == 1){ //only one left?
-            parent.changeSubterm(this, summands[0]); //no sum anymore
+            parent.changeSubObj(this, summands[0]); //no sum anymore
         }
     }
 
@@ -147,15 +143,15 @@ public class Sum extends Term implements Textable{
 
     @Override
     public void optSize(Graphics g){
-        w = (summands.length-1)*
-                (2*SUM_SPRITE_MARGIN_SIDE + g.getFontMetrics().stringWidth("+"));
-        h = 0;
+        setWidth((summands.length-1)*
+                (2*SUM_SPRITE_MARGIN_SIDE + g.getFontMetrics().stringWidth("+")));
+        setHeight(0);
         
         for(Term summand : summands){
             summand.optSize(g);
-            w += summand.getWidth();
-            if (summand.getHeight() > h)
-                h = summand.getHeight();
+            setWidth(getWidth() + summand.getWidth());
+            if (summand.getHeight() > getHeight())
+                setHeight(summand.getHeight());
         }
     }
     
@@ -163,10 +159,10 @@ public class Sum extends Term implements Textable{
     public void optSubPos(Graphics g){
         int plusWidth = g.getFontMetrics().stringWidth("+");
         
-        int xCounter = x;
+        int xCounter = getX();
         for(Term summand : summands){
             summand.setX(xCounter);
-            summand.setY(y + (h-summand.getHeight())/2);
+            summand.setY(getY() + (getHeight()-summand.getHeight())/2);
             summand.optSubPos(g);
             xCounter += summand.getWidth() + 2*SUM_SPRITE_MARGIN_SIDE + plusWidth;
         }
@@ -179,8 +175,14 @@ public class Sum extends Term implements Textable{
         if(summands.length < 1)
             return;
         
+        Color c = g.getColor();
+        
         if(font == null)
             font = g.getFont();
+        if(color == null)
+            color = c;
+        else
+            g.setColor(color);
         
         int plusWidth = g.getFontMetrics(font).stringWidth("+");
         int plusHeight = g.getFontMetrics(font).getHeight();
@@ -188,18 +190,22 @@ public class Sum extends Term implements Textable{
         summands[0].paint(g);
         for(int i = 1; i < summands.length; i++){
             int posX = summands[i].getX()-SUM_SPRITE_MARGIN_SIDE - plusWidth;
-            g.drawString("+", posX, y + (h+plusHeight)/2);
+            g.drawString("+", posX, getY() + (getHeight()+plusHeight)/2);
             summands[i].paint(g);
         }
+        
+        g.setColor(c);
     }
     
     @Override
     public int getCursorSide(){
         if(cursorStart != cursorEnd)
             return 0;
-        if(cursorStart*cursorEnd == 0) //at the start?
+        
+        int innerCursor = summands[cursorStart].getCursorSide();
+        if(cursorStart == 0 && (innerCursor == -1 || innerCursor == 2)) //at the start?
             return -1;
-        if((summands.length-1-cursorStart)*(summands.length-1-cursorEnd) == 0) //at the end?
+        if(cursorStart == summands.length-1 && innerCursor >= 1) //at the end?
             return 1;
         else
             return 0;
@@ -216,31 +222,10 @@ public class Sum extends Term implements Textable{
         //System.out.println("set cursor to " + cursorStart);
     }
     
-    /**
-     * Without this functionality, Encapsulators wouldn't work.
-     * They have to be in one String. This method ensures
-     * that all Unfinished[ sub]Terms are connected.
-     * @param index starting point for concatenation
-     */
-    /*private void concatSubterms(int index){
-        int i1, i2;
-        for(i1 = index; i1 >= 0; i1--)
-            if(!(summands[i1] instanceof UnfinishedTerm))
-                break;
-        for(i2 = index; i2 < summands.length; i2++)
-            if(!(summands[i2] instanceof UnfinishedTerm))
-                break;
-        if(i2-i1 > 0){
-            i1++;i2--;
-            summands[i1] = new UnfinishedTerm
-            removeElements(summands, i1, i2);
-        }
-    }*/
-    
     private int findCursorSnapPos(int x, int y){
         //check every interspace
         for(int i = 0; i < summands.length-1; i++){
-            if(x < (summands[i+1].x+summands[i].x+summands[i].w)/2)
+            if(x < (summands[i+1].getX()+summands[i].getX()+summands[i].getWidth())/2)
                 return i; //if x is to the left of the center of the interspace
         }
         return summands.length-1;
@@ -271,12 +256,12 @@ public class Sum extends Term implements Textable{
         if(c1 != c2){
             int maxSubHeight = 0;
             for(int i = c1; i <= c2; i++)
-                if(maxSubHeight < summands[i].h)
-                    maxSubHeight = summands[i].h;//q&d possible
+                if(maxSubHeight < summands[i].getHeight())
+                    maxSubHeight = summands[i].getHeight();//q&d possible
             
-            g.fillRect(summands[c1].x,
-                    y+(h-maxSubHeight)/2,
-                    summands[c2].x+summands[c2].w-summands[c1].x,
+            g.fillRect(summands[c1].getX(),
+                    getY()+(getHeight()-maxSubHeight)/2,
+                    summands[c2].getX()+summands[c2].getWidth()-summands[c1].getX(),
                     maxSubHeight);
             //System.out.println("left 2 right");
         }else{
@@ -291,10 +276,7 @@ public class Sum extends Term implements Textable{
         if(cursorStart != cursorEnd)
             removeOwnSelection();
         
-        if(summands[cursorStart] instanceof Textable)
-            ((Textable)summands[cursorStart]).putText(s);
-        else
-            System.out.println("cannot put text on " + summands[cursorStart].getClass().getSimpleName());
+        summands[cursorStart].putText(s);
         
         clean();
     }
