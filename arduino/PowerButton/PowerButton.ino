@@ -80,6 +80,9 @@ void button_pressed(){
   if(state == STATE_ASLEEP){
     state = STATE_AWAKE;
     timer = 0;
+  }else if(state == STATE_SHUTDOWN){
+    state = STATE_SHUTDOWN_READY;
+    timer = 0;
   }
 }
 
